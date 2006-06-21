@@ -54,7 +54,9 @@ AC_DEFUN([GPKG_CHECK_LINUX],
 	    hotplugdocdir="${docdir}/linux-hotplug"
 	    AC_MSG_RESULT([${hotplugdocdir} (default)])
 	fi
-	AC_SUBST([hotplugdocdir])
+	if "$is_linux"; then
+		AC_SUBST([hotplugdocdir])
+	fi
 
 	AC_ARG_WITH([hotplug-usermap-dir],
 	[AS_HELP_STRING([--with-hotplug-usermap-dir=PATH],
@@ -70,5 +72,7 @@ AC_DEFUN([GPKG_CHECK_LINUX],
 	    AC_MSG_RESULT([${hotplugusermapdir} (default)])
 	fi
 
-	AC_SUBST([hotplugusermapdir])
+	if "$is_linux"; then
+		AC_SUBST([hotplugusermapdir])
+	fi
 ])
