@@ -45,34 +45,41 @@ AC_DEFUN([GPKG_CHECK_LINUX],
 	[AS_HELP_STRING([--with-hotplug-doc-dir=PATH],
 	[Where to install hotplug scripts as docs [default=autodetect]])])
 
-	AC_MSG_CHECKING([for hotplug doc dir])
-	if test "x${with_hotplug_doc_dir}" != "x"
-	then # given as parameter
-	    hotplugdocdir="${with_hotplug_doc_dir}"
-	    AC_MSG_RESULT([${hotplugdocdir} (from parameter)])
-	else # start at docdir
-	    hotplugdocdir="${docdir}/linux-hotplug"
-	    AC_MSG_RESULT([${hotplugdocdir} (default)])
-	fi
 	if "$is_linux"; then
-		AC_SUBST([hotplugdocdir])
+		AC_MSG_CHECKING([for hotplug doc dir])
+		if test "x${with_hotplug_doc_dir}" != "x"
+		then # given as parameter
+		    hotplugdocdir="${with_hotplug_doc_dir}"
+		    AC_MSG_RESULT([${hotplugdocdir} (from parameter)])
+		else # start at docdir
+		    hotplugdocdir="${docdir}/linux-hotplug"
+		    AC_MSG_RESULT([${hotplugdocdir} (default)])
+		fi
+	else
+		hotplugdocdir=""
 	fi
 
 	AC_ARG_WITH([hotplug-usermap-dir],
 	[AS_HELP_STRING([--with-hotplug-usermap-dir=PATH],
 	[Where to install hotplug scripts as docs [default=autodetect]])])
 
-	AC_MSG_CHECKING([for hotplug usermap dir])
-	if test "x${with_hotplug_usermap_dir}" != "x"
-	then # given as parameter
-	    hotplugusermapdir="${with_hotplug_usermap_dir}"
-	    AC_MSG_RESULT([${hotplugusermapdir} (from parameter)])
-	else # start at docdir
-	    hotplugusermapdir="${docdir}/linux-hotplug"
-	    AC_MSG_RESULT([${hotplugusermapdir} (default)])
+	if "$is_linux"; then
+		AC_MSG_CHECKING([for hotplug usermap dir])
+		if test "x${with_hotplug_usermap_dir}" != "x"
+		then # given as parameter
+		    hotplugusermapdir="${with_hotplug_usermap_dir}"
+		    AC_MSG_RESULT([${hotplugusermapdir} (from parameter)])
+		else # start at docdir
+		    hotplugusermapdir="${docdir}/linux-hotplug"
+		    AC_MSG_RESULT([${hotplugusermapdir} (default)])
+		fi
+	else
+		hotplugusermapdir=""
 	fi
 
-	if "$is_linux"; then
-		AC_SUBST([hotplugusermapdir])
-	fi
+	# Let us hope that automake does not create "" directories
+	# on non-Linux systems now.
+	AC_SUBST([hotplugdocdir])
+	AC_SUBST([hotplugusermapdir])
 ])
+
