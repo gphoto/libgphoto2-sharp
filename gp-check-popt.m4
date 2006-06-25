@@ -85,7 +85,7 @@ if test "x$POPT_CFLAGS" = "x" && test "x$POPT_LIBS" = "x"; then
 		else
 			POPT_CFLAGS="-I${popt_prefix}/include"
 		fi
-	else
+	elif test "$require_popt" = "yes"; then
 		AC_MSG_ERROR([
 * Cannot autodetect popt.h
 *
@@ -132,14 +132,14 @@ if test "x$POPT_CFLAGS" = "x" && test "x$POPT_LIBS" = "x"; then
 		else
 			POPT_LIBS="-L${popt_libdir} -lpopt"
 		fi
-	else
+		have_popt=yes
+	elif test "$require_popt" = "yes"; then
 		AC_MSG_ERROR([
 * Cannot autodetect library directory containing popt
 *
 * Set POPT_CFLAGS and POPT_LIBS correctly.
 ])
 	fi
-	have_popt=yes
 elif test "x$POPT_CFLAGS" != "x" && test "x$POPT_LIBS" != "x"; then
     # just use the user specivied option
     popt_msg="yes (user specified)"
