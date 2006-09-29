@@ -73,16 +73,11 @@ dnl Yes, that help output won't be all that pretty, but we at least
 dnl do not have to edit it by hand.
 AC_ARG_WITH([drivers],[AS_HELP_STRING(
 	[--with-drivers=<list>],
-	[compile drivers in <list>.]
-		[Drivers may be separated with commas,]
-		['all' is the default and compiles all drivers.]
-		[Possible drivers are: ]
-		m4_strip(gp_camlibs)dnl
-		[.]
-		m4_ifval([gp_camlibs_obsolete],
-			 [ Obsolete drivers not included in default: ]
-			 m4_strip(gp_camlibs_obsolete))
-	)],
+	[Compile drivers in <list>. ]dnl
+	[Drivers may be separated with commas. ]dnl
+	['all' is the default and compiles all drivers. ]dnl
+	[Possible drivers are: ]dnl
+	m4_strip(gp_camlibs))],
 	[drivers="$withval"],
 	[drivers="all"])dnl
 dnl
