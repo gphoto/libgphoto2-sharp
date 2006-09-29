@@ -112,11 +112,14 @@ AC_ARG_VAR([$1][_CFLAGS], [CFLAGS for compiling with ][$2])dnl
 AC_ARG_VAR([$1][_LIBS],   [LIBS to add for linking against ][$2])dnl
 dnl
 AC_MSG_CHECKING([for ][$2][ to use])
+m4_ifval([$3],[REQUIREMENTS_FOR_][$1][="][$2][ $3]["],
+              [REQUIREMENTS_FOR_][$1][="][$2]["])
+AC_SUBST([REQUIREMENTS_FOR_][$1])
 userdef_[$1]=no
 have_[$1]=no
 if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
 	dnl define --with/--without argument
-	m4_if([$8], [default-off],
+	m4_if([$8], [default-on],
 		[m4_pushdef([gp_lib_arg],[--without-][$2])dnl
 			try_[$1]=no
 		],
