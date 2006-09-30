@@ -4,10 +4,10 @@ AC_ARG_WITH([rpmbuild],
 [AS_HELP_STRING([--with-rpmbuild=PATH],
 [Program to use for building RPMs])])
 
+AC_MSG_CHECKING([for rpmbuild or rpm])
 if test -x "${with_rpmbuild}"
 then
     RPMBUILD="${with_rpmbuild}"
-    AC_MSG_CHECKING([for rpmbuild or rpm])
     AC_MSG_RESULT([${RPMBUILD} (from parameter)])
 else
     AC_MSG_RESULT([using autodetection])
