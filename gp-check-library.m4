@@ -192,7 +192,7 @@ It must be one of ">=", ">", "<", "<=", "=".
 				])dnl if version requirement given
 				AC_MSG_CHECKING([for ][$2][ parameters from ][gp_lib_config])
 				[$1]_LIBS="$(${[$1][_CONFIG_PROG]} --libs || echo "*error*")"
-				[$1]_CFLAGSS="$(${[$1][_CONFIG_PROG]} --cflags || echo "*error*")"
+				[$1]_CFLAGS="$(${[$1][_CONFIG_PROG]} --cflags || echo "*error*")"
 				if test "x${[$1]_LIBS}" = "*error*" || 
 					test "x${[$1]_CFLAGS}" = "*error*"; then
 					AC_MSG_RESULT([error])
@@ -361,9 +361,9 @@ if test "x$have_[$1]" = "xyes"; then
 	AC_DEFINE([HAVE_][$1], 1, [whether we compile with ][$2][ support])
 	GP_CONFIG_MSG([$2],[yes])dnl
 	AC_MSG_CHECKING([$2][ library flags])
-	AC_MSG_RESULT([${[$1][_LIBS]}])
+	AC_MSG_RESULT(["${[$1][_LIBS]}"])
 	AC_MSG_CHECKING([$2][ cpp flags])
-	AC_MSG_RESULT([${[$1][_CFLAGS]}])
+	AC_MSG_RESULT(["${[$1][_CFLAGS]}"])
 else
 	GP_CONFIG_MSG([$2],[no])dnl
 fi
