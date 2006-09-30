@@ -105,9 +105,9 @@ dnl
 AC_REQUIRE([GP_CONFIG_MSG])dnl
 AC_REQUIRE([GP_PKG_CONFIG])dnl
 AC_REQUIRE([_GP_CHECK_LIBRARY_SOEXT])dnl
-dnl Use _CFLAGS and _LIBS given to configure.
-dnl This makes it possible to set these vars in a configure script
-dnl and AC_CONFIG_SUBDIRS this configure.
+# Use _CFLAGS and _LIBS given to configure.
+# This makes it possible to set these vars in a configure script
+# and AC_CONFIG_SUBDIRS this configure.
 AC_ARG_VAR([$1][_CFLAGS], [CFLAGS for compiling with ][$2])dnl
 AC_ARG_VAR([$1][_LIBS],   [LIBS to add for linking against ][$2])dnl
 dnl
@@ -118,8 +118,8 @@ AC_SUBST([REQUIREMENTS_FOR_][$1])
 userdef_[$1]=no
 have_[$1]=no
 if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
-	dnl define --with/--without argument
-	m4_if([$8], [default-on],
+	# define --with/--without argument
+	m4_if([$8], [default-off],
 		[m4_pushdef([gp_lib_arg],[--without-][$2])dnl
 			try_[$1]=no
 		],
@@ -131,21 +131,17 @@ if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
 	AC_MSG_RESULT([${try_][$1][}])
 	m4_popdef([gp_lib_arg])dnl
 	if test "x${[try_][$1]}" = "xautodetect"; then
-		dnl
-		dnl OK, we have to autodetect.
-		dnl We start autodetection with the cleanest known method: pkg-config
-		dnl
+		# OK, we have to autodetect.
+		# We start autodetection with the cleanest known method: pkg-config
 		if test "x${[have_][$1]}" = "xno"; then
-			dnl we need that line break after the PKG_CHECK_MODULES
+			# we need that line break after the PKG_CHECK_MODULES
 			m4_ifval([$3],
 				[PKG_CHECK_MODULES([$1],[$2][ $3],[have_][$1][=yes],[:])],
 				[PKG_CHECK_MODULES([$1],[$2],     [have_][$1][=yes],[:])]
 			)
 		fi
-		dnl
-		dnl If pkg-config didn't find anything, try the libfoo-config program
-		dnl certain known libraries ship with.
-		dnl
+		# If pkg-config didn't find anything, try the libfoo-config program
+		# certain known libraries ship with.
 		if test "x${[have_][$1]}" = "xno"; then
 			AC_MSG_CHECKING([$2][ config program])
 			m4_pushdef([gp_lib_config],[m4_if([$2],[libusb],[libusb-config],
@@ -208,10 +204,8 @@ It must be one of ">=", ">", "<", "<=", "=".
 			m4_popdef([gp_lib_config])dnl
 		fi
 		m4_ifval([$3],[# Version requirement given, so we do not rely on probing.],[
-		dnl
-		dnl Neither pkg-config, nor the libfoo-config program have found anything.
-		dnl So let's just probe the system.
-		dnl
+		# Neither pkg-config, nor the libfoo-config program have found anything.
+		# So let's just probe the system.
 		AC_MSG_WARN([The `$2' library could not be found using pkg-config or its known config program.
 No version checks will be performed if it is found using any other method.])
 		if test "x${[have_][$1]}" = "xno"; then
