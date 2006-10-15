@@ -8,9 +8,26 @@ AC_CONFIG_MACRO_DIR([m4m])
 AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([-Wall -Werror gnu 1.9 dist-bzip2 check-news])
 
+dnl Library version
+dnl The easiest way to maintain this is to keep it synchronized with
+dnl libgphoto2 proper.
+AC_SUBST([LIBGPHOTO2_SHARP_CURRENT], [4])
+AC_SUBST([LIBGPHOTO2_SHARP_REVISION], [0])
+
+
 AC_PROG_CC
+AC_C_CONST
 AC_PROG_CPP
 AC_PROG_INSTALL
+
+dnl Something with the sequences is not quite alright yet.
+dnl SED is supposed to be set in AC_LIBTOOL_SETUP, but the
+dnl sequence seems to get mixed up.
+SED=${SED-sed}
+AC_LIBTOOL_WIN32_DLL
+AC_LIBTOOL_DLOPEN
+AM_PROG_LIBTOOL
+
 
 dnl --------------------------------------------------------------------
 dnl guess directory to install *.pc into
@@ -49,7 +66,19 @@ AM_CONDITIONAL([HAVE_MONO], [test "x${have_mono}" = "xyes"])
 
 AC_CONFIG_FILES([
 Makefile
-src/Makefile
 m4m/Makefile
+src/Makefile
+src/AssemblyInfo.cs
+src/libgphoto2-sharp.pc
+src/check-camera-list.sh
+src/check-sizes.sh
+],[
+dnl This relies on this code being called for each of the above files
+dnl with ac_file set to the filename.
+	if echo "$ac_file" | grep '.sh$' > /dev/null; then
+		if test -f "$ac_file"; then
+			chmod +x "$ac_file"
+		fi
+	fi
 ])
 AC_OUTPUT

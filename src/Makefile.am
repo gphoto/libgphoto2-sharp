@@ -57,6 +57,7 @@ check_PROGRAMS = testsizes
 
 BUILT_SOURCES = testsizes.c TestSizes.cs
 testsizes_SOURCES = testsizes.c
+testsizes_CPPFLAGS = $(AM_CPPFLAGS) $(LIBGPHOTO2_PORT_CFLAGS) $(LIBGPHOTO2_CFLAGS) $(CPPFLAGS)
 
 TESTS = check-sizes.sh
 INSTALL_TESTS = check-camera-list.sh
