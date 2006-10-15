@@ -8,6 +8,17 @@ AC_CONFIG_MACRO_DIR([m4m])
 AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE([-Wall -Werror gnu 1.9 dist-bzip2 check-news])
 
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+
+dnl --------------------------------------------------------------------
+dnl guess directory to install *.pc into
+dnl --------------------------------------------------------------------
+pkgconfigdir='${libdir}/pkgconfig'
+AC_SUBST([pkgconfigdir])
+
+
 dnl Check for libgphoto2
 GP_CHECK_LIBRARY([LIBGPHOTO2], [libgphoto2], [>= 2.2.1.4])
 
