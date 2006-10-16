@@ -39,13 +39,22 @@ AC_SUBST([pkgconfigdir])
 dnl Check for libgphoto2
 GP_CHECK_LIBRARY([LIBGPHOTO2], [libgphoto2], [>= 2.2.1.4])
 
-dnl Check for Mono and Mono C# compiler from f-spot
-
 dnl --- Check for mono and mcs
+AC_PATH_PROG([CSC], [csc])
+AC_PATH_PROG([MCS], [mcs])
+AC_PATH_PROG([MONO], [mono])
+
+CS="C#"
+if test "x$CSC" = "xno" -a "x$MCS" = "xno"  ; then
+	AC_MSG_ERROR([No $CS compiler found])
+fi
+
+if test "x$MCS" = "xno" ; then
+	MCS=$CSC
+fi
+
 dnl --- FIXME: What about when mono and mcs are not found?
 
-AC_PATH_PROG([MONO], [mono])
-AC_PATH_PROG([MCS], [mcs])
 AC_SUBST([MONO])
 AC_SUBST([MCS])
 
