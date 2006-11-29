@@ -245,8 +245,30 @@ No version checks will be performed if it is found using any other method.])
 	elif test "x${[try_][$1]}" = "xno"; then
 		:
 	else
-		[$1][_LIBS]="-L${[try_][$1]}/lib -l$(echo "$2" | sed 's/^lib//')"
-		[$1][_CFLAGS]="-I${[try_][$1]}/include"
+		# We've been given a prefix to look in for library $2.
+		# We start looking for $2.la files first.
+		AC_MSG_CHECKING([for ][$2][.la file in ${[try_][$1]}])
+		if test -f "${[try_][$1]}/lib/[$2].la"; then
+			[$1][_LIBS]="${[try_][$1]}/lib/[$2].la"
+			[$1][_CFLAGS]="-I${[try_][$1]}/include"
+			AC_MSG_RESULT([libtool file $][$1][_LIBS (good)])
+			have_[$1]=yes
+		elif test -f "${[try_][$1]}/lib64/[$2].la"; then # HACK
+			[$1][_LIBS]="${[try_][$1]}/lib64/[$2].la"
+			[$1][_CFLAGS]="-I${[try_][$1]}/include"
+			AC_MSG_RESULT([libtool file $][$1][_LIBS (good)])
+			have_[$1]=yes
+		else
+			AC_MSG_RESULT([wild guess that something is in $try_][$1])
+			[$1][_LIBS]="-L${[try_][$1]}/lib -l$(echo "$2" | sed 's/^lib//')"
+			[$1][_CFLAGS]="-I${[try_][$1]}/include"
+			have_[$1]=yes
+			AC_MSG_WARN([
+* Warning:
+*   libtool file $2.la could not be found.
+*   We may be linking against the WRONG library.
+])
+		fi
 	fi
 elif test "x${[$1][_LIBS]}" != "x" && test "x${[$1][_CFLAGS]}" != "x"; then
 	AC_MSG_RESULT([user-defined])
