@@ -8,6 +8,9 @@ The source for f-spot can be found at:
 http://ftp.gnome.org/Public/GNOME/sources/f-spot
 http://cvs.gnome.org/viewcvs/f-spot/libgphoto2-sharp
 
+Many thanks to Larry Ewing and Ewen Cheslack-Postava for releasing this
+code as LGPL so that it can operate with libgphoto2 and other code legally.
+
 IMPORTANT NOTE:
 
    This is in alpha state, we still have a few things to figure
