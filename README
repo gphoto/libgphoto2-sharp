@@ -1,23 +1,21 @@
-This code has been imported from f-spot and adapted slightly to fit into
-the libgphoto2 build system.
+This code was imported from f-spot in mid-2006, and has been developed some
+since then.  No API changes have been made, but some types have been updated
+and code is a wee bit cleaner.  There are still some unimplemented features.
+Most notably, the Object class has been reworked a bit so that it properly
+disposes of unmanaged resources.
 
-http://ftp.gnome.org/Public/GNOME/sources/f-spot/0.1/f-spot-0.1.1.tar.bz2
+The source for f-spot can be found at:
+http://ftp.gnome.org/Public/GNOME/sources/f-spot
+http://cvs.gnome.org/viewcvs/f-spot/libgphoto2-sharp
 
 IMPORTANT NOTE:
 
-   This is in pre-alpha state, we still have a few things to figure
+   This is in alpha state, we still have a few things to figure
    out before we can call this interface stable.
-
 
 TODO:
 
- * gmcs vs. mcs
-   Libraries compiled with gmcs (C# 2.0) and mcs (C# 1.x) are not compatible.
-   Does one ship both? What should they be named, and where should they be
-   installed? And how is an application supposed to detect their respective
-   presence?
-   
- * Is there a cleaner set of automake/autoconf macros for C#/mono?
+ * Implement Aaron Bockover's Shamrock m4 macros for mono searching
 
  * Define special binding macros like the camlib or iolib macros, perhaps
    even define a generic set of macros for all three.
