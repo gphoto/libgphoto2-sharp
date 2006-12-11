@@ -5,8 +5,8 @@ dnl and relying on standard autoconf's "autoreconf".
 dnl
 dnl Look for external libltdl, not shipping internal libltdl.
 AC_DEFUN([GP_LIB_LTDL],[dnl
-AC_ARG_VAR([LTDLINCL],[C preprocessor options for libltdl])
-AC_ARG_VAR([LIBLTDL],[Linker options for linking against libltdl])
+AC_ARG_VAR([LTDLINCL],[CFLAGS for compiling with libltdl])
+AC_ARG_VAR([LIBLTDL],[LIBS to add for linking against libltdl])
 if test "x${LTDLINCL}${LIBLTDL}" = "x"; then
 AC_CHECK_HEADER([ltdl.h],
 [dnl
