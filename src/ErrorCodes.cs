@@ -109,7 +109,8 @@ namespace LibGPhoto2
 			return ("Error " + error.ToString() + ": " + base.ToString());
 		}
 
-		public ErrorCode Error {
+		public ErrorCode Error
+		{
 			get {
 				return error;
 			}

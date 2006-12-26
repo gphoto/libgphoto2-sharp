@@ -1,12 +1,15 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace LibGPhoto2 {
-	public abstract class Object : System.IDisposable {
+namespace LibGPhoto2
+{
+	public abstract class Object : System.IDisposable
+	{
 	    protected HandleRef handle;
 	    private bool disposed = false;
 		
-		public HandleRef Handle {
+		public HandleRef Handle
+		{
 			get {
 				return handle;
 			}

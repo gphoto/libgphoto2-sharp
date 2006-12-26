@@ -19,7 +19,8 @@ namespace LibGPhoto2
 		[MarshalAs(UnmanagedType.LPTStr)] public static string RAW = "image/x-raw";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string PNG = "image/png";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string PGM = "image/x-portable-graymap";
-		[MarshalAs(UnmanagedType.LPTStr)] public static string PPM = "image-x-portable-pixmap";
+		[MarshalAs(UnmanagedType.LPTStr)] public static string PPM = "image/x-portable-pixmap";
+		[MarshalAs(UnmanagedType.LPTStr)] public static string PNM = "image/x-portable-anymap";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string JPEG = "image/jpeg";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string TIFF = "image/tiff";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string BMP = "image/bmp";
@@ -32,7 +33,7 @@ namespace LibGPhoto2
 		[MarshalAs(UnmanagedType.LPTStr)] public static string OGG = "application/ogg";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string WMA = "audio/x-wma";
 		[MarshalAs(UnmanagedType.LPTStr)] public static string ASF = "audio/x-asf";
-		[MarshalAs(UnmanagedType.LPTStr)] public static string MPEG = "audio/x-wma";
+		[MarshalAs(UnmanagedType.LPTStr)] public static string MPEG = "video/mpeg";
 	}
 
 	public class CameraFile : Object 
@@ -52,7 +53,8 @@ namespace LibGPhoto2
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_file_unref (HandleRef file);
 
-		protected override void Cleanup () {
+		protected override void Cleanup ()
+		{
 			gp_file_unref (this.Handle);
 		}
 		

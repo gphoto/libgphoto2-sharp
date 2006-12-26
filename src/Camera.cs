@@ -18,7 +18,8 @@ namespace LibGPhoto2
 	{
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=(32*1024))] string text;
 		
-		public string Text {
+		public string Text
+		{
 			get {
 				return text;
 			}
