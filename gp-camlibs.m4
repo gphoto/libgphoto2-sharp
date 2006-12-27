@@ -55,19 +55,18 @@ dnl ####################################################################
 dnl
 AC_DEFUN([GP_CAMLIBS_DEFINE],[dnl
 AC_REQUIRE([GP_CAMLIBS_INIT])dnl
-AC_BEFORE([$0], [GP_CAMLIBS_CHECK_SUBDIRS])dnl
 m4_pattern_allow([m4_strip])dnl
 m4_ifval([$1],[m4_define([gp_camlib_srcdir],[$1])])dnl
-for camlib in m4_strip(gp_camlibs) m4_strip(gp_camlibs_obsolete)
-do
-	if test -d "$srcdir/m4_strip(gp_camlib_srcdir)/$camlib"; then :; else
-		AC_MSG_ERROR([
-* Fatal:
-* Source subdirectory for camlib \`$camlib' not found in
-* directory \`$srcdir/m4_strip(gp_camlib_srcdir)/'
-])
-	fi
-done
+dnl for camlib in m4_strip(gp_camlibs) m4_strip(gp_camlibs_obsolete)
+dnl do
+dnl 	if test -d "$srcdir/m4_strip(gp_camlib_srcdir)/$camlib"; then :; else
+dnl 		AC_MSG_ERROR([
+dnl * Fatal:
+dnl * Source subdirectory for camlib \`$camlib' not found in
+dnl * directory \`$srcdir/m4_strip(gp_camlib_srcdir)/'
+dnl ])
+dnl 	fi
+dnl done
 AC_MSG_CHECKING([which drivers to compile])
 dnl Yes, that help output won't be all that pretty, but we at least
 dnl do not have to edit it by hand.
@@ -81,8 +80,11 @@ AC_ARG_WITH([drivers],[AS_HELP_STRING(
 	[drivers="$withval"],
 	[drivers="all"])dnl
 dnl
+ALL_DEFINED_CAMLIBS="m4_strip(gp_camlibs) m4_strip(gp_camlibs_obsolete)"
+ALL_CURRENT_CAMLIBS="m4_strip(gp_camlibs)"
+BUILD_THESE_CAMLIBS_BASE=""
 if test "$drivers" = "all"; then
-	SUBDIRS_CAMLIBS="m4_strip(gp_camlibs)"
+	BUILD_THESE_CAMLIBS_BASE="$ALL_CURRENT_CAMLIBS"
 	AC_MSG_RESULT([all])
 else
 	# drivers=$(echo $drivers | sed 's/,/ /g')
@@ -91,9 +93,9 @@ else
 	for driver in $drivers; do
 		IFS="$IFS_save"
 		found=false
-		for camlib in m4_strip(gp_camlibs) m4_strip(gp_camlibs_obsolete); do
+		for camlib in ${ALL_DEFINED_CAMLIBS}; do
 			if test "$driver" = "$camlib"; then
-				SUBDIRS_CAMLIBS="$SUBDIRS_CAMLIBS $driver"
+				BUILD_THESE_CAMLIBS_BASE="$BUILD_THESE_CAMLIBS_BASE $driver"
 				found=:
 				break
 			fi
@@ -105,35 +107,17 @@ else
 	IFS="$IFS_save"
 	AC_MSG_RESULT([$drivers])
 fi
-AC_SUBST([SUBDIRS_CAMLIBS])
+BUILD_THESE_CAMLIBS=""
+for f in $BUILD_THESE_CAMLIBS_BASE
+do
+    BUILD_THESE_CAMLIBS="${BUILD_THESE_CAMLIBS}${BUILD_THESE_CAMLIBS+ }${f}.la"
+done
+AC_SUBST([BUILD_THESE_CAMLIBS])
+AC_SUBST([ALL_DEFINED_CAMLIBS])
+AC_SUBST([ALL_CURRENT_CAMLIBS])
 ])dnl
 dnl
 dnl ####################################################################
-dnl
-AC_DEFUN([GP_CAMLIBS_CHECK_SUBDIRS],[
-AC_REQUIRE([GP_CAMLIBS_DEFINE])dnl
-# check that for each camlib a Makefile is generated
-# m4_if([X],[X],AC_LIST_FILES)
-for camlib in m4_strip(gp_camlibs) m4_strip(gp_camlibs_obsolete)
-do
-	camake="m4_strip(gp_camlib_srcdir)/$camlib/Makefile"
-	found=false
-	for confile in $ac_config_files
-	do
-		if test "$camake" = "$confile"; then
-			found=:
-			break
-		fi
-	done
-	if "$found"; then :; else
-		AC_MSG_ERROR([
-* Fatal: Makefile for camlib $camlib not generated
-*        $camake
-])
-	fi
-done
-])dnl
-dnl
 dnl
 dnl Local Variables:
 dnl mode: autoconf
