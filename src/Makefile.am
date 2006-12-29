@@ -42,12 +42,17 @@ cslib_DATA =				\
 	libgphoto2-sharp.dll.config	\
 	libgphoto2-sharp.dll.mdb
 
+libgphoto2-sharp.dll.mdb: libgphoto2-sharp.dll
+libgphoto2-sharp.dll.config: libgphoto2-sharp.dll
 libgphoto2-sharp.dll: $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 	$(MCS) $(MCSFLAGS) -out:$@ /target:library $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 
+
+TestGphoto2Sharp.exe.mdb: TestGphoto2Sharp.exe
 TestGphoto2Sharp.exe: $(srcdir)/TestGphoto2Sharp.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
+TestSizes.exe.mdb: TestSizes.exe
 TestSizes.exe: TestSizes.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
