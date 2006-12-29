@@ -43,7 +43,6 @@ cslib_DATA =				\
 	libgphoto2-sharp.dll.mdb
 
 libgphoto2-sharp.dll.mdb: libgphoto2-sharp.dll
-libgphoto2-sharp.dll.config: libgphoto2-sharp.dll
 libgphoto2-sharp.dll: $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 	$(MCS) $(MCSFLAGS) -out:$@ /target:library $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 
