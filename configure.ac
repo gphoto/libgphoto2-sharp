@@ -18,6 +18,7 @@ AC_SUBST([LIBGPHOTO2_SHARP_REVISION], [0])
 AC_PROG_CC
 AC_C_CONST
 AC_PROG_CPP
+AM_PROG_CC_C_O
 AC_PROG_INSTALL
 
 dnl Something with the sequences is not quite alright yet.
