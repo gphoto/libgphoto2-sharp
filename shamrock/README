@@ -1,0 +1,8 @@
+These are a few files borrowed from the Banshee build tree.
+
+I hope that eventually abock will mature these and put
+them in their own repo so that we can do a happy svn:externals :)
+
+They are not licensed implicitly, but fall under the license that Banshee
+specifies in it's COPYING file in both version control and the latest
+release (which contains these .m4 files) under the MIT (X11) license.

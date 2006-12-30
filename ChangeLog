@@ -1,3 +1,21 @@
+2006-12-30 Patrick van Staveren <trick@vanstaveren.us>
+
+	* configure.ac, Makefile.am, src/Makefile.am, shamrock/*:
+	Take advantage of Shamrock macros from Banshee.
+
+	* src/CameraFile.cs: add constructor to use new
+	gp_camera_file_new_from_fd(...), and add corresponding enum.
+	This is untested.
+
+	Bump to 2.3.1.1.trunk
+
+2006-12-26 Patrick van Staveren <trick@vanstaveren.us>
+
+	* src/{Camera.cs, CameraFile.cs, ErrorCodes.cs,
+	  Object.cs}: Minor code formatting cleanups
+	
+	* src/CameraFile.cs: Update mime type list; fix wild typos
+
 2006-12-10 Patrick van Staveren <trick@vanstaveren.us>
 
 	* Updated COPYING, AUTHORS, NEWS now that we have a license

@@ -1,3 +1,4 @@
+using Mono.Unix;
 using System;
 using System.Runtime.InteropServices;
 
@@ -11,6 +12,12 @@ namespace LibGPhoto2
 		Audio,
 		Exif,
 		MetaData
+	}
+
+	public enum CameraFileAccessType
+	{
+		Memory,
+		Fd
 	}
 	
 	public class MimeTypes
@@ -47,6 +54,18 @@ namespace LibGPhoto2
 
 			Error.CheckError (gp_file_new (out native));
 
+			this.handle = new HandleRef (this, native);
+		}
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_new_from_fd (out IntPtr file, int fd);
+
+		public CameraFile (UnixStream stream)
+		{
+			IntPtr native;
+			
+			Error.CheckError (gp_file_new_from_fd (out native, stream.Handle));
+			
 			this.handle = new HandleRef (this, native);
 		}
 

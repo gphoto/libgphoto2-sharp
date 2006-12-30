@@ -10,7 +10,6 @@
 # 
 # It may be buggy for
 #   - cross-compiles
-#   - C# 2 (gmcs instead of mcs; more issues)
 #
 # This Makefile.am relies on a few variables defined in configure.in.
 
@@ -28,9 +27,7 @@ LIBGPHOTO2_SHARP_CSFILES =				\
 	$(srcdir)/PortInfo.cs				\
 	$(srcdir)/PortInfoList.cs
 
-if HAVE_MONO
-
-MCSFLAGS = -unsafe -debug
+MCSFLAGS = -unsafe -debug -r:Mono.Posix
 
 pkgconfig_DATA = libgphoto2-sharp.pc
 
@@ -75,8 +72,6 @@ CLEANFILES =							\
 	libgphoto2-sharp.dll					\
 	$(check_SCRIPTS)					\
 	$(BUILT_SOURCES)
-
-endif
 
 EXTRA_DIST =							\
 	libgphoto2-sharp.dll.config				\
