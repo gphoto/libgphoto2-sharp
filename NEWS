@@ -1,2 +1,5 @@
-This is libgphoto2-sharp 2.3.0
-First release of standalone Mono/.NET bindings for libgphoto2
+libgphoto2-sharp 2.3.1.1.trunk
+  * Cleaned up build using mono m4 macros from banshee.
+
+libgphoto2-sharp 2.3.0
+  * First release of standalone Mono/.NET bindings for libgphoto2.
