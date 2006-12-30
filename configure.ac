@@ -4,9 +4,8 @@ dnl Bump the .1.trunk to 2.trunk etc....
 AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.1.1.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
 AC_CONFIG_SRCDIR([src/CameraList.cs])
 dnl AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIR([m4m])
-AC_CONFIG_MACRO_DIR([shamrock])
-AC_CONFIG_AUX_DIR([.])
+AC_CONFIG_MACRO_DIR([auto-m4])
+AC_CONFIG_AUX_DIR([auto-aux])
 AM_INIT_AUTOMAKE([-Wall -Werror gnu 1.9 dist-bzip2 check-news])
 
 dnl Library version

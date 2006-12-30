@@ -23,3 +23,9 @@ TODO:
  * Define special binding macros like the camlib or iolib macros, perhaps
    even define a generic set of macros for all three.
 
+BUILDING:
+
+  * If you are using SVN source code, run "autoreconf -is".
+  * configure
+  * make
+  * make install
