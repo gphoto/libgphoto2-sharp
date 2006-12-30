@@ -1,5 +1,7 @@
-libgphoto2-sharp 2.3.1.1.trunk
-  * Cleaned up build using mono m4 macros from banshee.
+libgphoto2-sharp 2.3.1.2.trunk
+  * Ditched autogen.sh, use standard autoreconf from stock autoconf.
+  * Put auto* files into auto-aux/ and auto-m4/.
+  * Cleaned up build using mono m4 macros from banshee ("shamrock/").
 
 libgphoto2-sharp 2.3.0
   * First release of standalone Mono/.NET bindings for libgphoto2.
