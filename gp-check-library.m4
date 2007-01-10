@@ -169,9 +169,9 @@ It must be one of ">=", ">", "<", "<=", "=".
 				_[$1]_REQ_1="regexp([$3], [\(>=\|>\|<\|<=\|=\)[ \t]*\([0-9]+\).*],                           [\2])"
 				_[$1]_REQ_2="regexp([$3], [\(>=\|>\|<\|<=\|=\)[ \t]*\([0-9]+\)\.\([0-9]+\).*],               [\3])"
 				_[$1]_REQ_3="regexp([$3], [\(>=\|>\|<\|<=\|=\)[ \t]*\([0-9]+\)\.\([0-9]+\)\.\([0-9]+\).*],   [\4])"
-				_[$1]_REQ_4="regexp([$3], [\(>=\|>\|<\|<=\|=\)[ \t]*\([0-9]+\)\.\([0-9]+\)\.\([0-9]+\)(.*)], [\5])"
+				_[$1]_REQ_4="regexp([$3], [\(>=\|>\|<\|<=\|=\)[ \t]*\([0-9]+\)\.\([0-9]+\)\.\([0-9]+\)\(.*\)], [\5])"
 				# split installed version number via shell and sed
-				_[$1]_VERSION="$("${[$1][_CONFIG_PROG]}" --version)"
+				_[$1]_VERSION="$("${[$1][_CONFIG_PROG]}" --version | sed 's/^.* //')"
 				_[$1]_VER_1="$(echo "${_[$1]_VERSION}" | sed 's/\([[0-9]]*\).*/\1/g')"
 				_[$1]_VER_2="$(echo "${_[$1]_VERSION}" | sed 's/\([[0-9]]*\)\.\([[0-9]]*\).*/\2/g')"
 				_[$1]_VER_3="$(echo "${_[$1]_VERSION}" | sed 's/\([[0-9]]*\)\.\([[0-9]]*\)\.\([[0-9]]*\).*/\3/g')"
@@ -181,11 +181,13 @@ It must be one of ">=", ">", "<", "<=", "=".
 				if   test "${_[$1]_VER_1}" "${_[$1]_COMPN}" "${_[$1]_REQ_1}"; then _tmp=true;
 				elif test "${_[$1]_VER_2}" "${_[$1]_COMPN}" "${_[$1]_REQ_2}"; then _tmp=true;
 				elif test "${_[$1]_VER_3}" "${_[$1]_COMPN}" "${_[$1]_REQ_3}"; then _tmp=true;
+				elif test "x${_[$1]_VER_4}" = "x" && test "x${_[$1]_REQ_4}" != "x"; then _tmp=true;
+				elif test "${_[$1]_VER_4}" "${_[$1]_COMPN}" "${_[$1]_REQ_4}"; then _tmp=true;
 				fi
-				AC_MSG_CHECKING([if ][$2][ version matching requirement ][$3])
+				AC_MSG_CHECKING([if ][$2][ version is matching requirement ][$3])
 				if "${_tmp}"; then
 				   AC_MSG_RESULT([no])
-				   AC_MSG_ERROR([Version requirement ][$2][ ][$3][ not met.])
+				   AC_MSG_ERROR([Version requirement ][$2][ ][$3][ not met. Found: ${_][$1][_VERSION}])
 				else
 				   AC_MSG_RESULT([yes])
 				fi
