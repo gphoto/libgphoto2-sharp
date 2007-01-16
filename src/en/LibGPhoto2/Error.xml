@@ -1,0 +1,44 @@
+<Type Name="Error" FullName="LibGPhoto2.Error">
+  <TypeSignature Language="C#" Value="public class Error" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Error ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="IsError">
+      <MemberSignature Language="C#" Value="public static bool IsError (LibGPhoto2.ErrorCode error_code);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Boolean</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error_code" Type="LibGPhoto2.ErrorCode" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="ErrorException">
+      <MemberSignature Language="C#" Value="public static LibGPhoto2.GPhotoException ErrorException (LibGPhoto2.ErrorCode error_code);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.GPhotoException</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error_code" Type="LibGPhoto2.ErrorCode" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="CheckError">
+      <MemberSignature Language="C#" Value="public static LibGPhoto2.ErrorCode CheckError (LibGPhoto2.ErrorCode error);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error" Type="LibGPhoto2.ErrorCode" /></Parameters>
+      <Docs><param name="error">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,202 @@
+<Type Name="ErrorCode" FullName="LibGPhoto2.ErrorCode">
+  <TypeSignature Language="C#" Value="public enum ErrorCode" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="CameraBusy">
+      <MemberSignature Language="C#" Value="CameraBusy" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="CorruptedData">
+      <MemberSignature Language="C#" Value="CorruptedData" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="DirectoryExists">
+      <MemberSignature Language="C#" Value="DirectoryExists" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Update">
+      <MemberSignature Language="C#" Value="Update" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="FileExists">
+      <MemberSignature Language="C#" Value="FileExists" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="USBFind">
+      <MemberSignature Language="C#" Value="USBFind" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="CameraError">
+      <MemberSignature Language="C#" Value="CameraError" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="SerialSpeed">
+      <MemberSignature Language="C#" Value="SerialSpeed" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Hal">
+      <MemberSignature Language="C#" Value="Hal" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Timout">
+      <MemberSignature Language="C#" Value="Timout" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="UnknownPort">
+      <MemberSignature Language="C#" Value="UnknownPort" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Lock">
+      <MemberSignature Language="C#" Value="Lock" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="IO">
+      <MemberSignature Language="C#" Value="IO" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="NotSupported">
+      <MemberSignature Language="C#" Value="NotSupported" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Init">
+      <MemberSignature Language="C#" Value="Init" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Read">
+      <MemberSignature Language="C#" Value="Read" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="SupportedUSB">
+      <MemberSignature Language="C#" Value="SupportedUSB" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GeneralError">
+      <MemberSignature Language="C#" Value="GeneralError" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="OsFailure">
+      <MemberSignature Language="C#" Value="OsFailure" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="USBClearHalt">
+      <MemberSignature Language="C#" Value="USBClearHalt" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="DirectoryNotFound">
+      <MemberSignature Language="C#" Value="DirectoryNotFound" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="PathNotAbsolute">
+      <MemberSignature Language="C#" Value="PathNotAbsolute" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="SupportedSerial">
+      <MemberSignature Language="C#" Value="SupportedSerial" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Write">
+      <MemberSignature Language="C#" Value="Write" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Cancel">
+      <MemberSignature Language="C#" Value="Cancel" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="ModelNotFound">
+      <MemberSignature Language="C#" Value="ModelNotFound" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="FileNotFound">
+      <MemberSignature Language="C#" Value="FileNotFound" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Library">
+      <MemberSignature Language="C#" Value="Library" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="NoMemory">
+      <MemberSignature Language="C#" Value="NoMemory" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="USBClaim">
+      <MemberSignature Language="C#" Value="USBClaim" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="BadParameters">
+      <MemberSignature Language="C#" Value="BadParameters" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

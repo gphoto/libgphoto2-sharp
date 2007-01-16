@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<monodoc>
+    <source provider="ecma" basefile="libgphoto2-sharp-docs" path="various" />
+</monodoc>
+

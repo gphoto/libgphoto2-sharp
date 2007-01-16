@@ -1,0 +1,70 @@
+<Type Name="CameraWidgetType" FullName="LibGPhoto2.CameraWidgetType">
+  <TypeSignature Language="C#" Value="public enum CameraWidgetType" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="GP_WIDGET_MENU">
+      <MemberSignature Language="C#" Value="GP_WIDGET_MENU" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_WINDOW">
+      <MemberSignature Language="C#" Value="GP_WIDGET_WINDOW" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_SECTION">
+      <MemberSignature Language="C#" Value="GP_WIDGET_SECTION" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_BUTTON">
+      <MemberSignature Language="C#" Value="GP_WIDGET_BUTTON" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_TEXT">
+      <MemberSignature Language="C#" Value="GP_WIDGET_TEXT" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_RANGE">
+      <MemberSignature Language="C#" Value="GP_WIDGET_RANGE" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_TOGGLE">
+      <MemberSignature Language="C#" Value="GP_WIDGET_TOGGLE" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_DATE">
+      <MemberSignature Language="C#" Value="GP_WIDGET_DATE" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="GP_WIDGET_RADIO">
+      <MemberSignature Language="C#" Value="GP_WIDGET_RADIO" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,23 @@
+<Type Name="CameraText" FullName="LibGPhoto2.CameraText">
+  <TypeSignature Language="C#" Value="public struct CameraText" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="Text">
+      <MemberSignature Language="C#" Value="public string Text { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,41 @@
+<Type Name="CameraFileInfoAudio" FullName="LibGPhoto2.CameraFileInfoAudio">
+  <TypeSignature Language="C#" Value="public struct CameraFileInfoAudio" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="fields">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraFileInfoFields fields;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraFileInfoFields</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="status">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraFileStatus status;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraFileStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="size">
+      <MemberSignature Language="C#" Value="public ulong size;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.UInt64</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="type">
+      <MemberSignature Language="C#" Value="public char[] type;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Char[]</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

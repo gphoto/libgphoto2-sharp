@@ -117,6 +117,66 @@ namespace LibGPhoto2
 	}
 #endif
 
+    public enum CameraStorageInfoFields
+    {
+        Base            = 1 << 0,
+        Label           = 1 << 1,
+        Description     = 1 << 2,
+        Access          = 1 << 3,
+        StorageType     = 1 << 4,
+        FilesystemType  = 1 << 5,
+        MaxCapacity     = 1 << 6,
+        FreeSpaceKbytes = 1 << 7,
+        FreeSpaceImages = 1 << 8
+    }
+
+    public enum CameraStorageType
+    {
+        Unknown         = 0,
+        FixedRom        = 1,
+        RemovableRom    = 2,
+        FixedRam        = 3,
+        RemovableRam    = 4
+    }
+    
+    public enum CameraStorageAccessType
+    {
+        ReadWrite           = 0,
+        ReadOnly            = 1,
+        ReadOnlyWithDelete  = 2
+    }
+
+    public enum CameraStorageFilesystemType
+    {
+        Undefined           = 0,
+        GenericFlat         = 1,
+        GenericHierarchical = 2,
+        Dcf                 = 3
+    }
+
+
+	[StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CameraStorageInformation
+	{
+	    /* 4   */ public CameraStorageInfoFields fields;
+	    //public int fields;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string label;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string description;
+		///* 256 */ public fixed byte basedir[256];
+		///* 256 */ public fixed byte label[256];
+		///* 256 */ public fixed byte description[256];
+		//public int type;
+		//public int fstype;
+		//public int access;
+		/* 4   */ public CameraStorageType type;
+		/* 4   */ public CameraStorageFilesystemType fstype;
+		/* 4   */ public CameraStorageAccessType access;
+		/* 4   */ public uint capacitykbytes;
+		/* 4   */ public uint freekbytes;
+        /* 4   */ public uint freeimages;
+    } // needs to be 796 bytes
+    
 	public class CameraFilesystem : Object
 	{
 		bool need_dispose;

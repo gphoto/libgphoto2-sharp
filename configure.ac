@@ -1,7 +1,7 @@
 AC_PREREQ(2.59)
 dnl Next stable release must be 2.3.2 or later
 dnl Bump the .1.trunk to 2.trunk etc....
-AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.1.2.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
+AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.1.3.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
 AC_CONFIG_SRCDIR([src/CameraList.cs])
 dnl AC_CONFIG_HEADERS([config.h])
 dnl AC_CONFIG_MACRO_DIR([unused-auto-m4])
@@ -41,6 +41,29 @@ SHAMROCK_CHECK_MONO_MODULE(1.1.10)
 SHAMROCK_FIND_MONO_1_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_1_0_GAC_ASSEMBLIES([Mono.Posix])
+
+AC_ARG_ENABLE(docs, AC_HELP_STRING([--disable-docs], [Do not build documentation
+]), with_docs=no, with_docs=yes)
+
+if test "x$with_docs" = "xyes"; then
+    AC_PATH_PROG(MONODOCER, monodocer, no)
+    if test "x$MONODOCER" = "xno"; then
+        AC_MSG_ERROR([You need to install monodoc])
+    fi
+
+    AC_PATH_PROG(MDASSEMBLER, mdassembler, no)
+    if test "x$MDASSEMBLER" = "xno"; then
+        AC_MSG_ERROR([You need to install mdassembler])
+    fi
+
+    DOCDIR=`$PKG_CONFIG monodoc --variable=sourcesdir`
+    AC_SUBST(DOCDIR)
+
+    AM_CONDITIONAL(BUILD_DOCS, true)
+else
+    AC_MSG_NOTICE([not building API documentation])
+    AM_CONDITIONAL(BUILD_DOCS, false)
+fi
 
 AC_CONFIG_FILES([
 Makefile

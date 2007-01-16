@@ -1,0 +1,29 @@
+<Type Name="CameraFilePath" FullName="LibGPhoto2.CameraFilePath">
+  <TypeSignature Language="C#" Value="public struct CameraFilePath" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="name">
+      <MemberSignature Language="C#" Value="public string name;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="folder">
+      <MemberSignature Language="C#" Value="public string folder;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,52 @@
+<Type Name="CameraOperation" FullName="LibGPhoto2.CameraOperation">
+  <TypeSignature Language="C#" Value="public enum CameraOperation" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="CaptureImage">
+      <MemberSignature Language="C#" Value="CaptureImage" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="CaptureAudio">
+      <MemberSignature Language="C#" Value="CaptureAudio" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="CaptureVideo">
+      <MemberSignature Language="C#" Value="CaptureVideo" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="CapturePreview">
+      <MemberSignature Language="C#" Value="CapturePreview" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="None">
+      <MemberSignature Language="C#" Value="None" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Config">
+      <MemberSignature Language="C#" Value="Config" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

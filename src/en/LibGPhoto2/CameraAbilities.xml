@@ -1,0 +1,149 @@
+<Type Name="CameraAbilities" FullName="LibGPhoto2.CameraAbilities">
+  <TypeSignature Language="C#" Value="public struct CameraAbilities" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="model">
+      <MemberSignature Language="C#" Value="public string model;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="status">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraDriverStatus status;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraDriverStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="port">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.PortType port;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="speed">
+      <MemberSignature Language="C#" Value="public int[] speed;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32[]</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="operations">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraOperation operations;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="file_operations">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraFileOperation file_operations;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraFileOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="folder_operations">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraFolderOperation folder_operations;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraFolderOperation</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="usb_vendor">
+      <MemberSignature Language="C#" Value="public int usb_vendor;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="usb_product">
+      <MemberSignature Language="C#" Value="public int usb_product;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="usb_class">
+      <MemberSignature Language="C#" Value="public int usb_class;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="usb_subclass">
+      <MemberSignature Language="C#" Value="public int usb_subclass;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="usb_protocol">
+      <MemberSignature Language="C#" Value="public int usb_protocol;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="library">
+      <MemberSignature Language="C#" Value="public string library;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="id">
+      <MemberSignature Language="C#" Value="public string id;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved1">
+      <MemberSignature Language="C#" Value="public int reserved1;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved2">
+      <MemberSignature Language="C#" Value="public int reserved2;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved3">
+      <MemberSignature Language="C#" Value="public int reserved3;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved4">
+      <MemberSignature Language="C#" Value="public int reserved4;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved5">
+      <MemberSignature Language="C#" Value="public int reserved5;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved6">
+      <MemberSignature Language="C#" Value="public int reserved6;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved7">
+      <MemberSignature Language="C#" Value="public int reserved7;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="reserved8">
+      <MemberSignature Language="C#" Value="public int reserved8;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

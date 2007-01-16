@@ -6,6 +6,7 @@
 CameraAbilities
 CameraText
 CameraFilePath
+CameraStorageInformation
 
 # CameraFileInfoAudio
 # CameraFileInfoPreview

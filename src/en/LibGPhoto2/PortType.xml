@@ -1,0 +1,46 @@
+<Type Name="PortType" FullName="LibGPhoto2.PortType">
+  <TypeSignature Language="C#" Value="public enum PortType" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="PTPIP">
+      <MemberSignature Language="C#" Value="PTPIP" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="USB">
+      <MemberSignature Language="C#" Value="USB" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Disk">
+      <MemberSignature Language="C#" Value="Disk" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Serial">
+      <MemberSignature Language="C#" Value="Serial" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="None">
+      <MemberSignature Language="C#" Value="None" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.PortType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

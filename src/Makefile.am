@@ -29,6 +29,17 @@ LIBGPHOTO2_SHARP_CSFILES =				\
 
 MCSFLAGS = -unsafe -debug -r:Mono.Posix
 
+DOC_UPDATER = @MONODOCER@ -delete
+DOC_ASSEMBLER = @MDASSEMBLER@ --out libgphoto2-sharp-docs --ecma
+
+if BUILD_DOCS
+dnl --- this is crap --- docdir = $(DOCDIR)
+doc_DATA = \
+	libgphoto2-sharp-docs.zip \
+	libgphoto2-sharp-docs.tree \
+	libgphoto2-sharp-docs.source
+endif
+
 pkgconfig_DATA = libgphoto2-sharp.pc
 
 LIBGPHOTO2_SHARP_GENERATED_CSFILES = \
@@ -51,6 +62,12 @@ TestGphoto2Sharp.exe: $(srcdir)/TestGphoto2Sharp.cs libgphoto2-sharp.dll
 TestSizes.exe.mdb: TestSizes.exe
 TestSizes.exe: TestSizes.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
+
+update-docs: $(ASSEMBLY)
+	$(DOC_UPDATER) -assembly:$(ASSEMBLY) -path:en
+
+libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree: $(srcdir)/en/*/*.xml
+	$(DOC_ASSEMBLER) $(srcdir)/en
 
 check_SCRIPTS = check-camera-list.sh check-sizes.sh
 check_DATA = TestGphoto2Sharp.exe TestSizes.exe
@@ -82,7 +99,12 @@ EXTRA_DIST =							\
 	testsizes-typelist.txt					\
 	testsizes-createsource.sh				\
 	check-sizes.sh.in					\
-	check-camera-list.sh.in
+	check-camera-list.sh.in					\
+	$(srcdir)/en/*.xml					\
+	$(srcdir)/en/*/*.xml					\
+	libgphoto2-sharp-docs.source
+
+DISTCLEANFILES = libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree
 
 testsizes.c: testsizes-typelist.txt $(srcdir)/testsizes-createsource.sh
 	sh $(srcdir)/testsizes-createsource.sh c < $< > $@

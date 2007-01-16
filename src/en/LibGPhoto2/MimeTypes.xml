@@ -1,0 +1,137 @@
+<Type Name="MimeTypes" FullName="LibGPhoto2.MimeTypes">
+  <TypeSignature Language="C#" Value="public class MimeTypes" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MimeTypes ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="WAV">
+      <MemberSignature Language="C#" Value="public static string WAV;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="RAW">
+      <MemberSignature Language="C#" Value="public static string RAW;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PNG">
+      <MemberSignature Language="C#" Value="public static string PNG;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PGM">
+      <MemberSignature Language="C#" Value="public static string PGM;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PPM">
+      <MemberSignature Language="C#" Value="public static string PPM;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PNM">
+      <MemberSignature Language="C#" Value="public static string PNM;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="JPEG">
+      <MemberSignature Language="C#" Value="public static string JPEG;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="TIFF">
+      <MemberSignature Language="C#" Value="public static string TIFF;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="BMP">
+      <MemberSignature Language="C#" Value="public static string BMP;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="QUICKTIME">
+      <MemberSignature Language="C#" Value="public static string QUICKTIME;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="AVI">
+      <MemberSignature Language="C#" Value="public static string AVI;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="CRW">
+      <MemberSignature Language="C#" Value="public static string CRW;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="UNKNOWN">
+      <MemberSignature Language="C#" Value="public static string UNKNOWN;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="EXIF">
+      <MemberSignature Language="C#" Value="public static string EXIF;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="MP3">
+      <MemberSignature Language="C#" Value="public static string MP3;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="OGG">
+      <MemberSignature Language="C#" Value="public static string OGG;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="WMA">
+      <MemberSignature Language="C#" Value="public static string WMA;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="ASF">
+      <MemberSignature Language="C#" Value="public static string ASF;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="MPEG">
+      <MemberSignature Language="C#" Value="public static string MPEG;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

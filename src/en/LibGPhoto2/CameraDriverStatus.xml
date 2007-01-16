@@ -1,0 +1,40 @@
+<Type Name="CameraDriverStatus" FullName="LibGPhoto2.CameraDriverStatus">
+  <TypeSignature Language="C#" Value="public enum CameraDriverStatus" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="Production">
+      <MemberSignature Language="C#" Value="Production" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraDriverStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Experimental">
+      <MemberSignature Language="C#" Value="Experimental" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraDriverStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Testing">
+      <MemberSignature Language="C#" Value="Testing" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraDriverStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+    <Member MemberName="Depreciated">
+      <MemberSignature Language="C#" Value="Depreciated" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraDriverStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

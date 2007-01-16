@@ -1,4 +1,22 @@
-2006-12-30 Patrick van Staveren <trick@vanstaveren.us>
+2007-01-15  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* configure.ac: Bump to 2.3.1.2.trunk
+
+	* src/{en/*, libgphoto2-sharp-docs.source, Makefile.am}, configure.ac:
+	add in monodoc generation, and initial (uncommented) docs.
+
+	* shamrock/: svn:ignore Makefile
+
+	* src/Camera.cs, src/testsizes-typelist.txt: added
+	CameraStorageInformation API.  Currently will only return info for
+	first storage device.  Experimental.  Lightly tested.
+
+	* src/{Camera, CameraAbilitiesList}.cs: Formatting: move DllLoader
+	lines to bottom.
+
+	* src/todo-formatting.txt: temp tracking file for formatting.
+
+2006-12-30  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* configure.ac, Makefile.am, src/Makefile.am, shamrock/*:
 	Take advantage of Shamrock macros from Banshee.
@@ -9,13 +27,13 @@
 
 	Bump to 2.3.1.1.trunk
 
-2006-12-26 Patrick van Staveren <trick@vanstaveren.us>
+2006-12-26  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/{Camera.cs, CameraFile.cs, ErrorCodes.cs,
 	  Object.cs}: Minor code formatting cleanups
 	
 	* src/CameraFile.cs: Update mime type list; fix wild typos
 
-2006-12-10 Patrick van Staveren <trick@vanstaveren.us>
+2006-12-10  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* Updated COPYING, AUTHORS, NEWS now that we have a license

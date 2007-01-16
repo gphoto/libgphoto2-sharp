@@ -1,0 +1,177 @@
+<Type Name="CameraWidget" FullName="LibGPhoto2.CameraWidget">
+  <TypeSignature Language="C#" Value="public class CameraWidget : IDisposable" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2555.30611</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IDisposable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected CameraWidget (IntPtr native);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters><Parameter Name="native" Type="System.IntPtr" /></Parameters>
+      <Docs><param name="native">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public CameraWidget (LibGPhoto2.CameraWidgetType type, string label);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters><Parameter Name="type" Type="LibGPhoto2.CameraWidgetType" /><Parameter Name="label" Type="System.String" /></Parameters>
+      <Docs><param name="type">To be added.</param><param name="label">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="handle">
+      <MemberSignature Language="C#" Value="protected System.Runtime.InteropServices.HandleRef handle;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue><ReturnType>System.Runtime.InteropServices.HandleRef</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Dispose">
+      <MemberSignature Language="C#" Value="public void Dispose ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Dispose">
+      <MemberSignature Language="C#" Value="protected virtual void Dispose (bool disposing);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="disposing" Type="System.Boolean" /></Parameters>
+      <Docs><param name="disposing">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Append">
+      <MemberSignature Language="C#" Value="public void Append (LibGPhoto2.CameraWidget child);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="child" Type="LibGPhoto2.CameraWidget" /></Parameters>
+      <Docs><param name="child">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Prepend">
+      <MemberSignature Language="C#" Value="public void Prepend (LibGPhoto2.CameraWidget child);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="child" Type="LibGPhoto2.CameraWidget" /></Parameters>
+      <Docs><param name="child">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetChild">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraWidget GetChild (int n);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidget</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="n" Type="System.Int32" /></Parameters>
+      <Docs><param name="n">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetChild">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraWidget GetChild (string label);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidget</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="label" Type="System.String" /></Parameters>
+      <Docs><param name="label">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetChildByID">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraWidget GetChildByID (int id);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidget</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="id" Type="System.Int32" /></Parameters>
+      <Docs><param name="id">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetRoot">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraWidget GetRoot ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidget</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="SetInfo">
+      <MemberSignature Language="C#" Value="public void SetInfo (string info);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="info" Type="System.String" /></Parameters>
+      <Docs><param name="info">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetInfo">
+      <MemberSignature Language="C#" Value="public string GetInfo ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetID">
+      <MemberSignature Language="C#" Value="public int GetID ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetWidgetType">
+      <MemberSignature Language="C#" Value="public LibGPhoto2.CameraWidgetType GetWidgetType ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>LibGPhoto2.CameraWidgetType</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetLabel">
+      <MemberSignature Language="C#" Value="public string GetLabel ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetRange">
+      <MemberSignature Language="C#" Value="public void GetRange (out float min, out float max, out float increment);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="min" Type="System.Single&amp;" RefType="out" /><Parameter Name="max" Type="System.Single&amp;" RefType="out" /><Parameter Name="increment" Type="System.Single&amp;" RefType="out" /></Parameters>
+      <Docs><param name="min">To be added.</param><param name="max">To be added.</param><param name="increment">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="AddChoice">
+      <MemberSignature Language="C#" Value="public void AddChoice (string choice);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="choice" Type="System.String" /></Parameters>
+      <Docs><param name="choice">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="ChoicesCount">
+      <MemberSignature Language="C#" Value="public int ChoicesCount ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="GetChoice">
+      <MemberSignature Language="C#" Value="public string GetChoice (int n);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="n" Type="System.Int32" /></Parameters>
+      <Docs><param name="n">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Changed">
+      <MemberSignature Language="C#" Value="public bool Changed ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue><ReturnType>System.Boolean</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Handle">
+      <MemberSignature Language="C#" Value="public System.Runtime.InteropServices.HandleRef Handle { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue><ReturnType>System.Runtime.InteropServices.HandleRef</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="ChildCount">
+      <MemberSignature Language="C#" Value="public int ChildCount { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
