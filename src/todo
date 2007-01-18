@@ -1,0 +1,27 @@
+files formatted: CameraAbilitiesList, Camera
+
+waiting to commit:
+* TestGPhoto2Sharp
+* CameraList
+* Context
+* Port.cs
+* CameraFile
+* CameraWidget
+* PortInfoList
+* PortInfo
+* Object
+* ErrorCodes
+
+
+
+
+==Things to rename==
+CameraFilesystem.GetFS -> GetFs
+USB->Usb
+namespace LibGPhoto2 -> Gphoto2 (perhaps GPhoto2?)
+
+
+
+
+==General Todo==
+* more size checking.  See if we can do comparisons with enum's?  If not with compiled sources, perhaps by hand.

@@ -3,33 +3,33 @@ using System.Runtime.InteropServices;
 
 namespace LibGPhoto2
 {
-	public abstract class Object : System.IDisposable
-	{
-	    protected HandleRef handle;
-	    private bool disposed = false;
-		
-		public HandleRef Handle
-		{
-			get {
-				return handle;
-			}
-		}
-		
-		public Object () {}
+    public abstract class Object : System.IDisposable
+    {
+        protected HandleRef handle;
+        private bool disposed = false;
+        
+        public HandleRef Handle
+        {
+            get {
+                return handle;
+            }
+        }
+        
+        public Object () {}
 
-		public Object (IntPtr ptr)
-		{
-			handle = new HandleRef (this, ptr);
-		}
-		
-		protected abstract void Cleanup ();
-		
-		public void Dispose ()
-		{
-		    Dispose (true);
-			System.GC.SuppressFinalize (this);
-		}
-		
+        public Object (IntPtr ptr)
+        {
+            handle = new HandleRef (this, ptr);
+        }
+        
+        protected abstract void Cleanup ();
+        
+        public void Dispose ()
+        {
+            Dispose (true);
+            System.GC.SuppressFinalize (this);
+        }
+        
         private void Dispose (bool disposing)
         {
             if (!disposed) {
@@ -44,9 +44,9 @@ namespace LibGPhoto2
             }
         }
         
-		~Object ()
-		{
-			Dispose (false);
-		}
-	}
+        ~Object ()
+        {
+            Dispose (false);
+        }
+    }
 }
