@@ -158,24 +158,17 @@ namespace LibGPhoto2
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraStorageInformation
 	{
-	    /* 4   */ public CameraStorageInfoFields fields;
-	    //public int fields;
+	    public CameraStorageInfoFields fields;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string label;
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string description;
-		///* 256 */ public fixed byte basedir[256];
-		///* 256 */ public fixed byte label[256];
-		///* 256 */ public fixed byte description[256];
-		//public int type;
-		//public int fstype;
-		//public int access;
-		/* 4   */ public CameraStorageType type;
-		/* 4   */ public CameraStorageFilesystemType fstype;
-		/* 4   */ public CameraStorageAccessType access;
-		/* 4   */ public uint capacitykbytes;
-		/* 4   */ public uint freekbytes;
-        /* 4   */ public uint freeimages;
-    } // needs to be 796 bytes
+		public CameraStorageType type;
+		public CameraStorageFilesystemType fstype;
+		public CameraStorageAccessType access;
+		public uint capacitykbytes;
+		public uint freekbytes;
+        public uint freeimages;
+    }
     
 	public class CameraFilesystem : Object
 	{
