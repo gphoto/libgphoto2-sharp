@@ -8,3 +8,5 @@ namespace LibGPhoto2 -> Gphoto2 (perhaps GPhoto2?)
 
 ==General Todo==
 * more size checking.  See if we can do comparisons with enum's?  If not with compiled sources, perhaps by hand.
+* integrate my testing libraries
+* perhaps split non-oo functions into a sub-namespace, and then expose a high-level object oriented namespace as GPhoto2?
