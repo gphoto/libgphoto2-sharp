@@ -5,9 +5,6 @@ namespace LibGPhoto2
 {
     public class CameraList : Object 
     {
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_new (out IntPtr list);
-
         public CameraList ()
         {
             IntPtr native;
@@ -16,16 +13,10 @@ namespace LibGPhoto2
             this.handle = new HandleRef (this, native);
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_unref (HandleRef list);
-
         protected override void Cleanup ()
         {
             gp_list_unref (handle);
         }
-        
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_count (HandleRef list);
         
         public int Count ()
         {
@@ -37,9 +28,6 @@ namespace LibGPhoto2
             return (int)result;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_set_name (HandleRef list, int index, string name);
-
         public void SetName (int n, string name)
         {
             ErrorCode result = gp_list_set_name(this.Handle, n, name);
@@ -48,9 +36,6 @@ namespace LibGPhoto2
                 throw Error.ErrorException (result);
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_set_value (HandleRef list, int index, string value);
-
         public void SetValue (int n, string value)
         {
             ErrorCode result = gp_list_set_value (this.Handle, n, value);
@@ -59,9 +44,6 @@ namespace LibGPhoto2
                 throw Error.ErrorException (result);
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_get_name (HandleRef list, int index, out string name);
-
         public string GetName (int index)
         {
             string name;
@@ -71,9 +53,6 @@ namespace LibGPhoto2
             return name;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_get_value (HandleRef list, int index, out string value);
-
         public string GetValue (int index)
         {
             string value;
@@ -82,34 +61,22 @@ namespace LibGPhoto2
 
             return value;
         }
-        
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_append (HandleRef list, string name, string value);
 
         public void Append (string name, string value)
         {
             Error.CheckError (gp_list_append(this.Handle, name, value));
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_populate (HandleRef list, string format, int count);
-
         public void Populate (string format, int count)
         {
             Error.CheckError (gp_list_populate(this.Handle, format, count));
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_reset (HandleRef list);
-
         public void Reset ()
         {
             Error.CheckError (gp_list_reset(this.Handle));
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_list_sort (HandleRef list);
-
         public void Sort ()
         {
             Error.CheckError (gp_list_sort(this.Handle));
@@ -125,5 +92,38 @@ namespace LibGPhoto2
             
             return -1;
         }
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_new (out IntPtr list);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_unref (HandleRef list);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_count (HandleRef list);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_set_name (HandleRef list, int index, string name);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_set_value (HandleRef list, int index, string value);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_get_name (HandleRef list, int index, out string name);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_get_value (HandleRef list, int index, out string value);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_append (HandleRef list, string name, string value);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_populate (HandleRef list, string format, int count);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_reset (HandleRef list);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_list_sort (HandleRef list);
     }
 }

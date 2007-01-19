@@ -20,18 +20,12 @@ namespace LibGPhoto2
     {
         protected HandleRef handle;
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_ref (HandleRef widget);
-
         protected CameraWidget (IntPtr native)
         {
             this.handle = new HandleRef (this, native);
             gp_widget_ref (this.Handle);
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_new (CameraWidgetType type, string lable, out IntPtr widget);
-
         public CameraWidget (CameraWidgetType type, string label)
         {
             ErrorCode result;
@@ -55,9 +49,6 @@ namespace LibGPhoto2
             Dispose(false);
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_unref (HandleRef widget);
-        
         protected virtual void Dispose (bool disposing)
         {
             ErrorCode result;
@@ -78,9 +69,6 @@ namespace LibGPhoto2
             }
         }
 
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_append (HandleRef widget, HandleRef child);
-
         public void Append(CameraWidget child)
         {
             ErrorCode result;
@@ -90,9 +78,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }
 
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_prepend (HandleRef widget, HandleRef child);
-        
         public void Prepend(CameraWidget child)
         {
             ErrorCode result;
@@ -102,9 +87,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }   
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_count_children (HandleRef widget);
-
         public int ChildCount
         {
             get
@@ -117,9 +99,6 @@ namespace LibGPhoto2
                 return (int)result;
             }
         }
-        
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_child (HandleRef widget, int child_number, out IntPtr child);
         
         public CameraWidget GetChild (int n)
         {
@@ -135,9 +114,6 @@ namespace LibGPhoto2
             return child;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_child_by_label (HandleRef widget, string label, out IntPtr child);
-        
         public CameraWidget GetChild (string label)
         {
             ErrorCode result;
@@ -151,9 +127,6 @@ namespace LibGPhoto2
             return child;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_child_by_id (HandleRef widget, int id, out IntPtr child);
-        
         public CameraWidget GetChildByID (int id)
         {
             ErrorCode result;           
@@ -166,9 +139,6 @@ namespace LibGPhoto2
             return child;
         }
 
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_root (HandleRef widget, out IntPtr root);
-        
         public CameraWidget GetRoot ()
         {
             ErrorCode result;
@@ -181,9 +151,6 @@ namespace LibGPhoto2
             return root;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_set_info (HandleRef widget, string info);
-        
         public void SetInfo (string info)
         {
             ErrorCode result;
@@ -191,9 +158,6 @@ namespace LibGPhoto2
             result = gp_widget_set_info(this.Handle, info);
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }
-        
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_info (HandleRef widget, out string info);
         
         public string GetInfo ()
         {
@@ -206,9 +170,6 @@ namespace LibGPhoto2
             return info;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_id (HandleRef widget, out int id);
-        
         public int GetID ()
         {
             ErrorCode result;
@@ -220,9 +181,6 @@ namespace LibGPhoto2
             return id;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_type (HandleRef widget, out CameraWidgetType type);
-
         public CameraWidgetType GetWidgetType ()
         {
             ErrorCode result;
@@ -233,9 +191,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
             return widget_type;
         }
-        
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_label (HandleRef widget, out string label);
         
         public string GetLabel ()
         {
@@ -248,7 +203,8 @@ namespace LibGPhoto2
             return label;
         }
         
-        /*public void SetValue (string value)
+        /* TODO: figure out what's going on here...
+        public void SetValue (string value)
         {
             ErrorCode result;
             unsafe
@@ -291,10 +247,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }*/
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_range (HandleRef range, out 
-                                      float min, out float max, out float increment);
-
         public void GetRange (out float min, out float max, out float increment)
         {
             ErrorCode result;
@@ -304,9 +256,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }
 
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_add_choice (HandleRef widget, string choice);
-        
         public void AddChoice (string choice)
         {
             ErrorCode result;
@@ -315,9 +264,6 @@ namespace LibGPhoto2
 
             if (Error.IsError(result)) throw Error.ErrorException(result);
         }
-
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_count_choices (HandleRef widget);
 
         public int ChoicesCount ()
         {
@@ -328,9 +274,6 @@ namespace LibGPhoto2
             if (Error.IsError(result)) throw Error.ErrorException(result);
             return (int)result;
         }
-
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_get_choice (HandleRef widget, int choice_number, out string choice);
 
         public string GetChoice (int n)
         {
@@ -343,9 +286,6 @@ namespace LibGPhoto2
             return choice;
         }
         
-        [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_widget_changed (HandleRef widget);
-
         public bool Changed ()
         {
             ErrorCode result;
@@ -358,7 +298,66 @@ namespace LibGPhoto2
                 return true;
             else
                 return false;
-            
         }
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_range (HandleRef range, out float min, out float max, out float increment);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_add_choice (HandleRef widget, string choice);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_count_choices (HandleRef widget);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_choice (HandleRef widget, int choice_number, out string choice);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_changed (HandleRef widget);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_ref (HandleRef widget);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_new (CameraWidgetType type, string lable, out IntPtr widget);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_unref (HandleRef widget);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_append (HandleRef widget, HandleRef child);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_prepend (HandleRef widget, HandleRef child);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_count_children (HandleRef widget);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_child (HandleRef widget, int child_number, out IntPtr child);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_child_by_label (HandleRef widget, string label, out IntPtr child);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_child_by_id (HandleRef widget, int id, out IntPtr child);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_root (HandleRef widget, out IntPtr root);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_set_info (HandleRef widget, string info);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_info (HandleRef widget, out string info);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_id (HandleRef widget, out int id);
+        
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_type (HandleRef widget, out CameraWidgetType type);
+
+        [DllImport ("libgphoto2.so")]
+        internal static extern ErrorCode gp_widget_get_label (HandleRef widget, out string label);
     }
 }

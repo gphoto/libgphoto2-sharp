@@ -40,7 +40,7 @@ namespace LibGPhoto2
                 Cleanup ();
                 disposed = true;
             } else {
-                Console.WriteLine ("Saved us from doubly disposing an object!");
+                Console.WriteLine ("libgphoto2-sharp: saved us from doubly disposing an object!");
             }
         }
         

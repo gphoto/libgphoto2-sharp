@@ -5,11 +5,11 @@ namespace LibGPhoto2
 {
     public enum PortType
     {
-        None = 0,
-        Serial = 1 << 0,
-        USB = 1 << 2,
-        Disk = 1 << 3,
-        PTPIP = 1 << 4
+        None    = 0,
+        Serial  = 1 << 0,
+        USB     = 1 << 2,
+        Disk    = 1 << 3,
+        PTPIP   = 1 << 4
     }
 
     public enum PortSerialParity
@@ -138,16 +138,15 @@ namespace LibGPhoto2
         [DllImport ("libgphoto2_port.so")]
         internal static extern char* gp_port_get_error (_Port *port);
 
-        //[DllImport ("libgphoto2_port.so")]
-        //internal static extern int gp_port_set_error (_Port *port, const char *format, ...);
+        /* TODO: implement
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern int gp_port_set_error (_Port *port, const char *format, ...);
+        */
     }
 #endif
 
     public class Port : Object
     {
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_new (out IntPtr port);
-
         public Port()
         {
             IntPtr native;
@@ -157,25 +156,16 @@ namespace LibGPhoto2
             this.handle = new HandleRef (this, native);
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_free (HandleRef port);
-        
         protected override void Cleanup ()
         {
             Error.CheckError (gp_port_free (this.handle));
         }
 
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_set_info (HandleRef port, ref _PortInfo info);
-
         public void SetInfo (PortInfo info)
         {
-        Error.CheckError (gp_port_set_info (this.Handle, ref info.Handle));
+            Error.CheckError (gp_port_set_info (this.Handle, ref info.Handle));
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_get_info (HandleRef port, out _PortInfo info);
-
         public PortInfo GetInfo ()
         {
             PortInfo info = new PortInfo (); 
@@ -185,25 +175,16 @@ namespace LibGPhoto2
             return info;
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_open (HandleRef port);
-
         public void Open ()
         {
             Error.CheckError (gp_port_open (this.Handle));
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_close (HandleRef port);
-
         public void Close ()
         {
             Error.CheckError (gp_port_close (this.Handle));
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_read (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
-
         public byte[] Read (int size)
         {
             byte[] data = new byte[size];
@@ -213,26 +194,16 @@ namespace LibGPhoto2
             return data;
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_write (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
-
         public void Write (byte[] data)
         {
             Error.CheckError (gp_port_write (this.Handle, data, data.Length));
         }
         
-
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_set_settings (HandleRef port, PortSettings settings);
-
         public void SetSettings (PortSettings settings)
         {
             Error.CheckError (gp_port_set_settings (this.Handle, settings));
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_get_settings (HandleRef port, out PortSettings settings);
-
         public PortSettings GetSettings ()
         {
             PortSettings settings;
@@ -242,12 +213,6 @@ namespace LibGPhoto2
             return settings;
         }
         
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_get_timeout (HandleRef port, out int timeout);
-
-        [DllImport ("libgphoto2_port.so")]
-        internal static extern ErrorCode gp_port_set_timeout (HandleRef port, int timeout);
-
         public int Timeout
         {
             get {
@@ -262,6 +227,42 @@ namespace LibGPhoto2
             }
         }
         
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_new (out IntPtr port);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_free (HandleRef port);
+        
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_set_info (HandleRef port, ref _PortInfo info);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_get_info (HandleRef port, out _PortInfo info);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_open (HandleRef port);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_close (HandleRef port);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_read (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_write (HandleRef port, [MarshalAs(UnmanagedType.LPTStr)] byte[] data, int size);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_set_settings (HandleRef port, PortSettings settings);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_get_settings (HandleRef port, out PortSettings settings);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_get_timeout (HandleRef port, out int timeout);
+
+        [DllImport ("libgphoto2_port.so")]
+        internal static extern ErrorCode gp_port_set_timeout (HandleRef port, int timeout);
+
         [DllImport ("libgphoto2_port.so")]
         internal static extern ErrorCode gp_port_get_pin (HandleRef port, Pin pin, out Level level);
 

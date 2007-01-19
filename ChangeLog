@@ -1,3 +1,14 @@
+2006-01-18  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* src/*: move DllLoader lines to end of classes.
+	
+	* src/todo: updated
+
+	* src/TestGPhoto2Sharp.cs: wrap it all in an exception handler
+	and return 1 on failure.  Also add use System and clean up.
+
+	* NEWS: updated
+
 2007-01-17  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/todo-formatting renamed to todo.

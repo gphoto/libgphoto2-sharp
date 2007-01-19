@@ -1,3 +1,7 @@
+libgphoto2-sharp 2.3.1.3.trunk
+  * added in CameraStorage* API and structs
+  * added in creating CameraFile objects for fd sending via gp_new_file_from_fd()
+
 libgphoto2-sharp 2.3.1.2.trunk
   * Ditched autogen.sh, use standard autoreconf from stock autoconf.
   * Put auto* files into auto-aux/ and auto-m4/.

@@ -1,20 +1,3 @@
-files formatted: CameraAbilitiesList, Camera
-
-waiting to commit:
-* TestGPhoto2Sharp
-* CameraList
-* Context
-* Port.cs
-* CameraFile
-* CameraWidget
-* PortInfoList
-* PortInfo
-* Object
-* ErrorCodes
-
-
-
-
 ==Things to rename==
 CameraFilesystem.GetFS -> GetFs
 USB->Usb

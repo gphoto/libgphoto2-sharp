@@ -154,7 +154,6 @@ namespace LibGPhoto2
         Dcf                 = 3
     }
 
-
 	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CameraStorageInformation
 	{
@@ -174,9 +173,6 @@ namespace LibGPhoto2
 	{
 		bool need_dispose;
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_new (out IntPtr fs);
-		
 		public CameraFilesystem()
 		{
 			IntPtr native;
@@ -192,18 +188,12 @@ namespace LibGPhoto2
 			this.handle = new HandleRef (this, fs);
 			need_dispose = false;
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_free (HandleRef fs);
 
 		protected override void Cleanup ()
 		{
 			if (need_dispose)
 				Error.CheckError (gp_filesystem_free(this.Handle));
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_list_files (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
 
 		public CameraList ListFiles (string folder, Context context)
 		{
@@ -216,9 +206,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 			return list;
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_list_folders (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
 
 		public CameraList ListFolders (string folder, Context context)
 		{
@@ -231,10 +218,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 			return list;
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_get_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileType type, HandleRef file, HandleRef context);
-
 
 		public CameraFile GetFile (string folder, string filename, CameraFileType type, Context context)
 		{
@@ -248,9 +231,6 @@ namespace LibGPhoto2
 			return file;
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_put_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
-
 		public void PutFile (string folder, CameraFile file, Context context)
 		{
 			ErrorCode result;
@@ -261,9 +241,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_delete_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
-
 		public void DeleteFile (string folder, string filename, Context context)
 		{
 			ErrorCode result;
@@ -274,9 +251,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_delete_all (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
-
 		public void DeleteAll (string folder, Context context)
 		{
 			ErrorCode result;
@@ -287,9 +261,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_make_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
-
 		public void MakeDirectory (string folder, string name, Context context)
 		{
 			ErrorCode result;
@@ -300,9 +271,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_remove_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
-
 		public void RemoveDirectory (string folder, string name, Context context)
 		{
 			ErrorCode result;
@@ -313,9 +281,6 @@ namespace LibGPhoto2
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_get_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, out CameraFileInfo info, HandleRef context);
-
 		public CameraFileInfo GetInfo (string folder, string filename, Context context)
 		{
 			ErrorCode result;
@@ -328,12 +293,6 @@ namespace LibGPhoto2
 			return fileinfo;
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_set_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileInfo info, HandleRef context);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
-
 		public void SetInfo (string folder, string filename, CameraFileInfo fileinfo, Context context)
 		{
 			ErrorCode result;
@@ -343,9 +302,6 @@ namespace LibGPhoto2
 			}
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_number (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
 		
 		public int GetNumber (string folder, string filename, Context context)
 		{
@@ -358,9 +314,6 @@ namespace LibGPhoto2
 			return (int)result;
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_name (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, int filenumber, out string filename, HandleRef context);
-
 		public string GetName (string folder, int number, Context context)
 		{
 			ErrorCode result;
@@ -373,12 +326,6 @@ namespace LibGPhoto2
 			return name;
 		}
 		
-		//[DllImport ("libgphoto2.so")]
-		//internal static extern ErrorCode gp_filesystem_get_folder (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string filename, IntPtr folder, HandleRef context);
-
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_count (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
-		
 		public int Count (string folder, Context context)
 		{
 			ErrorCode result;
@@ -387,12 +334,9 @@ namespace LibGPhoto2
 				result = gp_filesystem_count (this.Handle, folder, context.Handle);
 			}
 			if (Error.IsError(result)) throw Error.ErrorException(result);
-			return (int)result;
+			return (int) result;
 		}
 		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_filesystem_reset (HandleRef fs);
-
 		public void Reset ()
 		{
 			ErrorCode result;
@@ -402,5 +346,64 @@ namespace LibGPhoto2
 			}
 			if (Error.IsError(result)) throw Error.ErrorException(result);
 		}
+
+
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_new (out IntPtr fs);
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_free (HandleRef fs);
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_list_files (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_list_folders (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_get_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileType type, HandleRef file, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_put_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_delete_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_delete_all (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_make_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_remove_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_get_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, out CameraFileInfo info, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_set_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileInfo info, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_number (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
+
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_name (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, int filenumber, out string filename, HandleRef context);
+
+		/* TODO: implement wrapper
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_get_folder (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string filename, IntPtr folder, HandleRef context);
+        */
+        
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_count (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_filesystem_reset (HandleRef fs);
+
 	}
 }
