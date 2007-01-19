@@ -12,6 +12,8 @@
 	* src/Makefile.am: delete libgphoto2-sharp-docs.{tree,zip} on
 	`make clean`
 
+	* moved src/todo to ./TODO
+
 2007-01-17  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/todo-formatting renamed to todo.
