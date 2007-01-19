@@ -87,6 +87,7 @@ CLEANFILES =							\
 	TestSizes.exe.mdb					\
 	libgphoto2-sharp.dll.mdb				\
 	libgphoto2-sharp.dll					\
+	libgphoto2-sharp-docs.{tree,zip}			\
 	$(check_SCRIPTS)					\
 	$(BUILT_SOURCES)
 
