@@ -7,6 +7,14 @@ namespace LibGPhoto2 -> Gphoto2 (perhaps GPhoto2?)
 
 
 ==General Todo==
-* more size checking.  See if we can do comparisons with enum's?  If not with compiled sources, perhaps by hand.
-* integrate my testing libraries
-* perhaps split non-oo functions into a sub-namespace, and then expose a high-level object oriented namespace as GPhoto2?
+* More size checking:
+** See if we can do comparisons with enum's?
+** If not with compiled sources, perhaps by hand.
+** amd64 uses double size longs, which means that these structs will NOT port.
+** See if endianness matters with pulling in unmanaged structs?
+* Integrate my testing libraries
+* Perhaps split non-oo functions into a sub-namespace, and then expose a high-level object oriented namespace as GPhoto2?
+* Speed test .NET 1.1 marshalling of structs versus 2.0 fixed array sizes; perhaps the runtime upgrade is worth the speed change?
+* Finish working with CameraStorage*
+** Return all storage objects rather than just the first.
+** Handle setting where number of describeable storage devices != 1
