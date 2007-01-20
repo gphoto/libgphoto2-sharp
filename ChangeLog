@@ -1,3 +1,12 @@
+2006-01-19  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* TODO: updated.
+
+	* libgphoto2-sharp.md{s,p}: added MD project/solution.
+
+	* src/Camera.cs: more changes to GetStorageInformation,
+	it should work for >1 storage device now.
+
 2006-01-18  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/*: move DllLoader lines to end of classes.

@@ -201,28 +201,29 @@ namespace LibGPhoto2
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] IntPtr[] info, ref IntPtr index, HandleRef context);
+        internal static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] IntPtr[] info, ref int number, HandleRef context);
 
-        public CameraStorageInformation GetStorageInformation (Context context)
+        public CameraStorageInformation[] GetStorageInformation (Context context)
         {
-            /* fixme: shoddy code. */
             ErrorCode result;
-            
-            IntPtr[] info = {new IntPtr()};
-            IntPtr num = new IntPtr();
-            
-            unsafe 
-            {
-                result = (gp_camera_get_storageinfo (this.Handle, info, ref num, context.Handle));
-            }
+            int max_storage = 8;
+
+            IntPtr[] info = new IntPtr[max_storage];
+            int num = 0;
+
+            result = (gp_camera_get_storageinfo (this.Handle, info, ref num, context.Handle));
 
             if (Error.IsError(result)) throw Error.ErrorException(result);
 
-            if (num.ToInt32() > 1) throw new Exception("get_storageinfo returned more than one, but we're not handling it.");
+            if (num > max_storage) throw new GPhotoException(0, String.Format("get_storageinfo returned more than max_storage of {0}.", max_storage));
             
-            CameraStorageInformation first = (CameraStorageInformation) Marshal.PtrToStructure(info[0], typeof (CameraStorageInformation));
+            CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
+
+            for (int i = 0; i < num; i++) {
+                info_structs[i] = (CameraStorageInformation) Marshal.PtrToStructure(info[i], typeof (CameraStorageInformation));
+            }
             
-            return first;
+            return info_structs;
         }
                 
         public CameraList ListFiles (string folder, Context context)

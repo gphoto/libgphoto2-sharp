@@ -1,0 +1,17 @@
+<Combine name="libgphoto2-sharp" fileversion="2.0">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="libgphoto2-sharp" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="libgphoto2-sharp" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <DeployTargets />
+  <StartMode startupentry="libgphoto2-sharp" single="True">
+    <Execute type="None" entry="libgphoto2-sharp" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./libgphoto2-sharp.mdp" />
+  </Entries>
+</Combine>

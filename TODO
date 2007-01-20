@@ -2,8 +2,7 @@
 CameraFilesystem.GetFS -> GetFs
 USB->Usb
 namespace LibGPhoto2 -> Gphoto2 (perhaps GPhoto2?)
-
-
+Filesystem->FileSystem
 
 
 ==General Todo==
