@@ -1,4 +1,8 @@
-2006-01-19  Patrick van Staveren  <trick@vanstaveren.us>
+2007-01-23  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* src/CameraFilesystem.cs: retab
+
+2007-01-19  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* TODO: updated.
 
@@ -7,7 +11,7 @@
 	* src/Camera.cs: more changes to GetStorageInformation,
 	it should work for >1 storage device now.
 
-2006-01-18  Patrick van Staveren  <trick@vanstaveren.us>
+2007-01-18  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/*: move DllLoader lines to end of classes.
 	
