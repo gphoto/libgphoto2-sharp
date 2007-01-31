@@ -13,104 +13,49 @@
       <MemberSignature Language="C#" Value="public CameraAbilitiesList ();" />
       <MemberType>Constructor</MemberType>
       <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Append">
       <MemberSignature Language="C#" Value="public void Append (Gphoto2.Base.CameraAbilities abilities);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="abilities" Type="Gphoto2.Base.CameraAbilities" />
-      </Parameters>
-      <Docs>
-        <param name="abilities">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="abilities" Type="Gphoto2.Base.CameraAbilities" /></Parameters>
+      <Docs><param name="abilities">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Count">
       <MemberSignature Language="C#" Value="public int Count ();" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
       <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Docs><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Detect">
       <MemberSignature Language="C#" Value="public void Detect (Gphoto2.Base.PortInfoList info_list, Gphoto2.Base.CameraList l, Gphoto2.Base.Context context);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="info_list" Type="Gphoto2.Base.PortInfoList" />
-        <Parameter Name="l" Type="Gphoto2.Base.CameraList" />
-        <Parameter Name="context" Type="Gphoto2.Base.Context" />
-      </Parameters>
-      <Docs>
-        <param name="info_list">To be added.</param>
-        <param name="l">To be added.</param>
-        <param name="context">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="info_list" Type="Gphoto2.Base.PortInfoList" /><Parameter Name="l" Type="Gphoto2.Base.CameraList" /><Parameter Name="context" Type="Gphoto2.Base.Context" /></Parameters>
+      <Docs><param name="info_list">To be added.</param><param name="l">To be added.</param><param name="context">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="GetAbilities">
       <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraAbilities GetAbilities (int index);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraAbilities</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="index" Type="System.Int32" />
-      </Parameters>
-      <Docs>
-        <param name="index">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraAbilities</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="index" Type="System.Int32" /></Parameters>
+      <Docs><param name="index">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Load">
       <MemberSignature Language="C#" Value="public void Load (Gphoto2.Base.Context context);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="context" Type="Gphoto2.Base.Context" />
-      </Parameters>
-      <Docs>
-        <param name="context">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="context" Type="Gphoto2.Base.Context" /></Parameters>
+      <Docs><param name="context">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="LookupModel">
       <MemberSignature Language="C#" Value="public int LookupModel (string model);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="model" Type="System.String" />
-      </Parameters>
-      <Docs>
-        <param name="model">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="model" Type="System.String" /></Parameters>
+      <Docs><param name="model">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

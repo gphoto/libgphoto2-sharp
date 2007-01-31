@@ -11,42 +11,26 @@
     <Member MemberName="Dcf">
       <MemberSignature Language="C#" Value="Dcf" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="GenericFlat">
       <MemberSignature Language="C#" Value="GenericFlat" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="GenericHierarchical">
       <MemberSignature Language="C#" Value="GenericHierarchical" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="Undefined">
       <MemberSignature Language="C#" Value="Undefined" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraStorageFilesystemType</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
   </Members>
   <Docs>

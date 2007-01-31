@@ -11,22 +11,14 @@
     <Member MemberName="High">
       <MemberSignature Language="C#" Value="High" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Level</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Level</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="Low">
       <MemberSignature Language="C#" Value="Low" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Level</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Level</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
   </Members>
   <Docs>

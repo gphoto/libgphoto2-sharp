@@ -11,32 +11,20 @@
     <Member MemberName="Even">
       <MemberSignature Language="C#" Value="Even" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.PortSerialParity</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.PortSerialParity</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="Odd">
       <MemberSignature Language="C#" Value="Odd" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.PortSerialParity</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.PortSerialParity</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="Off">
       <MemberSignature Language="C#" Value="Off" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.PortSerialParity</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.PortSerialParity</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
   </Members>
   <Docs>

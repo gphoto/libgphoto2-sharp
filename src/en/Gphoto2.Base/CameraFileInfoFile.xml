@@ -12,101 +12,56 @@
     <Member MemberName="fields">
       <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFileInfoFields fields;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="height">
       <MemberSignature Language="C#" Value="public uint height;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.UInt32</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.UInt32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="name">
       <MemberSignature Language="C#" Value="public char[] name;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Char[]</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Char[]</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="permissions">
       <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFilePermissions permissions;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraFilePermissions</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraFilePermissions</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="size">
       <MemberSignature Language="C#" Value="public ulong size;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.UInt64</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.UInt64</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="status">
       <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFileStatus status;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.CameraFileStatus</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.CameraFileStatus</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="time">
       <MemberSignature Language="C#" Value="public long time;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int64</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Int64</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="type">
       <MemberSignature Language="C#" Value="public char[] type;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Char[]</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Char[]</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="width">
       <MemberSignature Language="C#" Value="public uint width;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.UInt32</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.UInt32</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

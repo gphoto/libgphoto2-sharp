@@ -11,62 +11,38 @@
     <Member MemberName="CD">
       <MemberSignature Language="C#" Value="CD" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="CTS">
       <MemberSignature Language="C#" Value="CTS" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="DSR">
       <MemberSignature Language="C#" Value="DSR" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="DTR">
       <MemberSignature Language="C#" Value="DTR" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="RING">
       <MemberSignature Language="C#" Value="RING" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
     <Member MemberName="RTS">
       <MemberSignature Language="C#" Value="RTS" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.Pin</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.Pin</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary></Docs>
     </Member>
   </Members>
   <Docs>

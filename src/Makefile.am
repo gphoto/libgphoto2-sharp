@@ -63,8 +63,8 @@ TestSizes.exe.mdb: TestSizes.exe
 TestSizes.exe: TestSizes.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
-update-docs: $(ASSEMBLY)
-	$(DOC_UPDATER) -assembly:$(ASSEMBLY) -path:en
+update-docs: libgphoto2-sharp.dll
+	$(DOC_UPDATER) -assembly:libgphoto2-sharp.dll -path:en
 
 libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree: $(srcdir)/en/*/*.xml
 	$(DOC_ASSEMBLER) $(srcdir)/en

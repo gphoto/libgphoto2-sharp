@@ -13,58 +13,28 @@
       <MemberSignature Language="C#" Value="public Error ();" />
       <MemberType>Constructor</MemberType>
       <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="CheckError">
       <MemberSignature Language="C#" Value="public static Gphoto2.Base.ErrorCode CheckError (Gphoto2.Base.ErrorCode error);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.ErrorCode</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="error" Type="Gphoto2.Base.ErrorCode" />
-      </Parameters>
-      <Docs>
-        <param name="error">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.ErrorCode</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error" Type="Gphoto2.Base.ErrorCode" /></Parameters>
+      <Docs><param name="error">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="ErrorException">
       <MemberSignature Language="C#" Value="public static Gphoto2.Base.GPhotoException ErrorException (Gphoto2.Base.ErrorCode error_code);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.GPhotoException</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" />
-      </Parameters>
-      <Docs>
-        <param name="error_code">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.GPhotoException</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="IsError">
       <MemberSignature Language="C#" Value="public static bool IsError (Gphoto2.Base.ErrorCode error_code);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Boolean</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" />
-      </Parameters>
-      <Docs>
-        <param name="error_code">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Boolean</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><summary>To be added.</summary><returns>To be added.</returns><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

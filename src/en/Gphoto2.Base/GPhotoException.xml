@@ -12,40 +12,20 @@
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GPhotoException (Gphoto2.Base.ErrorCode error_code);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" />
-      </Parameters>
-      <Docs>
-        <param name="error_code">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public GPhotoException (Gphoto2.Base.ErrorCode error_code, string message);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" />
-        <Parameter Name="message" Type="System.String" />
-      </Parameters>
-      <Docs>
-        <param name="error_code">To be added.</param>
-        <param name="message">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="error_code" Type="Gphoto2.Base.ErrorCode" /><Parameter Name="message" Type="System.String" /></Parameters>
+      <Docs><param name="error_code">To be added.</param><param name="message">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Error">
       <MemberSignature Language="C#" Value="public Gphoto2.Base.ErrorCode Error { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>Gphoto2.Base.ErrorCode</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Gphoto2.Base.ErrorCode</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>
