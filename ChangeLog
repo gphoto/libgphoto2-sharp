@@ -3,13 +3,16 @@
 	* src/*: moved everything to a new namespace,
 	Gphoto2.Base and moved all files into subdir.
 
-	* configure.ac: bump to 2.3.99.0.trunk
+	* configure.ac: bump to 2.3.99.0.trunk.
 
-	* NEWS: updated
+	* NEWS: updated.
 
-	* src/en/*: updated docs for new namespace
+	* src/en/*: updated docs for new namespace.
 
-	* src/Makefile.am: fixed up doc updater
+	* src/Makefile.am: fixed up doc updater.
+
+	* src/Base/CameraFile.cs: fd method uses a UnixStream
+	rather than a raw integer.
 
 2007-01-23  Patrick van Staveren  <trick@vanstaveren.us>
 

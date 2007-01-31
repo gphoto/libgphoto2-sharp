@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public struct CameraFileInfo" />
   <AssemblyInfo>
     <AssemblyName>libgphoto2-sharp</AssemblyName>
-    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+    <AssemblyVersion>4.0.2586.37531</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.ValueType</BaseTypeName>

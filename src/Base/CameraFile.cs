@@ -54,11 +54,11 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
 
-        public CameraFile (int file_descriptor)
+        public CameraFile (UnixStream file)
         {
             IntPtr native;
             
-            Error.CheckError (gp_file_new_from_fd (out native, file_descriptor));
+            Error.CheckError (gp_file_new_from_fd (out native, file.Handle));
             
             this.handle = new HandleRef (this, native);
         }

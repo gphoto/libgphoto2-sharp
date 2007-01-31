@@ -1,6 +1,6 @@
 <Overview>
   <Assemblies>
-    <Assembly Name="libgphoto2-sharp" Version="4.0.2586.36304">
+    <Assembly Name="libgphoto2-sharp" Version="4.0.2586.37531">
       <Attributes>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
