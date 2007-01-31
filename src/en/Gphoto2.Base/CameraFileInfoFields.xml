@@ -1,0 +1,116 @@
+<Type Name="CameraFileInfoFields" FullName="Gphoto2.Base.CameraFileInfoFields">
+  <TypeSignature Language="C#" Value="public enum CameraFileInfoFields" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="All">
+      <MemberSignature Language="C#" Value="All" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Height">
+      <MemberSignature Language="C#" Value="Height" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="MTime">
+      <MemberSignature Language="C#" Value="MTime" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Name">
+      <MemberSignature Language="C#" Value="Name" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="None">
+      <MemberSignature Language="C#" Value="None" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Permissions">
+      <MemberSignature Language="C#" Value="Permissions" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Size">
+      <MemberSignature Language="C#" Value="Size" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Status">
+      <MemberSignature Language="C#" Value="Status" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Type">
+      <MemberSignature Language="C#" Value="Type" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Width">
+      <MemberSignature Language="C#" Value="Width" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,82 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="libgphoto2-sharp" Version="4.0.2586.36304">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription(".NET Bindings for libgphoto2 in C#")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle("libgphoto2-sharp")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>To be added.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="Gphoto2.Base">
+      <Type Name="CameraText" />
+      <Type Name="CameraFilePath" />
+      <Type Name="Camera" />
+      <Type Name="Object" />
+      <Type Name="CameraAbilities" />
+      <Type Name="CameraAbilitiesList" />
+      <Type Name="MimeTypes" />
+      <Type Name="CameraFile" />
+      <Type Name="CameraFileInfoAudio" />
+      <Type Name="CameraFileInfoPreview" />
+      <Type Name="CameraFileInfoFile" />
+      <Type Name="CameraFileInfo" />
+      <Type Name="CameraStorageInformation" />
+      <Type Name="CameraFilesystem" />
+      <Type Name="CameraList" />
+      <Type Name="CameraWidget" />
+      <Type Name="Context" />
+      <Type Name="Error" />
+      <Type Name="GPhotoException" />
+      <Type Name="PortSettingsSerial" />
+      <Type Name="PortSettingsUSB" />
+      <Type Name="PortSettingsDisk" />
+      <Type Name="PortSettings" />
+      <Type Name="Port" />
+      <Type Name="PortInfo" />
+      <Type Name="PortInfoList" />
+      <Type Name="CameraCaptureType" />
+      <Type Name="CameraDriverStatus" />
+      <Type Name="CameraOperation" />
+      <Type Name="CameraFileOperation" />
+      <Type Name="CameraFolderOperation" />
+      <Type Name="CameraFileType" />
+      <Type Name="CameraFileAccessType" />
+      <Type Name="CameraFilePermissions" />
+      <Type Name="CameraFileStatus" />
+      <Type Name="CameraFileInfoFields" />
+      <Type Name="CameraStorageInfoFields" />
+      <Type Name="CameraStorageType" />
+      <Type Name="CameraStorageAccessType" />
+      <Type Name="CameraStorageFilesystemType" />
+      <Type Name="CameraWidgetType" />
+      <Type Name="ErrorCode" />
+      <Type Name="PortType" />
+      <Type Name="PortSerialParity" />
+      <Type Name="Pin" />
+      <Type Name="Level" />
+    </Namespace>
+  </Types>
+  <Title>libgphoto2-sharp</Title>
+</Overview>

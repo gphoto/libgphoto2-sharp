@@ -1,0 +1,76 @@
+<Type Name="Pin" FullName="Gphoto2.Base.Pin">
+  <TypeSignature Language="C#" Value="public enum Pin" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="CD">
+      <MemberSignature Language="C#" Value="CD" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="CTS">
+      <MemberSignature Language="C#" Value="CTS" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="DSR">
+      <MemberSignature Language="C#" Value="DSR" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="DTR">
+      <MemberSignature Language="C#" Value="DTR" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="RING">
+      <MemberSignature Language="C#" Value="RING" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="RTS">
+      <MemberSignature Language="C#" Value="RTS" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.Pin</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,443 @@
+<Type Name="Camera" FullName="Gphoto2.Base.Camera">
+  <TypeSignature Language="C#" Value="public class Camera : Gphoto2.Base.Object" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Gphoto2.Base.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Camera ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Capture">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFilePath Capture (Gphoto2.Base.CameraCaptureType type, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFilePath</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="type" Type="Gphoto2.Base.CameraCaptureType" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="type">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CapturePreview">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFile CapturePreview (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFile</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeleteAll">
+      <MemberSignature Language="C#" Value="public void DeleteAll (string folder, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeleteFile">
+      <MemberSignature Language="C#" Value="public void DeleteFile (string folder, string name, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Exit">
+      <MemberSignature Language="C#" Value="public void Exit (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetAbilities">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraAbilities GetAbilities ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraAbilities</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetAbout">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraText GetAbout (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraText</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetFile">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFile GetFile (string folder, string name, Gphoto2.Base.CameraFileType type, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFile</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="type" Type="Gphoto2.Base.CameraFileType" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="type">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetFileInfo">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFileInfo GetFileInfo (string folder, string name, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfo</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetFS">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFilesystem GetFS ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFilesystem</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetManual">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraText GetManual (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraText</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetPortInfo">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.PortInfo GetPortInfo ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.PortInfo</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetPortSpeed">
+      <MemberSignature Language="C#" Value="public int GetPortSpeed ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetStorageInformation">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraStorageInformation[] GetStorageInformation (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraStorageInformation[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetSummary">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraText GetSummary (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraText</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Init">
+      <MemberSignature Language="C#" Value="public void Init (Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ListFiles">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraList ListFiles (string folder, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraList</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ListFolders">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraList ListFolders (string folder, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraList</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MakeDirectory">
+      <MemberSignature Language="C#" Value="public void MakeDirectory (string folder, string name, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PutFile">
+      <MemberSignature Language="C#" Value="public void PutFile (string folder, Gphoto2.Base.CameraFile file, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="file" Type="Gphoto2.Base.CameraFile" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="file">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RemoveDirectory">
+      <MemberSignature Language="C#" Value="public void RemoveDirectory (string folder, string name, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetAbilities">
+      <MemberSignature Language="C#" Value="public void SetAbilities (Gphoto2.Base.CameraAbilities abilities);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="abilities" Type="Gphoto2.Base.CameraAbilities" />
+      </Parameters>
+      <Docs>
+        <param name="abilities">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetFileInfo">
+      <MemberSignature Language="C#" Value="public void SetFileInfo (string folder, string name, Gphoto2.Base.CameraFileInfo fileinfo, Gphoto2.Base.Context context);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="folder" Type="System.String" />
+        <Parameter Name="name" Type="System.String" />
+        <Parameter Name="fileinfo" Type="Gphoto2.Base.CameraFileInfo" />
+        <Parameter Name="context" Type="Gphoto2.Base.Context" />
+      </Parameters>
+      <Docs>
+        <param name="folder">To be added.</param>
+        <param name="name">To be added.</param>
+        <param name="fileinfo">To be added.</param>
+        <param name="context">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetPortInfo">
+      <MemberSignature Language="C#" Value="public void SetPortInfo (Gphoto2.Base.PortInfo portinfo);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="portinfo" Type="Gphoto2.Base.PortInfo" />
+      </Parameters>
+      <Docs>
+        <param name="portinfo">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SetPortSpeed">
+      <MemberSignature Language="C#" Value="public void SetPortSpeed (int speed);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="speed" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="speed">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

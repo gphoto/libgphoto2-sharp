@@ -1,0 +1,66 @@
+<Type Name="CameraFolderOperation" FullName="Gphoto2.Base.CameraFolderOperation">
+  <TypeSignature Language="C#" Value="public enum CameraFolderOperation" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="DeleteAll">
+      <MemberSignature Language="C#" Value="DeleteAll" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFolderOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="MakeDirectory">
+      <MemberSignature Language="C#" Value="MakeDirectory" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFolderOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="None">
+      <MemberSignature Language="C#" Value="None" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFolderOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="PutFile">
+      <MemberSignature Language="C#" Value="PutFile" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFolderOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="RemoveDirectory">
+      <MemberSignature Language="C#" Value="RemoveDirectory" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFolderOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

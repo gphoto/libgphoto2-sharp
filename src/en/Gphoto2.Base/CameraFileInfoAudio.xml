@@ -1,0 +1,61 @@
+<Type Name="CameraFileInfoAudio" FullName="Gphoto2.Base.CameraFileInfoAudio">
+  <TypeSignature Language="C#" Value="public struct CameraFileInfoAudio" />
+  <AssemblyInfo>
+    <AssemblyName>libgphoto2-sharp</AssemblyName>
+    <AssemblyVersion>4.0.2586.36304</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName="fields">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFileInfoFields fields;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileInfoFields</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="size">
+      <MemberSignature Language="C#" Value="public ulong size;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.UInt64</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="status">
+      <MemberSignature Language="C#" Value="public Gphoto2.Base.CameraFileStatus status;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Gphoto2.Base.CameraFileStatus</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="type">
+      <MemberSignature Language="C#" Value="public char[] type;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Char[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
