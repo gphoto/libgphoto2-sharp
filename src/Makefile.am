@@ -14,18 +14,18 @@
 # This Makefile.am relies on a few variables defined in configure.in.
 
 LIBGPHOTO2_SHARP_CSFILES =				\
-	$(srcdir)/Camera.cs				\
-	$(srcdir)/CameraAbilitiesList.cs		\
-	$(srcdir)/CameraFile.cs				\
-	$(srcdir)/CameraFilesystem.cs			\
-	$(srcdir)/CameraList.cs				\
-	$(srcdir)/CameraWidget.cs			\
-	$(srcdir)/Context.cs				\
-	$(srcdir)/ErrorCodes.cs				\
-	$(srcdir)/Object.cs				\
-	$(srcdir)/Port.cs				\
-	$(srcdir)/PortInfo.cs				\
-	$(srcdir)/PortInfoList.cs
+	$(srcdir)/Base/Camera.cs				\
+	$(srcdir)/Base/CameraAbilitiesList.cs		\
+	$(srcdir)/Base/CameraFile.cs				\
+	$(srcdir)/Base/CameraFilesystem.cs			\
+	$(srcdir)/Base/CameraList.cs				\
+	$(srcdir)/Base/CameraWidget.cs			\
+	$(srcdir)/Base/Context.cs				\
+	$(srcdir)/Base/ErrorCodes.cs				\
+	$(srcdir)/Base/Object.cs				\
+	$(srcdir)/Base/Port.cs				\
+	$(srcdir)/Base/PortInfo.cs				\
+	$(srcdir)/Base/PortInfoList.cs
 
 MCSFLAGS = -unsafe -debug -r:Mono.Posix
 

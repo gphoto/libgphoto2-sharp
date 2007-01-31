@@ -2,7 +2,7 @@ using Mono.Unix;
 using System;
 using System.Runtime.InteropServices;
 
-namespace LibGPhoto2
+namespace Gphoto2.Base
 {
     public enum CameraFileType
     {

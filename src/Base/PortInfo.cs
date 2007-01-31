@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace LibGPhoto2
+namespace Gphoto2.Base
 {
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe struct _PortInfo

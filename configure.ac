@@ -1,8 +1,8 @@
 AC_PREREQ(2.59)
 dnl Next stable release must be 2.3.2 or later
 dnl Bump the .1.trunk to 2.trunk etc....
-AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.1.3.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
-AC_CONFIG_SRCDIR([src/CameraList.cs])
+AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.99.0.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
+AC_CONFIG_SRCDIR([src/Base/CameraList.cs])
 dnl AC_CONFIG_HEADERS([config.h])
 dnl AC_CONFIG_MACRO_DIR([unused-auto-m4])
 AC_CONFIG_AUX_DIR([auto-aux])

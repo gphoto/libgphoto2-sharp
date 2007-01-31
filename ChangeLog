@@ -1,3 +1,10 @@
+2007-01-30  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* src/*: moved everything to a new namespace,
+	Gphoto2.Base and moved all files into subdir.
+
+	* configure.ac: bump to 2.3.99.0.trunk
+
 2007-01-23  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/CameraFilesystem.cs: retab
