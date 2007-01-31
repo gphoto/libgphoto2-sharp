@@ -5,7 +5,7 @@
 
 	* configure.ac: bump to 2.3.99.0.trunk.
 
-	* NEWS: updated.
+	* NEWS, TODO: updated.
 
 	* src/en/*: updated docs for new namespace.
 

@@ -1,6 +1,7 @@
 libgphoto2-sharp 2.3.99.0.trunk
   * moved everything into new namespace, Gphoto2.Base to make space for
     new abstracted API.
+  * Creating CameraFile objects from file descriptors now uses a UnixStream
 
 libgphoto2-sharp 2.3.1.3.trunk
   * added in CameraStorage* API and structs
