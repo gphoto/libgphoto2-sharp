@@ -1,3 +1,7 @@
+libgphoto2-sharp 2.3.99.0.trunk
+  * moved everything into new namespace, Gphoto2.Base to make space for
+    new abstracted API.
+
 libgphoto2-sharp 2.3.1.3.trunk
   * added in CameraStorage* API and structs
   * added in creating CameraFile objects for fd sending via gp_new_file_from_fd()

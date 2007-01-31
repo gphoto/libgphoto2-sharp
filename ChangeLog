@@ -5,6 +5,8 @@
 
 	* configure.ac: bump to 2.3.99.0.trunk
 
+	* NEWS: updated
+
 2007-01-23  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* src/CameraFilesystem.cs: retab
