@@ -38,9 +38,9 @@ GP_CHECK_LIBRARY([LIBGPHOTO2], [libgphoto2], [>= 2.3.1.1.trunk])
 
 dnl --- Use abock's Shamrock macros to check for Mono components
 SHAMROCK_CHECK_MONO_MODULE(1.1.10)
-SHAMROCK_FIND_MONO_1_0_COMPILER
+SHAMROCK_FIND_MONO_2_0_COMPILER
 SHAMROCK_FIND_MONO_RUNTIME
-SHAMROCK_CHECK_MONO_1_0_GAC_ASSEMBLIES([Mono.Posix])
+SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([Mono.Posix])
 
 AC_ARG_ENABLE(docs, AC_HELP_STRING([--disable-docs], [Do not build documentation
 ]), with_docs=no, with_docs=yes)
