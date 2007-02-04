@@ -63,11 +63,11 @@ namespace Gphoto2.Base
         public static GPhotoException ErrorException (ErrorCode error_code)
         {
             string message = "Unknown Error";
-            int error_code_int = (int)error_code;
+            int error_code_int = (int) error_code;
             
-            if (error_code_int <= -102 && error_code_int >= -111)
+            if (error_code_int <= -102 && error_code_int >= -114)
                 message = GetErrorAsString(error_code);
-            else if (error_code_int <= -1 && error_code_int >= -60)
+            else if (error_code_int <= -1 && error_code_int >= -70)
                 message = GetIOErrorAsString(error_code);
 
             return new GPhotoException(error_code, message);
