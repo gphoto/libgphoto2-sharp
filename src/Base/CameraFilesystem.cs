@@ -28,7 +28,7 @@ namespace Gphoto2.Base
         Permissions = 1 << 5,
         Status      = 1 << 6,
         MTime       = 1 << 7,
-        All     = 0xFF
+        All         = 0xFF
     }
     
     [StructLayout(LayoutKind.Sequential)]

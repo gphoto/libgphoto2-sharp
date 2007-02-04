@@ -25,7 +25,7 @@ namespace Gphoto2.Base
             if (Error.IsError (result))
                 throw Error.ErrorException (result);
 
-            return (int)result;
+            return (int) result;
         }
         
         public void SetName (int n, string name)
