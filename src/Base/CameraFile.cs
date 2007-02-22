@@ -63,6 +63,15 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
 
+        public CameraFile (int fd)
+        {
+            IntPtr native;
+
+            Error.CheckError (gp_file_new_from_fd (out native, fd));
+
+            this.handle = new HandleRef (this, native);
+        }
+
         protected override void Cleanup ()
         {
             gp_file_unref (this.Handle);
