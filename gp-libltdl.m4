@@ -29,4 +29,28 @@ else
 fi
 AC_SUBST([LTDLINCL])
 AC_SUBST([LIBLTDL])
+dnl
+dnl Make sure we can actually compile and link against libltdl
+AC_LANG_PUSH([C])
+AC_MSG_CHECKING([that we can compile and link with libltdl])
+saved_CPPFLAGS="$CPPFLAGS"
+saved_LDFLAGS="$LDFLAGS"
+CPPFLAGS="$CPPFLAGS $LTDLINCL"
+LDFLAGS="$LDFLAGS $LIBLTDL"
+AC_LINK_IFELSE([AC_LANG_PROGRAM([dnl
+#include <stdlib.h> /* for NULL */
+#include <ltdl.h>   /* for lt_* */
+],[dnl
+int ret = lt_dlforeachfile("/usr/lib:/usr/local/lib", NULL, NULL);
+])], [AC_MSG_RESULT([yes])], [dnl
+AC_MSG_RESULT([no])
+AC_MSG_ERROR([cannot compile and link against libltdl
+${PACKAGE_TARNAME} requires libltdl (the libtool dl* library),
+but cannot compile and link against it.
+Aborting.
+])
+])
+CPPFLAGS="$saved_CPPFLAGS"
+LDFLAGS="$saved_LDFLAGS"
+AC_LANG_POP
 ])dnl
