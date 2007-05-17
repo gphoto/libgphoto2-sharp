@@ -7,7 +7,7 @@ AC_DEFUN([GP_CHECK_DOT],
 
 try_dot=true
 have_dot=false
-AC_ARG_WITH(dot, [  --without-dot         Don't use dot],[
+AC_ARG_WITH(dot, AS_HELP_STRING([--without-dot], [Do not use dot]), [
 	if test "x$withval" = "xno"; then
 		try_dot=false
 	fi])
