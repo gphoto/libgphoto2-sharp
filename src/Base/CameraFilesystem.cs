@@ -31,41 +31,41 @@ namespace Gphoto2.Base
         All         = 0xFF
     }
     
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public unsafe struct CameraFileInfoAudio
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
         public ulong size;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
     }
     
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public unsafe struct CameraFileInfoPreview
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
         public ulong size;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
         
         public uint width, height;
     }
     
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public unsafe struct CameraFileInfoFile
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
         public ulong size;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
         
         public uint width, height;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] public char[] name;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] name;
         public CameraFilePermissions permissions;
         public long time;
     }
     
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public unsafe struct CameraFileInfo
     {
         public CameraFileInfoPreview preview;
@@ -74,7 +74,7 @@ namespace Gphoto2.Base
     }
       
 #if false
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal unsafe struct _CameraFilesystem
     {
         
@@ -154,13 +154,13 @@ namespace Gphoto2.Base
         Dcf                 = 3
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public unsafe struct CameraStorageInformation
     {
         public CameraStorageInfoFields fields;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string label;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=256)] public string description;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string label;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string description;
         public CameraStorageType type;
         public CameraStorageFilesystemType fstype;
         public CameraStorageAccessType access;
@@ -172,18 +172,20 @@ namespace Gphoto2.Base
     public class CameraFilesystem : Object
     {
         bool need_dispose;
+        CameraList file_list;
+        CameraList folder_list;
         
-        public CameraFilesystem()
+        public CameraFilesystem ()
         {
             IntPtr native;
             
-            Error.CheckError (gp_filesystem_new(out native));
+            Error.CheckError (gp_filesystem_new (out native));
             
             this.handle = new HandleRef (this, native);
             need_dispose = true;
         }
         
-        unsafe internal CameraFilesystem(IntPtr fs)
+        internal CameraFilesystem (IntPtr fs)
         {
             this.handle = new HandleRef (this, fs);
             need_dispose = false;
@@ -192,162 +194,122 @@ namespace Gphoto2.Base
         protected override void Cleanup ()
         {
             if (need_dispose)
-                Error.CheckError (gp_filesystem_free(this.Handle));
+                Error.CheckError (gp_filesystem_free (this.Handle));
         }
 
         public CameraList ListFiles (string folder, Context context)
         {
-            ErrorCode result;
-            CameraList list = new CameraList();
-            unsafe
-            {
-                result = gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle);
+            if (this.file_list == null) {
+                this.file_list = new CameraList ();
+                ErrorCode result = gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle);
+                if (Error.IsError (result)) {
+                    this.file_list = null;
+                    throw Error.ErrorException (result);
+                }
             }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-            return list;
+            return this.file_list;
         }
 
         public CameraList ListFolders (string folder, Context context)
         {
-            ErrorCode result;
-            CameraList list = new CameraList();
-            unsafe
-            {
-                result = gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle);
+            if (this.folder_list == null) {
+                this.folder_list = new CameraList ();
+                ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle);
+                if (Error.IsError (result)) {
+                    this.folder_list = null;
+                    throw Error.ErrorException (result);
+                }
             }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-            return list;
+            return this.folder_list;
         }
 
         public CameraFile GetFile (string folder, string filename, CameraFileType type, Context context)
         {
-            ErrorCode result;
-            CameraFile file = new CameraFile();
-            unsafe
-            {
-                result = gp_filesystem_get_file (this.Handle, folder, filename, type, file.Handle, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            CameraFile file = new CameraFile ();
+            ErrorCode result = gp_filesystem_get_file (this.Handle, folder, filename, type, file.Handle, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException(result);
             return file;
         }
         
         public void PutFile (string folder, CameraFile file, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_put_file (this.Handle, folder, file.Handle, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Console.WriteLine("libgphoto2-sharp DBG: PutFile(folder={0}, CameraFile.GetName={1}, context)", folder, file.GetName());
+
+            // to implement at lower level...
+            // throw an exception when trying to put a file that already exists
+
+           
+
+            ErrorCode result = gp_filesystem_put_file (this.Handle, folder, file.Handle, context.Handle);
+            
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public void DeleteFile (string folder, string filename, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_delete_file (this.Handle, folder, filename, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_delete_file (this.Handle, folder, filename, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public void DeleteAll (string folder, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_delete_all (this.Handle, folder, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_delete_all (this.Handle, folder, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public void MakeDirectory (string folder, string name, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_make_dir (this.Handle, folder, name, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_make_dir (this.Handle, folder, name, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public void RemoveDirectory (string folder, string name, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_remove_dir (this.Handle, folder, name, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_remove_dir (this.Handle, folder, name, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public CameraFileInfo GetInfo (string folder, string filename, Context context)
         {
-            ErrorCode result;
-            CameraFileInfo fileinfo = new CameraFileInfo();
-            unsafe
-            {
-                result = gp_filesystem_get_info  (this.Handle, folder, filename, out fileinfo, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            CameraFileInfo fileinfo = new CameraFileInfo ();
+            ErrorCode result = gp_filesystem_get_info  (this.Handle, folder, filename, out fileinfo, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
             return fileinfo;
         }
         
         public void SetInfo (string folder, string filename, CameraFileInfo fileinfo, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_set_info (this.Handle, folder, filename, fileinfo, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_set_info (this.Handle, folder, filename, fileinfo, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
         
         public int GetNumber (string folder, string filename, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_number (this.Handle, folder, filename, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-            return (int)result;
+            ErrorCode result = gp_filesystem_number (this.Handle, folder, filename, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
+            return (int) result;
         }
         
         public string GetName (string folder, int number, Context context)
         {
-            ErrorCode result;
             string name;
-            unsafe
-            {
-                result = gp_filesystem_name (this.Handle, folder, number, out name, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_name (this.Handle, folder, number, out name, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
             return name;
         }
         
         public int Count (string folder, Context context)
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_count (this.Handle, folder, context.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_count (this.Handle, folder, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
             return (int) result;
         }
         
         public void Reset ()
         {
-            ErrorCode result;
-            unsafe
-            {
-                result = gp_filesystem_reset (this.Handle);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            ErrorCode result = gp_filesystem_reset (this.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
         }
-
-
         
         [DllImport ("libgphoto2.so")]
         internal static extern ErrorCode gp_filesystem_new (out IntPtr fs);
@@ -356,43 +318,43 @@ namespace Gphoto2.Base
         internal static extern ErrorCode gp_filesystem_free (HandleRef fs);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_list_files (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_list_files (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_list_folders (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_list_folders (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, HandleRef list, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_get_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileType type, HandleRef file, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_get_file (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, CameraFileType type, HandleRef file, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_put_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_put_file (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_delete_file (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_delete_file (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_delete_all (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_delete_all (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_make_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_make_dir (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string name, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_remove_dir (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string name, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_remove_dir (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string name, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_get_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, out CameraFileInfo info, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_get_info (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, out CameraFileInfo info, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_set_info (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, CameraFileInfo info, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_set_info (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, CameraFileInfo info, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_number (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string filename, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_number (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_name (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, int filenumber, out string filename, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_name (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, int filenumber, out string filename, HandleRef context);
 
         /* TODO: implement wrapper
         [DllImport ("libgphoto2.so")]
@@ -400,7 +362,7 @@ namespace Gphoto2.Base
         */
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_filesystem_count (HandleRef fs, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef context);
+        internal static extern ErrorCode gp_filesystem_count (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
         internal static extern ErrorCode gp_filesystem_reset (HandleRef fs);

@@ -1,9 +1,17 @@
+/* Dear CameraList,
+ * You are a horrible implementation of a class.  Please get rewritten soon, in case I blow my brains out from having to try to understand why you are the straaaaaange way that you are.  IEnumerable is calling you!
+ *
+ * Stop being so C like.
+ *
+ * Sincerely,
+ * Patrick */
+
 using System;
 using System.Runtime.InteropServices;
 
 namespace Gphoto2.Base
 {
-    public class CameraList : Object 
+    public class CameraList : Object
     {
         public CameraList ()
         {
@@ -30,7 +38,7 @@ namespace Gphoto2.Base
         
         public void SetName (int n, string name)
         {
-            ErrorCode result = gp_list_set_name(this.Handle, n, name);
+            ErrorCode result = gp_list_set_name (this.Handle, n, name);
 
             if (Error.IsError (result))
                 throw Error.ErrorException (result);
@@ -48,7 +56,7 @@ namespace Gphoto2.Base
         {
             string name;
 
-            Error.CheckError (gp_list_get_name(this.Handle, index, out name));
+            Error.CheckError (gp_list_get_name (this.Handle, index, out name));
 
             return name;
         }
@@ -57,36 +65,36 @@ namespace Gphoto2.Base
         {
             string value;
 
-            Error.CheckError (gp_list_get_value(this.Handle, index, out value));
+            Error.CheckError (gp_list_get_value (this.Handle, index, out value));
 
             return value;
         }
 
         public void Append (string name, string value)
         {
-            Error.CheckError (gp_list_append(this.Handle, name, value));
+            Error.CheckError (gp_list_append (this.Handle, name, value));
         }
         
         public void Populate (string format, int count)
         {
-            Error.CheckError (gp_list_populate(this.Handle, format, count));
+            Error.CheckError (gp_list_populate (this.Handle, format, count));
         }
         
         public void Reset ()
         {
-            Error.CheckError (gp_list_reset(this.Handle));
+            Error.CheckError (gp_list_reset (this.Handle));
         }
         
         public void Sort ()
         {
-            Error.CheckError (gp_list_sort(this.Handle));
+            Error.CheckError (gp_list_sort (this.Handle));
         }
         
-        public int GetPosition(string name, string value)
+        public int GetPosition (string name, string value)
         {
-            for (int index = 0; index < Count(); index++)
+            for (int index = 0; index < Count (); index++)
             {
-                if (GetName(index) == name && GetValue(index) == value)
+                if (GetName (index) == name && GetValue (index) == value)
                     return index;
             }
             
