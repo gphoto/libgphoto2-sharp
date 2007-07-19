@@ -1,11 +1,3 @@
-/* Dear CameraList,
- * You are a horrible implementation of a class.  Please get rewritten soon, in case I blow my brains out from having to try to understand why you are the straaaaaange way that you are.  IEnumerable is calling you!
- *
- * Stop being so C like.
- *
- * Sincerely,
- * Patrick */
-
 using System;
 using System.Runtime.InteropServices;
 

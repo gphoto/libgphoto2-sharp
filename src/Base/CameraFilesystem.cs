@@ -201,7 +201,7 @@ namespace Gphoto2.Base
         {
             if (this.file_list == null) {
                 this.file_list = new CameraList ();
-                ErrorCode result = gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle);
+                ErrorCode result = gp_filesystem_list_files (this.Handle, folder, this.file_list.Handle, context.Handle);
                 if (Error.IsError (result)) {
                     this.file_list = null;
                     throw Error.ErrorException (result);
@@ -214,7 +214,7 @@ namespace Gphoto2.Base
         {
             if (this.folder_list == null) {
                 this.folder_list = new CameraList ();
-                ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle);
+                ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, this.folder_list.Handle, context.Handle);
                 if (Error.IsError (result)) {
                     this.folder_list = null;
                     throw Error.ErrorException (result);
