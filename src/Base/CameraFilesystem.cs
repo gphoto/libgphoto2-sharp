@@ -199,28 +199,18 @@ namespace Gphoto2.Base
 
         public CameraList ListFiles (string folder, Context context)
         {
-            if (this.file_list == null) {
-                this.file_list = new CameraList ();
-                ErrorCode result = gp_filesystem_list_files (this.Handle, folder, this.file_list.Handle, context.Handle);
-                if (Error.IsError (result)) {
-                    this.file_list = null;
-                    throw Error.ErrorException (result);
-                }
-            }
-            return this.file_list;
+            CameraList list = new CameraList ();
+            ErrorCode result = gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
+            return list;
         }
 
         public CameraList ListFolders (string folder, Context context)
         {
-            if (this.folder_list == null) {
-                this.folder_list = new CameraList ();
-                ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, this.folder_list.Handle, context.Handle);
-                if (Error.IsError (result)) {
-                    this.folder_list = null;
-                    throw Error.ErrorException (result);
-                }
-            }
-            return this.folder_list;
+            CameraList list = new CameraList ();
+            ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle);
+            if (Error.IsError (result)) throw Error.ErrorException (result);
+            return list;
         }
 
         public CameraFile GetFile (string folder, string filename, CameraFileType type, Context context)
@@ -234,11 +224,6 @@ namespace Gphoto2.Base
         public void PutFile (string folder, CameraFile file, Context context)
         {
             Console.WriteLine("libgphoto2-sharp DBG: PutFile(folder={0}, CameraFile.GetName={1}, context)", folder, file.GetName());
-
-            // to implement at lower level...
-            // throw an exception when trying to put a file that already exists
-
-           
 
             ErrorCode result = gp_filesystem_put_file (this.Handle, folder, file.Handle, context.Handle);
             

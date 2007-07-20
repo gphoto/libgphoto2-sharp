@@ -21,3 +21,7 @@ Filesystem->FileSystem
 ** Handle setting where number of describeable storage devices != 1
 
 * Write base classes that derive from Camera and CameraFile to be "frontend" APIs
+
+
+==Object oriented API==
+CameraList needs to be enumerable.

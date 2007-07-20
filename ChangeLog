@@ -1,3 +1,14 @@
+2007-07-19  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* CameraFilesystem.cs: revert improperly implemented cacheing
+
+2007-07-18  Patrick van Staveren  <trick@vanstaveren.us>
+
+	* CameraList.cs, CameraFilesystem.cs: Lots of whitespace cleanups
+	* CameraFilesystem.cs: these aren't unsafe, so stop marking them
+	so.  Also, cache getting the list of files and folders.  Will make
+	use of this soon :)
+
 2007-02-22  Patrick van Staveren <trick@vanstaveren.us>
 
 	* src/Base/CameraFile.cs: add another constructor to allow passing
