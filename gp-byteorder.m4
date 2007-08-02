@@ -32,12 +32,10 @@ $4
 dnl Create a header file that defines extended byte swapping macros
 AC_DEFUN([AC_NEED_BYTEORDER_H],
 [
-changequote(, )dnl
-ac_dir=`echo $1|sed 's%/[^/][^/]*$%%'`
-changequote([, ])dnl
+ac_dir=`AS_DIRNAME(["$1"])`
 if test "$ac_dir" != "$1" && test "$ac_dir" != .; then
   # The file is in a subdirectory.
-  test ! -d "$ac_dir" && mkdir "$ac_dir"
+  test ! -d "$ac_dir" && AS_MKDIR_P(["$ac_dir"])
 fi
 
 # We're only interested in the target CPU, but it's not always set
