@@ -1,3 +1,6 @@
+dnl Written by Hans Ulrich Niedermann
+dnl LDFLAGS vs LIBS fix by Dan Nicholson
+dnl 
 dnl We are using our own libltdl checks instead of AC_WITH_LTDL
 dnl because we do not want to ship our own copy of libltdl any more.
 dnl Not shipping libltdl makes it possible to ditch our own autogen.sh
@@ -34,9 +37,9 @@ dnl Make sure we can actually compile and link against libltdl
 AC_LANG_PUSH([C])
 AC_MSG_CHECKING([that we can compile and link with libltdl])
 saved_CPPFLAGS="$CPPFLAGS"
-saved_LDFLAGS="$LDFLAGS"
+saved_LIBS="$LIBS"
 CPPFLAGS="$CPPFLAGS $LTDLINCL"
-LDFLAGS="$LDFLAGS $LIBLTDL"
+LIBS="$LIBS $LIBLTDL"
 AC_LINK_IFELSE([AC_LANG_PROGRAM([dnl
 #include <stdlib.h> /* for NULL */
 #include <ltdl.h>   /* for lt_* */
@@ -51,6 +54,6 @@ Aborting.
 ])
 ])
 CPPFLAGS="$saved_CPPFLAGS"
-LDFLAGS="$saved_LDFLAGS"
+LIBS="$saved_LIBS"
 AC_LANG_POP
 ])dnl
