@@ -201,28 +201,23 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] IntPtr[] info, ref int number, HandleRef context);
+        internal static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] ref IntPtr info, ref int number, HandleRef context);
 
         public CameraStorageInformation[] GetStorageInformation (Context context)
         {
-            ErrorCode result;
-            int max_storage = 8;
-
-            IntPtr[] info = new IntPtr[max_storage];
             int num = 0;
-
-            result = (gp_camera_get_storageinfo (this.Handle, info, ref num, context.Handle));
-
+            ErrorCode result;            
+            IntPtr p = new IntPtr();
+            
+            result = (gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
             if (Error.IsError(result)) throw Error.ErrorException(result);
 
-            if (num > max_storage) throw new GPhotoException(0, String.Format("get_storageinfo returned more than max_storage of {0}.", max_storage));
-            
             CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
-
             for (int i = 0; i < num; i++) {
-                info_structs[i] = (CameraStorageInformation) Marshal.PtrToStructure(info[i], typeof (CameraStorageInformation));
+                IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation)) * i);
+                info_structs[i] = (CameraStorageInformation)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation) );
             }
-            
+
             return info_structs;
         }
                 
