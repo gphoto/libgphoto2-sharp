@@ -1,3 +1,8 @@
+2007-09-05  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Base/Camera.cs: Made the interop methods private as opposed to
+	  internal - no need to be visible outside the class scope.
+
 2007-09-05   <> 
 
 	* libgphoto2-sharp.mdp, src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,

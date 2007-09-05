@@ -195,7 +195,7 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] ref IntPtr info, ref int number, HandleRef context);
+        private static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] ref IntPtr info, ref int number, HandleRef context);
 
         public CameraStorageInformation[] GetStorageInformation (Context context)
         {
@@ -321,89 +321,89 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_new (out IntPtr handle);
+        private static extern ErrorCode gp_camera_new (out IntPtr handle);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_unref (HandleRef camera);
+        private static extern ErrorCode gp_camera_unref (HandleRef camera);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_set_abilities (HandleRef camera, CameraAbilities abilities);
+        private static extern ErrorCode gp_camera_set_abilities (HandleRef camera, CameraAbilities abilities);
 
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_camera_get_abilities (HandleRef camera, out CameraAbilities abilities);
+        private static extern ErrorCode gp_camera_get_abilities (HandleRef camera, out CameraAbilities abilities);
 
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_camera_set_port_info (HandleRef camera, _PortInfo info);
+        private static extern ErrorCode gp_camera_set_port_info (HandleRef camera, _PortInfo info);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_port_info (HandleRef camera, out _PortInfo info);
+        private static extern ErrorCode gp_camera_get_port_info (HandleRef camera, out _PortInfo info);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_port_speed (HandleRef camera);
+        private static extern ErrorCode gp_camera_get_port_speed (HandleRef camera);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_set_port_speed (HandleRef camera, int speed);
+        private static extern ErrorCode gp_camera_set_port_speed (HandleRef camera, int speed);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_init (HandleRef camera, HandleRef context);
+        private static extern ErrorCode gp_camera_init (HandleRef camera, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_exit (HandleRef camera, HandleRef context);
+        private static extern ErrorCode gp_camera_exit (HandleRef camera, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_capture (HandleRef camera, CameraCaptureType type, out CameraFilePath path, HandleRef context);
+        private static extern ErrorCode gp_camera_capture (HandleRef camera, CameraCaptureType type, out CameraFilePath path, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_camera_capture_preview (HandleRef camera, HandleRef file, HandleRef context);
+        private static extern ErrorCode gp_camera_capture_preview (HandleRef camera, HandleRef file, HandleRef context);
         
 
 //---- move back here
         
 #if UNUSED
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_config (HandleRef camera, out IntPtr window, HandleRef context);
+        private static extern ErrorCode gp_camera_get_config (HandleRef camera, out IntPtr window, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_set_config (HandleRef camera, out IntPtr window, HandleRef context);
+        private static extern ErrorCode gp_camera_set_config (HandleRef camera, out IntPtr window, HandleRef context);
 #endif      
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_folder_list_files (HandleRef camera, string folder, HandleRef list, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_list_files (HandleRef camera, string folder, HandleRef list, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_folder_list_folders (HandleRef camera, string folder, HandleRef list, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_list_folders (HandleRef camera, string folder, HandleRef list, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_camera_folder_put_file (HandleRef camera, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
+        private unsafe static extern ErrorCode gp_camera_folder_put_file (HandleRef camera, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_folder_delete_all (HandleRef camera, string folder, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_delete_all (HandleRef camera, string folder, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_folder_make_dir (HandleRef camera, string folder,  string name, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_make_dir (HandleRef camera, string folder,  string name, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_folder_remove_dir (HandleRef camera, string folder, string name, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_remove_dir (HandleRef camera, string folder, string name, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_file_get (HandleRef camera, string folder, string file, CameraFileType type, HandleRef camera_file, HandleRef context);
+        private static extern ErrorCode gp_camera_file_get (HandleRef camera, string folder, string file, CameraFileType type, HandleRef camera_file, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_file_delete (HandleRef camera, string folder, string file, HandleRef context);
+        private static extern ErrorCode gp_camera_file_delete (HandleRef camera, string folder, string file, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_file_get_info (HandleRef camera, string folder, string file, out CameraFileInfo info, HandleRef context);
+        private static extern ErrorCode gp_camera_file_get_info (HandleRef camera, string folder, string file, out CameraFileInfo info, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_file_set_info (HandleRef camera, string folder, string file, CameraFileInfo info, HandleRef context);
+        private static extern ErrorCode gp_camera_file_set_info (HandleRef camera, string folder, string file, CameraFileInfo info, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_manual (HandleRef camera, out CameraText manual, HandleRef context);
+        private static extern ErrorCode gp_camera_get_manual (HandleRef camera, out CameraText manual, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_summary (HandleRef camera, out CameraText summary, HandleRef context);
+        private static extern ErrorCode gp_camera_get_summary (HandleRef camera, out CameraText summary, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_camera_get_about (HandleRef camera, out CameraText about, HandleRef context);
+        private static extern ErrorCode gp_camera_get_about (HandleRef camera, out CameraText about, HandleRef context);
     }
 }
