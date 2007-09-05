@@ -74,7 +74,7 @@ namespace Gphoto2.Base
 
         protected override void Cleanup ()
         {
-            gp_file_unref (this.Handle);
+            Error.CheckError(gp_file_unref (this.Handle));
         }
         
         public void Append (byte[] data)

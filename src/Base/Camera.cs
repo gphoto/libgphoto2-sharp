@@ -146,19 +146,13 @@ namespace Gphoto2.Base
         
         public void SetPortInfo (PortInfo portinfo)
         {
-            unsafe
-            {
-                Error.CheckError (gp_camera_set_port_info (this.Handle, portinfo.Handle));
-            }
+           Error.CheckError (gp_camera_set_port_info (this.Handle, portinfo.Handle));
         }
         
         public PortInfo GetPortInfo ()
         {
             PortInfo portinfo = new PortInfo ();
-            unsafe
-            {
-                Error.CheckError (gp_camera_get_port_info (this.Handle, out portinfo.Handle));              
-            }
+            Error.CheckError (gp_camera_get_port_info (this.Handle, out portinfo.Handle));              
             return portinfo;
         }
         
@@ -205,12 +199,10 @@ namespace Gphoto2.Base
 
         public CameraStorageInformation[] GetStorageInformation (Context context)
         {
-            int num = 0;
-            ErrorCode result;            
+            int num = 0;        
             IntPtr p = new IntPtr();
             
-            result = (gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
 
             CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
             for (int i = 0; i < num; i++) {
@@ -271,39 +263,30 @@ namespace Gphoto2.Base
         
         public void DeleteFile (string folder, string name, Context context)
         {
-            unsafe
-            {
-                Error.CheckError (gp_camera_file_delete(this.Handle, folder, name, context.Handle));
-            }
+            Error.CheckError (gp_camera_file_delete(this.Handle, folder, name, context.Handle));
         }
         
         
         public CameraFileInfo GetFileInfo (string folder, string name, Context context)
         {
             CameraFileInfo fileinfo;
-            unsafe
-            {
-                Error.CheckError (gp_camera_file_get_info(this.Handle, folder, name, out fileinfo, context.Handle));
-            }
-
-            return fileinfo;
+			
+            Error.CheckError (gp_camera_file_get_info(this.Handle, folder, name, out fileinfo, context.Handle));
+            
+			return fileinfo;
         }
         
         public void SetFileInfo (string folder, string name, CameraFileInfo fileinfo, Context context)
         {
-            unsafe
-            {
-                Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
-            }
+		    Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
         }
         
         public CameraText GetManual (Context context)
         {
             CameraText manual;
-            unsafe
-            {
-                Error.CheckError (gp_camera_get_manual(this.Handle, out manual, context.Handle));
-            }
+			
+            Error.CheckError (gp_camera_get_manual(this.Handle, out manual, context.Handle));
+			
             return manual;
         }
         
@@ -325,6 +308,7 @@ namespace Gphoto2.Base
             return about;
         }
         
+		// FIXME: Is this right? Is this not infinite recursion?
         public CameraFilesystem GetFS()
         {
             CameraFilesystem fs;

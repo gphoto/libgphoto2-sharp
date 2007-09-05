@@ -30,6 +30,7 @@ namespace Gphoto2.Base
             System.GC.SuppressFinalize (this);
         }
         
+		// FIXME: Is this right?
         private void Dispose (bool disposing)
         {
             if (!disposed) {

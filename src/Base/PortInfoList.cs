@@ -21,10 +21,7 @@ namespace Gphoto2.Base
         
         public void Load ()
         {
-            ErrorCode result = gp_port_info_list_load (this.Handle);
-
-            if (Error.IsError (result))
-                throw Error.ErrorException (result);
+            Error.CheckError(gp_port_info_list_load (this.Handle));
         }
         
         public int Count()
@@ -35,9 +32,9 @@ namespace Gphoto2.Base
         public PortInfo GetInfo (int n)
         {
             PortInfo info = new PortInfo ();
-            unsafe {
-                Error.CheckError (gp_port_info_list_get_info (this.handle, n,  out info.Handle));
-            }
+			
+            Error.CheckError (gp_port_info_list_get_info (this.handle, n,  out info.Handle));
+            
             return info;
         }
         
@@ -53,9 +50,7 @@ namespace Gphoto2.Base
         
         public int Append (PortInfo info)
         {
-            unsafe {
-                return (int) Error.CheckError (gp_port_info_list_append (this.Handle, info.Handle));
-            }
+            return (int) Error.CheckError (gp_port_info_list_append (this.Handle, info.Handle));
         }
 
         [DllImport ("libgphoto2_port.so")]

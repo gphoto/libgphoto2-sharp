@@ -20,28 +20,17 @@ namespace Gphoto2.Base
         
         public int Count ()
         {
-            ErrorCode result = gp_list_count (handle);
-
-            if (Error.IsError (result))
-                throw Error.ErrorException (result);
-
-            return (int) result;
+            return (int) Error.CheckError(gp_list_count (handle));
         }
         
         public void SetName (int n, string name)
         {
-            ErrorCode result = gp_list_set_name (this.Handle, n, name);
-
-            if (Error.IsError (result))
-                throw Error.ErrorException (result);
+            Error.CheckError(gp_list_set_name (this.Handle, n, name));
         }
         
         public void SetValue (int n, string value)
         {
-            ErrorCode result = gp_list_set_value (this.Handle, n, value);
-
-            if (Error.IsError (result))
-                throw Error.ErrorException (result);
+            Error.CheckError(gp_list_set_value (this.Handle, n, value));
         }
         
         public string GetName (int index)
@@ -84,11 +73,12 @@ namespace Gphoto2.Base
         
         public int GetPosition (string name, string value)
         {
-            for (int index = 0; index < Count (); index++)
-            {
+			// Cache the value of count to reduce the number of calls needed
+			// to native code. Is there a need to check both the name and value?
+			int count = Count ();
+            for (int index = 0; index < count; index++)
                 if (GetName (index) == name && GetValue (index) == value)
                     return index;
-            }
             
             return -1;
         }

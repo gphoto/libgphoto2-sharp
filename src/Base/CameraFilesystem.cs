@@ -200,100 +200,93 @@ namespace Gphoto2.Base
         public CameraList ListFiles (string folder, Context context)
         {
             CameraList list = new CameraList ();
-            ErrorCode result = gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+			
+            Error.CheckError(gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle));
+			
             return list;
         }
 
         public CameraList ListFolders (string folder, Context context)
         {
             CameraList list = new CameraList ();
-            ErrorCode result = gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
-            return list;
+			
+            Error.CheckError(gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle));
+            
+			return list;
         }
 
         public CameraFile GetFile (string folder, string filename, CameraFileType type, Context context)
         {
             CameraFile file = new CameraFile ();
-            ErrorCode result = gp_filesystem_get_file (this.Handle, folder, filename, type, file.Handle, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException(result);
-            return file;
+			
+            Error.CheckError(gp_filesystem_get_file (this.Handle, folder, filename, type, file.Handle, context.Handle));
+            
+			return file;
         }
         
         public void PutFile (string folder, CameraFile file, Context context)
         {
             Console.WriteLine("libgphoto2-sharp DBG: PutFile(folder={0}, CameraFile.GetName={1}, context)", folder, file.GetName());
 
-            ErrorCode result = gp_filesystem_put_file (this.Handle, folder, file.Handle, context.Handle);
-            
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_put_file (this.Handle, folder, file.Handle, context.Handle));
         }
         
         public void DeleteFile (string folder, string filename, Context context)
         {
-            ErrorCode result = gp_filesystem_delete_file (this.Handle, folder, filename, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_delete_file (this.Handle, folder, filename, context.Handle));
         }
         
         public void DeleteAll (string folder, Context context)
         {
-            ErrorCode result = gp_filesystem_delete_all (this.Handle, folder, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_delete_all (this.Handle, folder, context.Handle));
         }
         
         public void MakeDirectory (string folder, string name, Context context)
         {
-            ErrorCode result = gp_filesystem_make_dir (this.Handle, folder, name, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_make_dir (this.Handle, folder, name, context.Handle));
         }
         
         public void RemoveDirectory (string folder, string name, Context context)
         {
-            ErrorCode result = gp_filesystem_remove_dir (this.Handle, folder, name, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_remove_dir (this.Handle, folder, name, context.Handle));
         }
         
         public CameraFileInfo GetInfo (string folder, string filename, Context context)
         {
             CameraFileInfo fileinfo = new CameraFileInfo ();
-            ErrorCode result = gp_filesystem_get_info  (this.Handle, folder, filename, out fileinfo, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+			
+            Error.CheckError(gp_filesystem_get_info  (this.Handle, folder, filename, out fileinfo, context.Handle));
+			
             return fileinfo;
         }
         
         public void SetInfo (string folder, string filename, CameraFileInfo fileinfo, Context context)
         {
-            ErrorCode result = gp_filesystem_set_info (this.Handle, folder, filename, fileinfo, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_set_info (this.Handle, folder, filename, fileinfo, context.Handle));
         }
         
         public int GetNumber (string folder, string filename, Context context)
         {
-            ErrorCode result = gp_filesystem_number (this.Handle, folder, filename, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
-            return (int) result;
-        }
+            return (int) Error.CheckError(gp_filesystem_number (this.Handle, folder, filename, context.Handle));
+		}
         
         public string GetName (string folder, int number, Context context)
         {
             string name;
-            ErrorCode result = gp_filesystem_name (this.Handle, folder, number, out name, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
-            return name;
+			
+            Error.CheckError(gp_filesystem_name (this.Handle, folder, number, out name, context.Handle));
+            
+			return name;
         }
         
         public int Count (string folder, Context context)
         {
-            ErrorCode result = gp_filesystem_count (this.Handle, folder, context.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
-            return (int) result;
+            return (int) Error.CheckError(gp_filesystem_count (this.Handle, folder, context.Handle));
         }
         
         public void Reset ()
         {
-            ErrorCode result = gp_filesystem_reset (this.Handle);
-            if (Error.IsError (result)) throw Error.ErrorException (result);
+            Error.CheckError(gp_filesystem_reset (this.Handle));
         }
         
         [DllImport ("libgphoto2.so")]

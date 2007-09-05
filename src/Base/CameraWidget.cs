@@ -28,14 +28,9 @@ namespace Gphoto2.Base
         
         public CameraWidget (CameraWidgetType type, string label)
         {
-            ErrorCode result;
-            unsafe 
-            {
-                IntPtr native;
-                result = gp_widget_new(type, label,out native);
-                this.handle = new HandleRef (this, native);
-            }
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            IntPtr native;
+            Error.CheckError(gp_widget_new(type, label,out native));
+            this.handle = new HandleRef (this, native);
         }
         
         public void Dispose()
@@ -49,17 +44,11 @@ namespace Gphoto2.Base
             Dispose(false);
         }
         
+		// FIXME: Is this correct? Will unrefing the object actually set the IntPtr to zero?
         protected virtual void Dispose (bool disposing)
         {
-            ErrorCode result;
-            unsafe
-            {
-                if (this.Handle.Handle != IntPtr.Zero)
-                {
-                    result = gp_widget_unref(this.Handle);
-                    if (Error.IsError(result)) throw Error.ErrorException(result);
-                }
-            }
+           if (this.Handle.Handle != IntPtr.Zero)
+               Error.CheckError(gp_widget_unref(this.Handle));
         }
         
         public HandleRef Handle
@@ -71,135 +60,100 @@ namespace Gphoto2.Base
 
         public void Append(CameraWidget child)
         {
-            ErrorCode result;
-    
-            result = gp_widget_append(this.Handle, child.Handle);
-            
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_widget_append(this.Handle, child.Handle));
         }
 
         public void Prepend(CameraWidget child)
         {
-            ErrorCode result;
-
-            result = gp_widget_prepend(this.Handle, child.Handle);
-
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_widget_prepend(this.Handle, child.Handle));
         }   
         
         public int ChildCount
         {
             get
             {
-                ErrorCode result;
-                
-                result = gp_widget_count_children(this.Handle);
-                    
-                if (Error.IsError(result)) throw Error.ErrorException(result);
-                return (int)result;
+                return (int) Error.CheckError(gp_widget_count_children(this.Handle));
             }
         }
         
         public CameraWidget GetChild (int n)
         {
-            ErrorCode result;
             IntPtr native;
 
-            result = gp_widget_get_child(this.Handle, n, out native);
-            
+            Error.CheckError(gp_widget_get_child(this.Handle, n, out native));
             CameraWidget child = new CameraWidget(native);
-            
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             
             return child;
         }
         
         public CameraWidget GetChild (string label)
         {
-            ErrorCode result;
             IntPtr native;
             
-            result = gp_widget_get_child_by_label(this.Handle, label, out native);
-            
+            Error.CheckError(gp_widget_get_child_by_label(this.Handle, label, out native));
             CameraWidget child = new CameraWidget (native);
             
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return child;
         }
         
         public CameraWidget GetChildByID (int id)
         {
-            ErrorCode result;           
             IntPtr native;
             
-            result = gp_widget_get_child_by_id(this.Handle, id, out native);
+            Error.CheckError(gp_widget_get_child_by_id(this.Handle, id, out native));
             CameraWidget child = new CameraWidget (native);
             
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return child;
         }
 
         public CameraWidget GetRoot ()
         {
-            ErrorCode result;
             IntPtr native;
 
-            result = gp_widget_get_root (this.Handle, out native);
+            Error.CheckError(gp_widget_get_root (this.Handle, out native));
             CameraWidget root = new CameraWidget(native);
 
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return root;
         }
         
         public void SetInfo (string info)
         {
-            ErrorCode result;
-
-            result = gp_widget_set_info(this.Handle, info);
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_widget_set_info(this.Handle, info));
         }
         
         public string GetInfo ()
         {
-            ErrorCode result;
             string info;
             
-            result = gp_widget_get_info (this.Handle, out info);
+            Error.CheckError(gp_widget_get_info (this.Handle, out info));
 
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return info;
         }
         
         public int GetID ()
         {
-            ErrorCode result;
-            int id;
-
-            result = gp_widget_get_id (this.Handle, out id);
-
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-            return id;
+			int id;
+            
+			Error.CheckError(gp_widget_get_id (this.Handle, out id));
+			
+			return id;
         }
         
         public CameraWidgetType GetWidgetType ()
         {
-            ErrorCode result;
             CameraWidgetType widget_type;
 
-            result = gp_widget_get_type(this.Handle, out widget_type);
+            Error.CheckError(gp_widget_get_type(this.Handle, out widget_type));
 
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return widget_type;
         }
         
         public string GetLabel ()
         {
-            ErrorCode result;
             string label;
 
-            result = gp_widget_get_label(this.Handle, out label);
+            Error.CheckError(gp_widget_get_label(this.Handle, out label));
 
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return label;
         }
         
@@ -249,55 +203,32 @@ namespace Gphoto2.Base
         
         public void GetRange (out float min, out float max, out float increment)
         {
-            ErrorCode result;
-
-            result = gp_widget_get_range(this.Handle, out min, out max, out increment);
-
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_widget_get_range(this.Handle, out min, out max, out increment));
         }
 
         public void AddChoice (string choice)
         {
-            ErrorCode result;
-            
-            result = gp_widget_add_choice (this.Handle, choice);
-
-            if (Error.IsError(result)) throw Error.ErrorException(result);
+            Error.CheckError(gp_widget_add_choice (this.Handle, choice));
         }
 
         public int ChoicesCount ()
         {
-            ErrorCode result;
-
-            result = gp_widget_count_choices(this.Handle);
-            
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-            return (int)result;
+            return (int) Error.CheckError(gp_widget_count_choices(this.Handle));
         }
 
         public string GetChoice (int n)
         {
-            ErrorCode result;
             string choice;
 
-            result = gp_widget_get_choice(this.Handle, n, out choice);
+            Error.CheckError(gp_widget_get_choice(this.Handle, n, out choice));
 
-            if (Error.IsError(result)) throw Error.ErrorException(result);
             return choice;
         }
         
+		// FIXME: Is it 1 and 0 or 0 and non-zero?
         public bool Changed ()
         {
-            ErrorCode result;
-
-            result = gp_widget_changed(this.Handle);
-
-            if (Error.IsError(result)) throw Error.ErrorException(result);
-
-            if ((int)result == 1)
-                return true;
-            else
-                return false;
+            return (int) Error.CheckError(gp_widget_changed(this.Handle)) == 1;
         }
 
         [DllImport ("libgphoto2.so")]

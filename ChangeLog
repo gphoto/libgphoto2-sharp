@@ -1,3 +1,13 @@
+2007-09-05   <> 
+
+	* libgphoto2-sharp.mdp, src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,
+	  src/Base/CameraFilesystem.cs, src/Base/CameraList.cs,
+	  src/Base/Object.cs, src/Base/Camera.cs, src/Base/CameraFile.cs,
+	  src/Base/CameraAbilitiesList.cs: Updated methods to use the
+	  Error.CheckError method instead of manually doing if(Error.IsError())
+	  throw ErrorException(). Added calls to Error.CheckError() where they
+	  were missing previously.
+
 2007-07-19  Patrick van Staveren  <trick@vanstaveren.us>
 
 	* CameraFilesystem.cs: revert improperly implemented cacheing

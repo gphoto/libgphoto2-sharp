@@ -85,17 +85,12 @@ namespace Gphoto2.Base
         
         protected override void Cleanup ()
         {
-            gp_abilities_list_free(this.handle);
+            Error.CheckError(gp_abilities_list_free(this.handle));
         }
         
         public void Load (Context context)
         {
-            unsafe {
-                ErrorCode result = gp_abilities_list_load (this.Handle, context.Handle);
-                
-                if (Error.IsError (result))
-                    throw Error.ErrorException(result);
-            }
+            Error.CheckError(gp_abilities_list_load (this.Handle, context.Handle));
         }
         
         public void Detect (PortInfoList info_list, CameraList l, Context context)
@@ -106,22 +101,12 @@ namespace Gphoto2.Base
         
         public int Count ()
         {
-            ErrorCode result = gp_abilities_list_count (this.handle);
-
-            if (Error.IsError (result)) 
-                throw Error.ErrorException (result);
-
-            return (int)result;
+            return (int) Error.CheckError(gp_abilities_list_count (this.handle));
         }
         
         public int LookupModel (string model)
         {
-            ErrorCode result = gp_abilities_list_lookup_model(this.handle, model);
-
-            if (Error.IsError (result))
-                throw Error.ErrorException (result);
-    
-            return (int)result;
+            return (int) Error.CheckError(gp_abilities_list_lookup_model(this.handle, model));
         }
         
         public CameraAbilities GetAbilities (int index)
