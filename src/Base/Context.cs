@@ -9,7 +9,7 @@ namespace Gphoto2.Base
         {
             IntPtr ptr = gp_context_new ();
             if(ptr == IntPtr.Zero)
-                throw new GPhotoException(int.MinValue, "Couldn't instaniate the Context");
+                throw new GPhotoException(int.MinValue, "Couldn't instantiate the Context");
             
             this.handle = new HandleRef (this, ptr);
         }

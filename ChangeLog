@@ -1,5 +1,9 @@
 2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/Context.cs: Fixed typo in error message.
+
+2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/Context.cs: Added safety check to make sure the context was
 	  actually created
 
