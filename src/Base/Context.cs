@@ -7,7 +7,11 @@ namespace Gphoto2.Base
     {
         public Context ()
         {
-            this.handle = new HandleRef (this, gp_context_new ());
+            IntPtr ptr = gp_context_new ();
+            if(ptr == IntPtr.Zero)
+                throw new GPhotoException(int.MinValue, "Couldn't instaniate the Context");
+            
+            this.handle = new HandleRef (this, ptr);
         }
         
         protected override void Cleanup ()
