@@ -9,14 +9,19 @@ namespace Gphoto2.Base
         {
             IntPtr ptr = gp_context_new ();
             if(ptr == IntPtr.Zero)
-                throw new GPhotoException(int.MinValue, "Couldn't instantiate the Context");
+                throw new GPhotoException(ErrorCode.GeneralError, "Couldn't instantiate the Context");
             
             this.handle = new HandleRef (this, ptr);
         }
         
-        protected override void Cleanup ()
+        protected override void Dispose (bool disposing)
         {
-            gp_context_unref(handle);
+            if(!Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_context_unref(handle);
+                base.Dispose(disposing);
+            }
         }
 
         [DllImport ("libgphoto2.so")]

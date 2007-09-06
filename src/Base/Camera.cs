@@ -125,9 +125,14 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
 
-        protected override void Cleanup ()
+        protected override void Dispose(bool disposing)
         {
-            gp_camera_unref(this.Handle);
+            if(!Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_camera_unref(this.Handle);
+                base.Dispose(disposing);
+            }
         }
         
         public void SetAbilities (CameraAbilities abilities)
@@ -270,23 +275,23 @@ namespace Gphoto2.Base
         public CameraFileInfo GetFileInfo (string folder, string name, Context context)
         {
             CameraFileInfo fileinfo;
-			
+            
             Error.CheckError (gp_camera_file_get_info(this.Handle, folder, name, out fileinfo, context.Handle));
             
-			return fileinfo;
+            return fileinfo;
         }
         
         public void SetFileInfo (string folder, string name, CameraFileInfo fileinfo, Context context)
         {
-		    Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
+            Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
         }
         
         public CameraText GetManual (Context context)
         {
             CameraText manual;
-			
+            
             Error.CheckError (gp_camera_get_manual(this.Handle, out manual, context.Handle));
-			
+            
             return manual;
         }
         
@@ -308,7 +313,7 @@ namespace Gphoto2.Base
             return about;
         }
         
-		// FIXME: Is this right? Is this not infinite recursion?
+        // FIXME: Is this right? Is this not infinite recursion?
         public CameraFilesystem GetFS()
         {
             CameraFilesystem fs;

@@ -14,9 +14,14 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
         
-        protected override void Cleanup ()
+        protected override void Dispose (bool disposing)
         {
-            Error.CheckError (gp_port_info_list_free (this.Handle));
+            if(!Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_port_info_list_free (this.Handle);
+                base.Dispose(disposing);
+            }
         }
         
         public void Load ()
@@ -32,7 +37,7 @@ namespace Gphoto2.Base
         public PortInfo GetInfo (int n)
         {
             PortInfo info = new PortInfo ();
-			
+            
             Error.CheckError (gp_port_info_list_get_info (this.handle, n,  out info.Handle));
             
             return info;

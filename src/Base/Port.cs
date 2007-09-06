@@ -156,9 +156,14 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
         
-        protected override void Cleanup ()
+        protected override void Dispose (bool disposing)
         {
-            Error.CheckError (gp_port_free (this.handle));
+            if(!Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_port_free (this.handle);
+                base.Dispose(disposing);
+            }
         }
 
         public void SetInfo (PortInfo info)

@@ -72,9 +72,14 @@ namespace Gphoto2.Base
             this.handle = new HandleRef (this, native);
         }
 
-        protected override void Cleanup ()
+        protected override void Dispose (bool disposing)
         {
-            Error.CheckError(gp_file_unref (this.Handle));
+			if(!Disposed)
+			{
+				// Don't check the error as we don't want to throw an exception if it fails
+				gp_file_unref (this.Handle);
+				base.Dispose(disposing);
+			}
         }
         
         public void Append (byte[] data)

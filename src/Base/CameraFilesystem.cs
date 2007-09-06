@@ -185,43 +185,49 @@ namespace Gphoto2.Base
             need_dispose = true;
         }
         
+        // FIXME: Is the disposing of that intptr taken care of?
+        // Does it need to be?
         internal CameraFilesystem (IntPtr fs)
         {
             this.handle = new HandleRef (this, fs);
             need_dispose = false;
         }
 
-        protected override void Cleanup ()
+        protected override void Dispose (bool disposing)
         {
-            if (need_dispose)
-                Error.CheckError (gp_filesystem_free (this.Handle));
+            if (need_dispose && !Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_filesystem_free (this.Handle);
+                base.Dispose(disposing);
+            }
         }
 
         public CameraList ListFiles (string folder, Context context)
         {
             CameraList list = new CameraList ();
-			
+            
             Error.CheckError(gp_filesystem_list_files (this.Handle, folder, list.Handle, context.Handle));
-			
+            
             return list;
         }
 
         public CameraList ListFolders (string folder, Context context)
         {
             CameraList list = new CameraList ();
-			
+            
             Error.CheckError(gp_filesystem_list_folders (this.Handle, folder, list.Handle, context.Handle));
             
-			return list;
+            return list;
         }
 
         public CameraFile GetFile (string folder, string filename, CameraFileType type, Context context)
         {
             CameraFile file = new CameraFile ();
-			
+            
             Error.CheckError(gp_filesystem_get_file (this.Handle, folder, filename, type, file.Handle, context.Handle));
             
-			return file;
+            return file;
         }
         
         public void PutFile (string folder, CameraFile file, Context context)
@@ -254,9 +260,9 @@ namespace Gphoto2.Base
         public CameraFileInfo GetInfo (string folder, string filename, Context context)
         {
             CameraFileInfo fileinfo = new CameraFileInfo ();
-			
+            
             Error.CheckError(gp_filesystem_get_info  (this.Handle, folder, filename, out fileinfo, context.Handle));
-			
+            
             return fileinfo;
         }
         
@@ -268,15 +274,15 @@ namespace Gphoto2.Base
         public int GetNumber (string folder, string filename, Context context)
         {
             return (int) Error.CheckError(gp_filesystem_number (this.Handle, folder, filename, context.Handle));
-		}
+        }
         
         public string GetName (string folder, int number, Context context)
         {
             string name;
-			
+            
             Error.CheckError(gp_filesystem_name (this.Handle, folder, number, out name, context.Handle));
             
-			return name;
+            return name;
         }
         
         public int Count (string folder, Context context)

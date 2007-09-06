@@ -1,5 +1,16 @@
 2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/PortInfoList.cs, src/Base/CameraFilesystem.cs,
+	  src/Base/CameraList.cs, src/Base/Port.cs, src/Base/Object.cs,
+	  src/Base/Camera.cs, src/Base/CameraFile.cs,
+	  src/Base/CameraAbilitiesList.cs: Removed the old 'Cleanup' method and
+	  replaced it with the standard Dispose(bool) pattern.
+	* src/Base/Context.cs: Removed the old 'Cleanup' method and replaced it with
+	  the standard Dispose(bool) pattern. Changed the error code to
+	  GeneralError.
+
+2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/Context.cs: Fixed typo in error message.
 
 2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
