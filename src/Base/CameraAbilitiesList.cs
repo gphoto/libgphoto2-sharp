@@ -129,10 +129,10 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_new (out IntPtr native);
+        private static extern ErrorCode gp_abilities_list_new (out IntPtr native);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_free (HandleRef list);
+        private static extern ErrorCode gp_abilities_list_free (HandleRef list);
         
         [DllImport ("libgphoto2.so")]
         internal unsafe static extern ErrorCode gp_abilities_list_load (HandleRef list, HandleRef context);
@@ -141,15 +141,15 @@ namespace Gphoto2.Base
         internal unsafe static extern ErrorCode gp_abilities_list_detect (HandleRef list, HandleRef info_list, HandleRef l, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_count (HandleRef list);
+        private static extern ErrorCode gp_abilities_list_count (HandleRef list);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_lookup_model (HandleRef list, string model);
+        private static extern ErrorCode gp_abilities_list_lookup_model (HandleRef list, string model);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_get_abilities (HandleRef list, int index, out CameraAbilities abilities);
+        private static extern ErrorCode gp_abilities_list_get_abilities (HandleRef list, int index, out CameraAbilities abilities);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_abilities_list_append (HandleRef list, ref CameraAbilities abilities);
+        private static extern ErrorCode gp_abilities_list_append (HandleRef list, ref CameraAbilities abilities);
     }
 }

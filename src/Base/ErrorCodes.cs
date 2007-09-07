@@ -82,10 +82,10 @@ namespace Gphoto2.Base
         }
         
         [DllImport ("libgphoto2.so")]
-        internal static extern IntPtr gp_result_as_string (ErrorCode result);
+        private static extern IntPtr gp_result_as_string (ErrorCode result);
         
         [DllImport ("libgphoto2_port.so")]
-        internal static extern IntPtr gp_port_result_as_string (ErrorCode result);
+        private static extern IntPtr gp_port_result_as_string (ErrorCode result);
     }
     
     public class GPhotoException : Exception

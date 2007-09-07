@@ -25,9 +25,9 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern IntPtr gp_context_new ();
+        private static extern IntPtr gp_context_new ();
 
         [DllImport ("libgphoto2.so")]
-        internal static extern void gp_context_unref   (HandleRef context);
+        private static extern void gp_context_unref   (HandleRef context);
     }
 }

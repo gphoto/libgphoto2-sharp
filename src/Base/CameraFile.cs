@@ -195,72 +195,72 @@ namespace Gphoto2.Base
         }
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_new (out IntPtr file);
+        private static extern ErrorCode gp_file_new (out IntPtr file);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_new_from_fd (out IntPtr file, int fd);
+        private static extern ErrorCode gp_file_new_from_fd (out IntPtr file, int fd);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_unref (HandleRef file);
+        private static extern ErrorCode gp_file_unref (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_append (HandleRef file, byte[] data, ulong size);
+        private static extern ErrorCode gp_file_append (HandleRef file, byte[] data, ulong size);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_open (HandleRef file, string filename);
+        private static extern ErrorCode gp_file_open (HandleRef file, string filename);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_save (HandleRef file, string filename);
+        private static extern ErrorCode gp_file_save (HandleRef file, string filename);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_clean (HandleRef file);
+        private static extern ErrorCode gp_file_clean (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_get_name (HandleRef file, out string name);
+        private static extern ErrorCode gp_file_get_name (HandleRef file, out string name);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_name (HandleRef file, string name);
+        private static extern ErrorCode gp_file_set_name (HandleRef file, string name);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_get_type (HandleRef file, out CameraFileType type);
+        private static extern ErrorCode gp_file_get_type (HandleRef file, out CameraFileType type);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_type (HandleRef file, CameraFileType type);
+        private static extern ErrorCode gp_file_set_type (HandleRef file, CameraFileType type);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_get_mime_type (HandleRef file, out string mime_type);
+        private static extern ErrorCode gp_file_get_mime_type (HandleRef file, out string mime_type);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_mime_type (HandleRef file, string mime_type);
+        private static extern ErrorCode gp_file_set_mime_type (HandleRef file, string mime_type);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_detect_mime_type (HandleRef file);
+        private static extern ErrorCode gp_file_detect_mime_type (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_adjust_name_for_mime_type (HandleRef file);
+        private static extern ErrorCode gp_file_adjust_name_for_mime_type (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_convert (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] string mime_type);
+        private static extern ErrorCode gp_file_convert (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] string mime_type);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_copy (HandleRef destination, HandleRef source);
+        private static extern ErrorCode gp_file_copy (HandleRef destination, HandleRef source);
 
         /* TODO: Implement a wrapper for this
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_color_table (HandleRef file, byte *red_table, int red_size, byte *green_table, int green_size, byte *blue_table, int blue_size);
+        private static extern ErrorCode gp_file_set_color_table (HandleRef file, byte *red_table, int red_size, byte *green_table, int green_size, byte *blue_table, int blue_size);
         */
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_header (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] byte[] header);
+        private static extern ErrorCode gp_file_set_header (HandleRef file, [MarshalAs(UnmanagedType.LPTStr)] byte[] header);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_width_and_height (HandleRef file, int width, int height);
+        private static extern ErrorCode gp_file_set_width_and_height (HandleRef file, int width, int height);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_set_data_and_size (HandleRef file, byte[] data, ulong size);
+        private static extern ErrorCode gp_file_set_data_and_size (HandleRef file, byte[] data, ulong size);
 
         [DllImport ("libgphoto2.so")]
-        internal static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);
+        private static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);
 
 
     }
