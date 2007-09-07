@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Gphoto2.Base
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct _PortInfo
+    internal struct _PortInfo
     {
         internal PortType type;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] internal string name;
@@ -22,19 +22,11 @@ namespace Gphoto2.Base
         }
         
         public string Name {
-            get {
-                unsafe {
-                    return Handle.name;
-                }
-            }
+            get { return Handle.name; }
         }
         
         public string Path {
-            get {
-                unsafe {
-                    return Handle.path;
-                }
-            }
+            get { return Handle.path; }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Gphoto2.Base
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public unsafe struct CameraFileInfoAudio
+    public struct CameraFileInfoAudio
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -41,7 +41,7 @@ namespace Gphoto2.Base
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public unsafe struct CameraFileInfoPreview
+    public struct CameraFileInfoPreview
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -52,7 +52,7 @@ namespace Gphoto2.Base
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public unsafe struct CameraFileInfoFile
+    public struct CameraFileInfoFile
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -66,7 +66,7 @@ namespace Gphoto2.Base
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public unsafe struct CameraFileInfo
+    public struct CameraFileInfo
     {
         public CameraFileInfoPreview preview;
         public CameraFileInfoFile file;
@@ -75,7 +75,7 @@ namespace Gphoto2.Base
       
 #if false
     [StructLayout (LayoutKind.Sequential)]
-    internal unsafe struct _CameraFilesystem
+    internal struct _CameraFilesystem
     {
         
         internal delegate ErrorCode _CameraFilesystemGetFileFunc (HandleRef fs, char *folder, char *filename, CameraFileType type, HandleRef file, void *data, HandleRef context);
@@ -155,7 +155,7 @@ namespace Gphoto2.Base
     }
 
     [StructLayout (LayoutKind.Sequential)]
-    public unsafe struct CameraStorageInformation
+    public struct CameraStorageInformation
     {
         public CameraStorageInfoFields fields;
         [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;

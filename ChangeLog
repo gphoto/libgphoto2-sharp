@@ -1,5 +1,14 @@
 2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/PortInfoList.cs, src/Base/CameraFilesystem.cs,
+	  src/Base/PortInfo.cs, src/Base/Port.cs, src/Base/Camera.cs,
+	  src/Base/CameraFile.cs, src/Base/CameraAbilitiesList.cs: Replaced the
+	  only use of unsafe code with the safe equivalent. Removed all references
+	  to 'unsafe' where the enclosed block wasn't using unsafe code. Project
+	  now compiles without unsafe code.
+
+2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Camera.cs, src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,
 	  src/Base/CameraFilesystem.cs, src/Base/CameraList.cs,
 	  src/Base/Context.cs, src/Base/Port.cs, src/Base/ErrorCodes.cs,

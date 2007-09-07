@@ -4,17 +4,17 @@ using System.Runtime.InteropServices;
 namespace Gphoto2.Base
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct CameraPrivateLibrary
+    internal struct CameraPrivateLibrary
     {
     }
     
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct CameraPrivateCore
+    internal struct CameraPrivateCore
     {
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct CameraText
+    public struct CameraText
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=(32*1024))] string text;
         
@@ -31,7 +31,7 @@ namespace Gphoto2.Base
     
 #if false
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct CameraFunctions
+    internal struct CameraFunctions
     {
         internal delegate ErrorCode _CameraExitFunc (_Camera *camera, HandleRef context);
 
@@ -83,7 +83,7 @@ namespace Gphoto2.Base
 #endif
 
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct CameraFilePath
+    public struct CameraFilePath
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string name;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string folder;
@@ -97,7 +97,7 @@ namespace Gphoto2.Base
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct _Camera
+    internal struct _Camera
     {
         public IntPtr port;
         public IntPtr fs;
@@ -334,11 +334,10 @@ namespace Gphoto2.Base
         public CameraFilesystem GetFS()
         {
             CameraFilesystem fs;
-            unsafe
-            {
-                _Camera *obj = (_Camera *)this.Handle.Handle;
-                fs = new CameraFilesystem((IntPtr)obj->GetFS ());
-            }
+
+			_Camera obj = (_Camera) Marshal.PtrToStructure(this.Handle.Handle, typeof(_Camera));
+           fs = new CameraFilesystem(obj.GetFS());
+			
             return fs;
         }
 
@@ -396,7 +395,7 @@ namespace Gphoto2.Base
         private static extern ErrorCode gp_camera_folder_list_folders (HandleRef camera, string folder, HandleRef list, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        private unsafe static extern ErrorCode gp_camera_folder_put_file (HandleRef camera, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
+        private static extern ErrorCode gp_camera_folder_put_file (HandleRef camera, [MarshalAs(UnmanagedType.LPTStr)] string folder, HandleRef file, HandleRef context);
         
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_camera_folder_delete_all (HandleRef camera, string folder, HandleRef context);

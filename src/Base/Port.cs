@@ -36,17 +36,17 @@ namespace Gphoto2.Base
     }
     
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct PortPrivateLibrary
+    internal struct PortPrivateLibrary
     {
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct PortPrivateCore
+    internal struct PortPrivateCore
     {
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PortSettingsSerial
+    public struct PortSettingsSerial
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public char[] port;
         public int speed;
@@ -56,7 +56,7 @@ namespace Gphoto2.Base
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PortSettingsUSB
+    public struct PortSettingsUSB
     {
         public int inep, outep, intep;
         public int config;
@@ -65,14 +65,14 @@ namespace Gphoto2.Base
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PortSettingsDisk
+    public struct PortSettingsDisk
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public char[] mountpoint;
     }
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public unsafe struct PortSettings
+    public struct PortSettings
     {
         [FieldOffset(0)] public PortSettingsSerial serial;
         [FieldOffset(0)] public PortSettingsUSB usb;
@@ -81,7 +81,7 @@ namespace Gphoto2.Base
 
 #if false
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct _Port
+    internal struct _Port
     {
         PortType type;
 

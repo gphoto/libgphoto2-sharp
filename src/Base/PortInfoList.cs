@@ -71,7 +71,7 @@ namespace Gphoto2.Base
         private static extern ErrorCode gp_port_info_list_count (HandleRef handle);
 
         [DllImport ("libgphoto2_port.so")]
-        internal unsafe static extern ErrorCode gp_port_info_list_get_info (HandleRef handle, int n, out _PortInfo info);
+        private static extern ErrorCode gp_port_info_list_get_info (HandleRef handle, int n, out _PortInfo info);
 
         [DllImport ("libgphoto2_port.so")]
         private static extern ErrorCode gp_port_info_list_lookup_path (HandleRef handle, [MarshalAs(UnmanagedType.LPTStr)]string path);
@@ -80,6 +80,6 @@ namespace Gphoto2.Base
         private static extern ErrorCode gp_port_info_list_lookup_name (HandleRef handle, string name);
 
         [DllImport ("libgphoto2_port.so")]
-        internal unsafe static extern ErrorCode gp_port_info_list_append (HandleRef handle, _PortInfo info);
+        private static extern ErrorCode gp_port_info_list_append (HandleRef handle, _PortInfo info);
     }
 }

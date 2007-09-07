@@ -41,7 +41,7 @@ namespace Gphoto2.Base
     }
     
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct CameraAbilities
+    public struct CameraAbilities
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string model;
         public CameraDriverStatus status;
@@ -135,10 +135,10 @@ namespace Gphoto2.Base
         private static extern ErrorCode gp_abilities_list_free (HandleRef list);
         
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_abilities_list_load (HandleRef list, HandleRef context);
+        internal static extern ErrorCode gp_abilities_list_load (HandleRef list, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
-        internal unsafe static extern ErrorCode gp_abilities_list_detect (HandleRef list, HandleRef info_list, HandleRef l, HandleRef context);
+        private static extern ErrorCode gp_abilities_list_detect (HandleRef list, HandleRef info_list, HandleRef l, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_abilities_list_count (HandleRef list);
