@@ -44,7 +44,7 @@ namespace Gphoto2.Base
             Dispose(false);
         }
         
-		// FIXME: Is this correct? Will unrefing the object actually set the IntPtr to zero?
+        // FIXME: Is this correct? Will unrefing the object actually set the IntPtr to zero?
         protected virtual void Dispose (bool disposing)
         {
            if (this.Handle.Handle != IntPtr.Zero)
@@ -132,11 +132,11 @@ namespace Gphoto2.Base
         
         public int GetID ()
         {
-			int id;
+            int id;
             
-			Error.CheckError(gp_widget_get_id (this.Handle, out id));
-			
-			return id;
+            Error.CheckError(gp_widget_get_id (this.Handle, out id));
+            
+            return id;
         }
         
         public CameraWidgetType GetWidgetType ()
@@ -225,9 +225,14 @@ namespace Gphoto2.Base
             return choice;
         }
         
-		// FIXME: Is it 1 and 0 or 0 and non-zero?
+        /// <summary>
+        /// True if the widget has been changed since the last check. The value resets to false
+        /// when the method call completes
+        /// </summary>
+        /// <returns></returns>
         public bool Changed ()
         {
+            // Returns 1 for true and zero for false
             return (int) Error.CheckError(gp_widget_changed(this.Handle)) == 1;
         }
 

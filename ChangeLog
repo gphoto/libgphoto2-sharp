@@ -1,5 +1,9 @@
 2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/CameraWidget.cs: Added xml comments. fixed tab v space issues
+
+2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* libgphoto2-sharp.mdp: Turned off unsafe code in the project file.
 
 2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
