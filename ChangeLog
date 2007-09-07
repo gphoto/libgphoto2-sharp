@@ -1,5 +1,9 @@
 2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* libgphoto2-sharp.mdp: Turned off unsafe code in the project file.
+
+2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/PortInfoList.cs, src/Base/CameraFilesystem.cs,
 	  src/Base/PortInfo.cs, src/Base/Port.cs, src/Base/Camera.cs,
 	  src/Base/CameraFile.cs, src/Base/CameraAbilitiesList.cs: Replaced the
