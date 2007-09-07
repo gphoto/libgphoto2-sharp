@@ -1,3 +1,8 @@
+2007-09-07   <> 
+
+	* src/Base/Camera.cs: Added new overload for Init which allows the user to
+	  connect to a specific device. Also added XML comments 
+
 2007-09-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Base/PortInfoList.cs, src/Base/CameraFilesystem.cs,

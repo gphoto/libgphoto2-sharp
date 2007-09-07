@@ -171,10 +171,27 @@ namespace Gphoto2.Base
             Error.CheckError (gp_camera_set_port_speed (this.Handle, speed));
         }
         
+		/// <summary>
+		/// Initialises to the first available device
+		/// </summary>
+		/// <param name="context"></param>
         public void Init (Context context)
         {
             Error.CheckError (gp_camera_init (this.Handle, context.Handle));
         }
+		
+		/// <summary>
+		/// Initialises to the specified device on the specified port
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="abilities">The abilities which represent the device to be connected to</param>
+		/// <param name="portInfo">The port which the device is connected on</param>
+		public void Init(Context context, CameraAbilities abilities, PortInfo portInfo)
+		{
+			SetPortInfo(portInfo);
+			SetAbilities(abilities);
+			Init(context);
+		}
         
         public void Exit (Context context)
         {
