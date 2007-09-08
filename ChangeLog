@@ -1,3 +1,9 @@
+2007-09-08  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* libgphoto2-sharp.mdp: Removed useless files
+	* src/Camera.cs: Cosmetic
+	* src/Detector.cs: Removed obsolete file
+
 2007-09-07  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Base/CameraWidget.cs: Added xml comments. fixed tab v space issues

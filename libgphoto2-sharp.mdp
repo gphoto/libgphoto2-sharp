@@ -14,9 +14,7 @@
     </Configuration>
   </Configurations>
   <Contents>
-    <File name="./" subtype="Directory" buildaction="Compile" />
     <File name="./src/Camera.cs" subtype="Code" buildaction="Compile" />
-    <File name="./src/Detector.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/File.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/TestGphoto2Sharp.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/Camera.cs" subtype="Code" buildaction="Compile" />
