@@ -1,3 +1,7 @@
+2007-09-09  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Base/CameraList.cs: Added comments
+
 2007-09-08  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* libgphoto2-sharp.mdp: Removed useless files

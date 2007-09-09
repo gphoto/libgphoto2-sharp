@@ -38,6 +38,11 @@ namespace Gphoto2.Base
             Error.CheckError(gp_list_set_value (this.Handle, n, value));
         }
         
+        /// <summary>
+        /// The model of the device which has been connected to
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public string GetName (int index)
         {
             string name;
@@ -47,6 +52,11 @@ namespace Gphoto2.Base
             return name;
         }
         
+        /// <summary>
+        /// The port on which the device is connected to
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public string GetValue (int index)
         {
             string value;
