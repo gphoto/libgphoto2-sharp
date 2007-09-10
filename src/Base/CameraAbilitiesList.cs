@@ -11,6 +11,7 @@ namespace Gphoto2.Base
         Depreciated
     }
     
+	[Flags()]
     public enum CameraOperation
     {
         None            = 0,
@@ -21,6 +22,7 @@ namespace Gphoto2.Base
         Config          = 1 << 4
     }
     
+	[Flags()]
     public enum CameraFileOperation
     {
         None        = 0,
@@ -31,6 +33,7 @@ namespace Gphoto2.Base
         Exif        = 1 << 6
     }
     
+	[Flags()]
     public enum CameraFolderOperation
     {
         None                = 0,

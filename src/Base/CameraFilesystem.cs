@@ -285,11 +285,21 @@ namespace Gphoto2.Base
             return name;
         }
         
+        /// <summary>
+        /// Returns the number of files inside the folder
+        /// </summary>
+        /// <param name="folder">The folder to count the files in</param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public int Count (string folder, Context context)
         {
             return (int) Error.CheckError(gp_filesystem_count (this.Handle, folder, context.Handle));
         }
         
+        
+        /// <summary>
+        /// Clears all cached information for the filesystem
+        /// </summary>
         public void Reset ()
         {
             Error.CheckError(gp_filesystem_reset (this.Handle));

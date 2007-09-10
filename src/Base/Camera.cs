@@ -231,7 +231,9 @@ namespace Gphoto2.Base
                 IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation)) * i);
                 info_structs[i] = (CameraStorageInformation)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation) );
             }
-
+			
+            // Free the unmanaged array
+            Marshal.FreeHGlobal(p);
             return info_structs;
         }
                 

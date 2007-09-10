@@ -1,3 +1,10 @@
+2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Base/CameraFilesystem.cs: Added xml comments
+	* src/Base/Camera.cs: Fixed a leak. The native array needs to be free'ed.
+	* src/Base/CameraAbilitiesList.cs: Added the flags attribute to the enums to
+	  make it clearer that they are bitfields
+
 2007-09-09  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Base/CameraList.cs: Added comments
