@@ -1,5 +1,10 @@
 2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* Sample/Main.cs: Removed accidently committed testcase for a bug.
+	* src/Camera.cs: Also checking to make sure the object hasn't been disposed.
+
+2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	
 
 2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 

@@ -10,27 +10,6 @@ using Gphoto2;
 
 namespace Sample
 {
-	class Test
-	{
-		public Test(string b)
-		{
-			
-		}
-		
-		class Test2
-		{
-			public Test2()
-			{
-			}
-			
-			public class Test
-			{
-				public Test(string a)
-				{
-				}
-			}
-		}
-	}
 	class MainClass
 	{
 	

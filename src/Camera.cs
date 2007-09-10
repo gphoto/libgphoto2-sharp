@@ -60,6 +60,8 @@ namespace Gphoto2
 		
 		private void CheckConnected(bool alreadyConnected)
 		{
+			if(this.Disposed)
+				throw new ObjectDisposedException(typeof(Camera).Name);
 			if(alreadyConnected && !Connected)
 				throw new GPhotoException(ErrorCode.GeneralError, "Camera has not been connected to yet");
 			if(!alreadyConnected && Connected)
