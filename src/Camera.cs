@@ -80,9 +80,15 @@ namespace Gphoto2
 		{
 			CheckConnected(true);
 			connected = false;
-			using (camera)
-				camera.Exit(context);
-			camera = null;
+			try
+			{
+				using (camera)
+					camera.Exit(context);
+			}
+			finally
+			{
+				camera = null;
+			}
 		}
 		
 		public CameraStorageInformation[] GetStorageInfo()

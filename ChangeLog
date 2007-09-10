@@ -1,5 +1,9 @@
 2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	
+
+2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Cosmetic changes to the existing file class.
 	* src/TestGphoto2Sharp.cs: Removed old file
 	* src/FileSystem.cs: Created a wrapper class for the FileSystem/StorageInfo
