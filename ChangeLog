@@ -1,5 +1,20 @@
 2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Cosmetic changes to the existing file class.
+	* src/TestGphoto2Sharp.cs: Removed old file
+	* src/FileSystem.cs: Created a wrapper class for the FileSystem/StorageInfo
+	  structs. No methods implemented.
+	* src/Camera.cs: Created a wrapper class for 'Camera' with a handful of
+	  basic methods/properties
+	* src/Abilities.cs: Created a wrapper class for CameraAbilities. All camera
+	  abilities, file operations and folder operations are exposed as boolean
+	  properties.
+	* libgphoto2-sharp.mds, Sample, Sample/AssemblyInfo.cs, Sample/Main.cs,
+	  Sample/Sample.mdp: Added a sample console application to demonstrate API
+	  usage
+
+2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFilesystem.cs: Added xml comments
 	* src/Base/Camera.cs: Fixed a leak. The native array needs to be free'ed.
 	* src/Base/CameraAbilitiesList.cs: Added the flags attribute to the enums to

@@ -16,7 +16,6 @@
   <Contents>
     <File name="./src/Camera.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/File.cs" subtype="Code" buildaction="Compile" />
-    <File name="./src/TestGphoto2Sharp.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/Camera.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/CameraAbilitiesList.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/CameraFile.cs" subtype="Code" buildaction="Compile" />
@@ -29,10 +28,13 @@
     <File name="./src/Base/Port.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/PortInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/Base/PortInfoList.cs" subtype="Code" buildaction="Compile" />
+    <File name="./src/Abilities.cs" subtype="Code" buildaction="Compile" />
+    <File name="./src/FileSystem.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </References>
+  <MonoDevelop.ChangeLogAddIn.ChangeLogInfo policy="OneChangeLogInProjectRootDirectory" />
   <DeployTargets />
 </Project>
