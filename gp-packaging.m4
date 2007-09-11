@@ -21,7 +21,7 @@ AM_CONDITIONAL([ENABLE_RPM], [test "$RPMBUILD" != "false"])
 # whether libusb-devel is installed or not defines whether the RPM
 # packages we're going to build will depend on libusb and libusb-devel
 # RPM packages or not.
-AM_CONDITIONAL([RPM_LIBUSB_DEVEL], [rpm -q libusb-devel > /dev/null 2>&1])
+AM_CONDITIONAL([RPM_LIBUSB_DEVEL], [test "$RPMBUILD" != "false" && rpm -q libusb-devel > /dev/null 2>&1])
 ])
 
 AC_DEFUN([GPKG_CHECK_LINUX],
