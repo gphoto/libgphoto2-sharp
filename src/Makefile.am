@@ -27,10 +27,12 @@ LIBGPHOTO2_SHARP_CSFILES =					\
 	$(srcdir)/Base/PortInfo.cs				\
 	$(srcdir)/Base/PortInfoList.cs				\
 								\
+	$(srcdir)/Abilities.cs					\
 	$(srcdir)/Camera.cs					\
-	$(srcdir)/File.cs
+	$(srcdir)/File.cs					\
+	$(srcdir)/FileSystem.cs
 
-MCSFLAGS = -unsafe -debug -r:Mono.Posix
+MCSFLAGS = -debug -r:Mono.Posix
 
 DOC_UPDATER = @MONODOCER@ -delete
 DOC_ASSEMBLER = @MDASSEMBLER@ --out libgphoto2-sharp-docs --ecma
