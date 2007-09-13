@@ -1,3 +1,8 @@
+2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/FileSystem.cs: Implemented the new API for the Filesystem
+	* libgphoto2-sharp.mdp: Readded the TestGphoto2Sharp.cs file to the solution
+
 2007-09-10  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* Sample/Main.cs: Removed accidently committed testcase for a bug.
