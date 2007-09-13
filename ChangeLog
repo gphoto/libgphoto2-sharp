@@ -1,5 +1,10 @@
 2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/CameraFile.cs: Freeing the unmanaged array after it has been
+	  marshaled to managed code. This was a huge memory leak.
+
+2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs: Implemented the new API for the Filesystem
 	* libgphoto2-sharp.mdp: Readded the TestGphoto2Sharp.cs file to the solution
 

@@ -183,12 +183,13 @@ namespace Gphoto2.Base
         {
             ulong size;
             byte[] data;
-
-           IntPtr data_addr = IntPtr.Zero;
-           Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
-           data = new byte[size];
-           Marshal.Copy(data_addr, data, 0, (int)size);
-
+            
+            IntPtr data_addr = IntPtr.Zero;
+            Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
+            data = new byte[size];
+            Marshal.Copy(data_addr, data, 0, (int)size);
+            Marshal.FreeHGlobal(data_addr);
+            
             return data;
         }
 
