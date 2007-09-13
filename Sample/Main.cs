@@ -3,6 +3,9 @@
 //
 // To change standard headers go to Edit->Preferences->Coding->Standard Headers
 //
+// If program detects some error with the software, please return a non-zero
+// exit code to the system.
+//
 // project created on 05/09/2007 at 23:26
 using System;
 using System.Threading;

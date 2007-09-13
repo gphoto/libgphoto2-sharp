@@ -72,6 +72,7 @@ src/Makefile
 src/AssemblyInfo.cs
 src/libgphoto2-sharp.pc
 src/check-camera-list.sh
+src/check-sample.sh
 src/check-sizes.sh
 ],[
 dnl This relies on this code being called for each of the above files

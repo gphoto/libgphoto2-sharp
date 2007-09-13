@@ -68,6 +68,10 @@ TestSizes.exe.mdb: TestSizes.exe
 TestSizes.exe: TestSizes.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
+Sample.exe.mdb: Sample.exe
+Sample.exe: $(top_srcdir)/Sample/Main.cs libgphoto2-sharp.dll
+	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
+
 update-docs: libgphoto2-sharp.dll
 	$(DOC_UPDATER) -assembly:libgphoto2-sharp.dll -path:en
 
@@ -75,7 +79,7 @@ libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree: $(srcdir)/en/*/*.xml
 	$(DOC_ASSEMBLER) $(srcdir)/en
 
 check_SCRIPTS = check-camera-list.sh check-sizes.sh
-check_DATA = TestGphoto2Sharp.exe TestSizes.exe
+check_DATA = TestGphoto2Sharp.exe TestSizes.exe Sample.exe
 check_PROGRAMS = testsizes
 EXTRA_PROGRAMS = testsizes
 
@@ -84,7 +88,7 @@ testsizes_SOURCES = testsizes.c
 testsizes_CPPFLAGS = $(AM_CPPFLAGS) $(LIBGPHOTO2_PORT_CFLAGS) $(LIBGPHOTO2_CFLAGS) $(CPPFLAGS)
 
 TESTS = check-sizes.sh
-INSTALL_TESTS = check-camera-list.sh
+INSTALL_TESTS = check-camera-list.sh check-sample.sh
 
 CLEANFILES =							\
 	TestGphoto2Sharp.exe					\
@@ -105,6 +109,7 @@ EXTRA_DIST =							\
 	TestGphoto2Sharp.cs					\
 	testsizes-typelist.txt					\
 	testsizes-createsource.sh				\
+	check-sample.sh.in					\
 	check-sizes.sh.in					\
 	check-camera-list.sh.in					\
 	$(srcdir)/en/*.xml					\
