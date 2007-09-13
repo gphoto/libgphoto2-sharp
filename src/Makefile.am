@@ -74,17 +74,17 @@ update-docs: libgphoto2-sharp.dll
 libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree: $(srcdir)/en/*/*.xml
 	$(DOC_ASSEMBLER) $(srcdir)/en
 
-#check_SCRIPTS = check-camera-list.sh check-sizes.sh
-#check_DATA = TestGphoto2Sharp.exe TestSizes.exe
-#check_PROGRAMS = testsizes
+check_SCRIPTS = check-camera-list.sh check-sizes.sh
+check_DATA = TestGphoto2Sharp.exe TestSizes.exe
+check_PROGRAMS = testsizes
 EXTRA_PROGRAMS = testsizes
 
-BUILT_SOURCES = testsizes.c # TestSizes.cs
+BUILT_SOURCES = testsizes.c TestSizes.cs
 testsizes_SOURCES = testsizes.c
 testsizes_CPPFLAGS = $(AM_CPPFLAGS) $(LIBGPHOTO2_PORT_CFLAGS) $(LIBGPHOTO2_CFLAGS) $(CPPFLAGS)
 
-TESTS = # check-sizes.sh
-INSTALL_TESTS = # check-camera-list.sh
+TESTS = check-sizes.sh
+INSTALL_TESTS = check-camera-list.sh
 
 CLEANFILES =							\
 	TestGphoto2Sharp.exe					\
@@ -102,6 +102,7 @@ EXTRA_DIST =							\
 	libgphoto2-sharp.pc.in					\
 	$(LIBGPHOTO2_SHARP_CSFILES)				\
 	AssemblyInfo.cs.in					\
+	TestGphoto2Sharp.cs					\
 	testsizes-typelist.txt					\
 	testsizes-createsource.sh				\
 	check-sizes.sh.in					\
