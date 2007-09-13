@@ -20,27 +20,27 @@ namespace Gphoto2.Base
         Fd
     }
     
-    public class MimeTypes
+    public static class MimeTypes
     {
-        [MarshalAs(UnmanagedType.LPTStr)] public static string WAV = "audio/wav";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string RAW = "image/x-raw";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string PNG = "image/png";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string PGM = "image/x-portable-graymap";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string PPM = "image/x-portable-pixmap";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string PNM = "image/x-portable-anymap";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string JPEG = "image/jpeg";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string TIFF = "image/tiff";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string BMP = "image/bmp";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string QUICKTIME = "video/quicktime";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string AVI = "video/x-msvideo";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string CRW = "image/x-canon-raw";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string UNKNOWN = "application/octet-stream";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string EXIF = "application/x-exif";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string MP3 = "audio/mpeg";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string OGG = "application/ogg";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string WMA = "audio/x-wma";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string ASF = "audio/x-asf";
-        [MarshalAs(UnmanagedType.LPTStr)] public static string MPEG = "video/mpeg";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string WAV = "audio/wav";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string RAW = "image/x-raw";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string PNG = "image/png";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string PGM = "image/x-portable-graymap";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string PPM = "image/x-portable-pixmap";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string PNM = "image/x-portable-anymap";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string JPEG = "image/jpeg";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string TIFF = "image/tiff";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string BMP = "image/bmp";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string QUICKTIME = "video/quicktime";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string AVI = "video/x-msvideo";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string CRW = "image/x-canon-raw";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string UNKNOWN = "application/octet-stream";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string EXIF = "application/x-exif";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string MP3 = "audio/mpeg";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string OGG = "application/ogg";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string WMA = "audio/x-wma";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string ASF = "audio/x-asf";
+        [MarshalAs(UnmanagedType.LPTStr)] public const string MPEG = "video/mpeg";
     }
 
     public class CameraFile : Object 
@@ -144,11 +144,6 @@ namespace Gphoto2.Base
             Error.CheckError (gp_file_set_mime_type (this.Handle, mime_type));
         }
         
-        public void DetectMimeType ()
-        {
-            Error.CheckError (gp_file_detect_mime_type  (this.Handle));
-        }
-        
         public void AdjustNameForMimeType ()
         {
             Error.CheckError (gp_file_adjust_name_for_mime_type (this.Handle));
@@ -231,9 +226,6 @@ namespace Gphoto2.Base
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_file_set_mime_type (HandleRef file, string mime_type);
-
-        [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_file_detect_mime_type (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_file_adjust_name_for_mime_type (HandleRef file);

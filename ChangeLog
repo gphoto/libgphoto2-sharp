@@ -1,5 +1,16 @@
 2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Implemented initial support for parsing the correct filetype.
+	  Added a list of all the possible fields that MTP can return. Important
+	  ones which haven't been implemented will be implemented.
+	* src/Files/MusicFile.cs, src/Files/ImageFile.cs: Partially implemented two
+	  initial subclasses of File
+	* src/Makefile.am: Added two new files to the makefile
+	* src/Base/CameraFile.cs: Removed the wrapper for DetectMimetype. Made the
+	  MimeType strings const rather than static.
+
+2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFile.cs: Freeing the unmanaged array after it has been
 	  marshaled to managed code. This was a huge memory leak.
 

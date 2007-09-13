@@ -31,6 +31,9 @@
     <File name="./src/Abilities.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/FileSystem.cs" subtype="Code" buildaction="Compile" />
     <File name="./src/TestGphoto2Sharp.cs" subtype="Code" buildaction="Compile" />
+    <File name="./src/Files" subtype="Directory" buildaction="Compile" />
+    <File name="./src/Files/MusicFile.cs" subtype="Code" buildaction="Compile" />
+    <File name="./src/Files/ImageFile.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
