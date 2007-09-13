@@ -20,7 +20,13 @@ namespace Sample
 		{
 			Console.WriteLine("Searching...");
 			Camera[] cameras = Camera.Detect();
-			Console.WriteLine("About to connect");
+			if(cameras.Length == 0)
+			{
+				Console.WriteLine("No cameras were detected");
+				return;
+			}
+			
+			Console.WriteLine("About to connect...");
 			for(int i = 0; i < cameras.Length; i++)
 			{
 				Console.WriteLine("Name: {0}", cameras[i].Name);

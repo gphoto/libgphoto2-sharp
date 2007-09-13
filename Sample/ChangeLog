@@ -1,0 +1,4 @@
+2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Main.cs: Added warning message if no cameras are detected
+
