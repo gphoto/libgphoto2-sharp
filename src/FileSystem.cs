@@ -5,7 +5,9 @@
 //
 
 using System;
+using System.IO;
 using System.Collections.Generic;
+
 namespace Gphoto2
 {
 	public class FileSystem : IDisposable
@@ -152,6 +154,10 @@ namespace Gphoto2
 			return null;
 		}
 		
+		public void Upload(File file)
+		{
+			
+		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
 		{

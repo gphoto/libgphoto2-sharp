@@ -21,6 +21,17 @@ namespace Gphoto2
 			get { return -1; }
 		}
 		
+		public byte[] Download()
+		{
+			return null;
+		}
+		
+		public void Download(Stream stream)
+		{
+			byte[] data = Download(file);
+			stream.Write(data, 0, data.Length);
+		}
+		
 		public abstract void Update();
 		
 		internal static File Create(Base.CameraFile file)

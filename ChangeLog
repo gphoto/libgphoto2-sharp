@@ -1,5 +1,12 @@
 2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Stubbed out the Download methods to get a file from an MTP
+	  device
+	* src/FileSystem.cs: Stubbed out the Upload method to send a file to an MTP
+	  device
+
+2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Added some properties and methods which are common to all
 	  files
 	* src/Files/GenericFile.cs, src/Makefile.am, libgphoto2-sharp.mdp: Added
