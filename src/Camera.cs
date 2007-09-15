@@ -53,11 +53,6 @@ namespace Gphoto2
 			this.port = port;
 		}
 		
-		~Camera()
-		{
-			Dispose(false);
-		}
-		
 		private void CheckConnected(bool alreadyConnected)
 		{
 			if(this.Disposed)
