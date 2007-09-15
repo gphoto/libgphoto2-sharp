@@ -10,6 +10,19 @@ namespace Gphoto2
 			get { return false; }
 			protected set { }
 		}
+		
+		public string Path
+		{
+			get { return null; }
+		}
+
+		public int Size
+		{
+			get { return -1; }
+		}
+		
+		public abstract void Update();
+		
 		internal static File Create(Base.CameraFile file)
 		{
 			string mime = file.GetMimeType();

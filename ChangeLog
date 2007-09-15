@@ -1,5 +1,12 @@
 2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added some properties and methods which are common to all
+	  files
+	* src/Files/GenericFile.cs, src/Makefile.am, libgphoto2-sharp.mdp: Added
+	  GenericFile class
+
+2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/Camera.cs: Removed old warning
 
 2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
