@@ -332,7 +332,6 @@ namespace Gphoto2.Base
             return about;
         }
         
-        // FIXME: Is this right? Is this not infinite recursion?
         public CameraFilesystem GetFS()
         {
             CameraFilesystem fs;
