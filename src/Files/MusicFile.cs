@@ -20,9 +20,19 @@ namespace Gphoto2
 			get { return null; }
 		}
 		
+		public int Bitrate
+		{
+			get { return =1; }
+		}
+		
 		public double Duration
 		{
 			get { return -1; }
+		}
+		
+		public string Format
+		{
+			get { return null; }
 		}
 		
 		public string Genre

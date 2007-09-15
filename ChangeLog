@@ -1,3 +1,7 @@
+2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Files/MusicFile.cs: Added two more properties
+
 2007-09-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs: Implemented initial support for parsing the correct filetype.
