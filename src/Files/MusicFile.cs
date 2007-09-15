@@ -22,7 +22,7 @@ namespace Gphoto2
 		
 		public int Bitrate
 		{
-			get { return =1; }
+			get { return -1; }
 		}
 		
 		public double Duration
