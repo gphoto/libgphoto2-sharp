@@ -32,9 +32,9 @@ namespace Sample
 				Console.WriteLine("Name: {0}", cameras[i].Name);
 				Console.WriteLine("Can upload files: {0}", cameras[i].Abilities.CanUploadFile);
 				cameras[i].Connect();
-				cameras[i].GetStorageInfo();
-				Gphoto2.Base.CameraStorageInformation[] storage = cameras[i].GetStorageInfo();
-				Console.WriteLine("Storage: {0:0.00}MB / {1:0.00}MB", storage[0].freekbytes / 1024.0, storage[0].capacitykbytes / 1024.0);
+				//cameras[i].GetStorageInfo();
+				//Gphoto2.Base.CameraStorageInformation[] storage = cameras[i].GetStorageInfo();
+				//Console.WriteLine("Storage: {0:0.00}MB / {1:0.00}MB", storage[0].freekbytes / 1024.0, storage[0].capacitykbytes / 1024.0);
 				cameras[i].Disconnect();
 			}
 			

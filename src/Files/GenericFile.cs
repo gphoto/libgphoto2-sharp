@@ -6,7 +6,7 @@
 
 using System;
 
-namespace libgphoto2sharp
+namespace Gphoto2
 {
 	public class GenericFile : File
 	{

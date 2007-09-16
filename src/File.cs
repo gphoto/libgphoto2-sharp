@@ -1,39 +1,78 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace Gphoto2
 {
     public abstract class File
-    {
+	{
+		/// <value>
+		/// True if the metadata has been changed and needs to be updated on the device
+		/// </value>
 		public bool Dirty
 		{
 			get { return false; }
 			protected set { }
 		}
 		
+		/// <value>
+		/// The fully qualified path to the file
+		/// </value>
 		public string Path
 		{
 			get { return null; }
 		}
-
+		
+		/// <value>
+		///  The size of the file in bytes
+		/// </value>
 		public int Size
 		{
 			get { return -1; }
 		}
 		
+		/// <summary>
+		/// Reads the entire file and returns it as a byte array
+		/// </summary>
+		/// <returns>
+		/// A <see cref="System.Byte"/>
+		/// </returns>
 		public byte[] Download()
 		{
 			return null;
 		}
 		
+		/// <summary>
+		/// Reads the entire file and writes it to the supplied stream
+		/// </summary>
 		public void Download(Stream stream)
 		{
-			byte[] data = Download(file);
+			byte[] data = Download();
 			stream.Write(data, 0, data.Length);
 		}
 		
-		public abstract void Update();
+		/// <summary>
+		/// Updates the metadata of the file on the camara
+		/// </summary>
+		/// <param name="file">
+		/// A <see cref="Base.CameraFile"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="File"/>
+		/// </returns>
+		public virtual void Update()
+		{
+		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="file">
+		/// A <see cref="Base.CameraFile"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="File"/>
+		/// </returns>
 		internal static File Create(Base.CameraFile file)
 		{
 			string mime = file.GetMimeType();

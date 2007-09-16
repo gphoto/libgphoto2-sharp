@@ -40,6 +40,11 @@ namespace Gphoto2
 			get { return disposed; }
 		}
 		
+		public Gphoto2.FileSystem[] FileSystems
+		{
+			get { return null; }
+		}
+		
 		public string Name
 		{
 			get { return baseAbilities.model; }
@@ -86,12 +91,6 @@ namespace Gphoto2
 			{
 				camera = null;
 			}
-		}
-		
-		public CameraStorageInformation[] GetStorageInfo()
-		{
-			CheckConnected(true);
-			return camera.GetStorageInformation(context);
 		}
 		
 		/// <summary>
@@ -152,6 +151,7 @@ namespace Gphoto2
 				GC.SuppressFinalize(this);
 			}
 		}
+		
 		private static CameraList RemoveDuplicates(CameraList cameras)
 		{
 			CameraList list = new CameraList();
