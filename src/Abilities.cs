@@ -35,7 +35,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanRetrieveAudio
 		{
-			get {Console.WriteLine(abilities.file_operations.ToString()); return (abilities.file_operations & CameraFileOperation.Audio) == CameraFileOperation.Audio; }
+			get { return (abilities.file_operations & CameraFileOperation.Audio) == CameraFileOperation.Audio; }
 		}
 		
 		/// <value>

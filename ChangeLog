@@ -1,5 +1,9 @@
 2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Abilities.cs: Removed old CWL.
+
+2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	
 
 2007-09-15  Alan McGovern <alan.mcgovern@gmail.com> 
