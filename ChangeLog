@@ -1,5 +1,11 @@
 2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added a FileName property.
+	* src/FileSystem.cs: Began implementing the stubs
+	* src/Camera.cs: Implemented the FileSystem section
+
+2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Abilities.cs: Removed old CWL.
 
 2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 

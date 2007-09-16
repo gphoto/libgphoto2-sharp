@@ -10,66 +10,86 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
-	public class FileSystem : IDisposable
+	public class FileSystem
 	{
 		private Camera camera;
-		private bool disposed;
-		private Base.CameraFilesystem filesystem;
-		private Base.CameraStorageInformation storageInformation;
+		private Base.CameraStorageInformation storage;
 		
-		public string BaseDirectory
+		private string BaseDirectory
 		{
-			get { return HasField(Base.CameraStorageInfoFields.Base) ? null : null;}
-		}		
+			get { return HasField(Base.CameraStorageInfoFields.Base) ? storage.basedir : null;}
+		}
 		
 		public bool CanDelete
 		{
-			get { return false; }
+			get 
+			{
+				if(!HasField(Base.CameraStorageInfoFields.Access))
+					return false;
+				
+				return HasField(Base.CameraStorageAccessType.ReadWrite)
+					|| HasField(Base.CameraStorageAccessType.ReadOnlyWithDelete);
+			}
 		}
 		
 		public bool CanRead
 		{
-			get { return false; }
+			get
+			{
+				if(!HasField(Base.CameraStorageInfoFields.Access))
+					return false;
+				
+				return HasField(Base.CameraStorageAccessType.ReadOnly)
+					|| HasField(Base.CameraStorageAccessType.ReadOnlyWithDelete)
+					|| HasField(Base.CameraStorageAccessType.ReadWrite);
+			}
 		}
 
 		public bool CanWrite
 		{
-			get { return false; }
+			get
+			{
+				if(!HasField(Base.CameraStorageInfoFields.Access))
+					return false;
+				
+				return HasField(Base.CameraStorageAccessType.ReadWrite);
+			}
 		}
 
 		public long Capacity
 		{
-			get { return -1; }
+			get { return HasField(Base.CameraStorageInfoFields.MaxCapacity)
+				? (long)storage.capacitykbytes * 1024 : -1; }
 		}
 		
 		public string Description
 		{
-			get { return null; }
+			get { return HasField(Base.CameraStorageInfoFields.Description)
+				? storage.description : ""; }
 		}
-		
-		public bool Disposed
-		{
-			get { return disposed; }
-		}
-		
+
 		public Base.CameraStorageFilesystemType FilesystemType	
 		{
-			get { return Base.CameraStorageFilesystemType.Undefined; }
+			get { return HasField(Base.CameraStorageInfoFields.FilesystemType)
+				? storage.fstype : Base.CameraStorageFilesystemType.Undefined; }
 		}
 		
 		public long FreeSpace
 		{
-			get { return -1; }
+			get { return HasField(Base.CameraStorageInfoFields.FreeSpaceKbytes)
+				? (long)storage.freekbytes * 1024 : -1; }
 		}
 		
 		public string Label
 		{
-			get { return null; }
+			get { return HasField(Base.CameraStorageInfoFields.Label) 
+				? storage.label : ""; }
 		}
 		
 		public Base.CameraStorageType StorageType
 		{
-			get { return Base.CameraStorageType.Unknown; }
+			get { return HasField(Base.CameraStorageInfoFields.StorageType)
+				? storage.type : Base.CameraStorageType.Unknown; }
 		}
 		
 		public long UsedSpace
@@ -78,10 +98,11 @@ namespace Gphoto2
 		}
 		
 		
-		internal FileSystem(Camera camera)
+		internal FileSystem(Camera camera, Base.CameraStorageInformation storage)
 		{
 			this.camera = camera;
-		}                
+			this.storage = storage;
+		}
 		
 		public void Count(string directory)
 		{
@@ -101,6 +122,7 @@ namespace Gphoto2
 		{
 			if(file == null)
 				throw new ArgumentNullException("file");
+			camera.CameraDevice.DeleteFile(file.Path, file.FileName, this.camera.Context);
 		}
 		
 		public void DeleteAll(string folder)
@@ -112,20 +134,6 @@ namespace Gphoto2
 		{
 			if(string.IsNullOrEmpty(folder))
 				throw new ArgumentException("folder cannot be null or empty");
-		}
-			
-		void IDisposable.Dispose ()
-		{
-			Dispose(true);
-		}
-		
-		protected virtual void Dispose(bool disposing)
-		{
-			if(Disposed)
-				return;
-			
-			if(disposing)
-				filesystem.Dispose();
 		}
 		
 		public File GetFile(string directory, string filename)
@@ -161,12 +169,12 @@ namespace Gphoto2
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
 		{
-			return (storageInformation.fields & field) == field;
+			return (storage.fields & field) == field;
 		}
 		
 		private bool HasField(Base.CameraStorageAccessType field)
 		{
-			return (storageInformation.access & field) == field;
+			return (storage.access & field) == field;
 		}
 	}
 }

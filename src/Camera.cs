@@ -6,12 +6,14 @@ namespace Gphoto2
 {
     public class Camera : IDisposable
     {
+		public static char DirectorySeperator = '/';
 		private Abilities abilities;
 		private CameraAbilities baseAbilities;
 		private Base.Camera camera;
 		private bool connected;
 		private bool disposed;
 		private Base.Context context;
+		private Gphoto2.FileSystem[] fileSystems;
 		private PortInfo port;
 		
 		
@@ -42,7 +44,7 @@ namespace Gphoto2
 		
 		public Gphoto2.FileSystem[] FileSystems
 		{
-			get { return null; }
+			get { return fileSystems; }
 		}
 		
 		public string Name
@@ -75,6 +77,18 @@ namespace Gphoto2
 			camera.SetAbilities(baseAbilities);
 			camera.SetPortInfo(port);
 			camera.Init(context);
+			try
+			{
+				Base.CameraStorageInformation[] storages = camera.GetStorageInformation(Context);
+				fileSystems = new FileSystem[storages.Length];
+				for (int i = 0; i < storages.Length; i++)
+					fileSystems[i] = new FileSystem(this, storages[i]);
+			}
+			catch
+			{
+				Disconnect();
+				return;
+			}
 			connected = true;
 		}
 		
@@ -148,7 +162,6 @@ namespace Gphoto2
 				if(Connected)
 					Disconnect();
 				camera.Dispose();
-				GC.SuppressFinalize(this);
 			}
 		}
 		

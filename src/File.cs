@@ -6,13 +6,22 @@ namespace Gphoto2
 {
     public abstract class File
 	{
+		private bool dirty;
+		private string fileName;
+		
 		/// <value>
 		/// True if the metadata has been changed and needs to be updated on the device
 		/// </value>
 		public bool Dirty
 		{
-			get { return false; }
-			protected set { }
+			get { return dirty; }
+			protected set { dirty = value; }
+		}
+		
+		public string FileName
+		{
+			get { return fileName; }
+			protected set { fileName = value; }
 		}
 		
 		/// <value>
