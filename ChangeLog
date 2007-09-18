@@ -1,5 +1,10 @@
 2007-09-18  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Files/ImageFile.cs: Added the supporting property code for the
+	  ImageFile class
+
+2007-09-18  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs, src/Files/GenericFile.cs, src/Files/MusicFile.cs,
 	  src/Files/ImageFile.cs: Implemented metadata parsing/handling. The lib
 	  can handle anything that is thrown at it
