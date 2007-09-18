@@ -165,6 +165,10 @@ namespace Gphoto2
 			}
 		}
 		
+		// FIXME: The actual conditions for ignoring 'usb:' ones is
+		// when it is the only entry for that device. I'm not 100% how
+		// to handle to of the same device when they are represented by
+		// 'usb:' as opposed to the fully qualified name
 		private static CameraList RemoveDuplicates(CameraList cameras)
 		{
 			CameraList list = new CameraList();

@@ -31,7 +31,8 @@ namespace Gphoto2
 			get { return -1; }
 		}
 		
-		public ImageFile()
+		public ImageFile(string metadata, string directory, string filename)
+			: base (metadata, directory, filename)
 		{
 		}
 		

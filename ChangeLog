@@ -1,3 +1,12 @@
+2007-09-18  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs, src/Files/GenericFile.cs, src/Files/MusicFile.cs,
+	  src/Files/ImageFile.cs: Implemented metadata parsing/handling. The lib
+	  can handle anything that is thrown at it
+	* src/FileSystem.cs: Implemented nearly all the stubs.
+	* src/Camera.cs: Added a fixme comment
+	* libgphoto2-sharp.mdp: Added ref to System.XML
+
 2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs: Added a FileName property.

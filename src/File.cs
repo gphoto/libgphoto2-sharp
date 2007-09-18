@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Xml;
+using System.Text;
 using System.Collections.Generic;
 
 namespace Gphoto2
@@ -8,6 +10,8 @@ namespace Gphoto2
 	{
 		private bool dirty;
 		private string fileName;
+		private Dictionary<string, string> metadata;
+		private string path;
 		
 		/// <value>
 		/// True if the metadata has been changed and needs to be updated on the device
@@ -18,18 +22,21 @@ namespace Gphoto2
 			protected set { dirty = value; }
 		}
 		
-		public string FileName
+		public string Filename
 		{
 			get { return fileName; }
-			protected set { fileName = value; }
 		}
 		
+		public Dictionary<string, string> Metadata
+		{
+			get { return metadata; }
+		}
 		/// <value>
 		/// The fully qualified path to the file
 		/// </value>
 		public string Path
 		{
-			get { return null; }
+			get { return path; }
 		}
 		
 		/// <value>
@@ -38,6 +45,18 @@ namespace Gphoto2
 		public int Size
 		{
 			get { return -1; }
+		}
+		
+		protected File(string metadata, string path, string filename)
+		{
+			if(metadata == null)
+				throw new ArgumentNullException("metadata");
+			
+			this.fileName = filename;
+			this.path = path;
+			this.metadata = new Dictionary<string, string>();
+			
+			ParseMetadata(metadata);
 		}
 		
 		/// <summary>
@@ -60,6 +79,46 @@ namespace Gphoto2
 			stream.Write(data, 0, data.Length);
 		}
 		
+		protected void SetInt(string key, int value)
+		{
+			SetString(key, value.ToString());
+		}
+		
+		protected void SetString(string key, string value)
+		{
+			if(!Metadata.ContainsKey(key))
+			{
+				dirty = true;
+				Metadata.Add(key, value);
+				return;
+			}
+
+			if(Metadata[key] != value)
+				dirty = true;
+			
+			Metadata[key] = value;
+		}
+		
+		protected int GetInt(string key)
+		{
+			int val;
+			string str = GetString(key);
+			
+			if(!int.TryParse(str, out val))
+				return -1;
+			
+			return val;
+		}
+		
+		protected string GetString(string key)
+		{
+			string str;
+			if(!Metadata.TryGetValue(key, out str))
+				return "";
+			
+			return str;
+		}
+		
 		/// <summary>
 		/// Updates the metadata of the file on the camara
 		/// </summary>
@@ -69,8 +128,11 @@ namespace Gphoto2
 		/// <returns>
 		/// A <see cref="File"/>
 		/// </returns>
-		public virtual void Update()
+		public void Update()
 		{
+			string metadata = MetadataToXml();
+			// I just need to push this to the device. Figure this out from banshee code
+			dirty = false;
 		}
 		
 		/// <summary>
@@ -82,11 +144,11 @@ namespace Gphoto2
 		/// <returns>
 		/// A <see cref="File"/>
 		/// </returns>
-		internal static File Create(Base.CameraFile file)
+		internal static File Create(Base.CameraFile file, string directory, string filename)
 		{
 			string mime = file.GetMimeType();
 			string metadata = System.Text.Encoding.UTF8.GetString(file.GetDataAndSize());
-			
+			File camFile;
 			switch(mime)
 			{
 			case Base.MimeTypes.ASF:
@@ -94,13 +156,52 @@ namespace Gphoto2
 			case Base.MimeTypes.WMA:
 			case Base.MimeTypes.WAV:
 			case Base.MimeTypes.OGG:
-				return new MusicFile(metadata);
+				camFile = new MusicFile(metadata, directory, filename);
+				break;
 				
-
+				
 				// FIXME: Return a 'generic' file
 			default:
-				Console.WriteLine("Can't parse: {0}", mime);
-				return null;
+				camFile = new GenericFile(metadata, directory, filename);
+				break;
+			}
+			
+			return camFile;
+		}
+		
+		private string MetadataToXml()
+		{
+			StringBuilder sb = new StringBuilder(metadata.Count * 32);
+			XmlWriterSettings settings = new XmlWriterSettings();
+			settings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+			
+			using (XmlWriter writer = XmlWriter.Create(sb, settings))
+			{
+				foreach(KeyValuePair<string, string> keypair in metadata)
+				{
+					writer.WriteStartElement(keypair.Key);
+					writer.WriteString(keypair.Value);
+					writer.WriteEndElement();
+				}
+				return sb.ToString();
+			}	
+		}
+		
+		protected void ParseMetadata(string metadata)
+		{
+			XmlReaderSettings s = new XmlReaderSettings();
+            s.ConformanceLevel = ConformanceLevel.Fragment;
+			
+			// Parse the metadata into a dictionary so we can show it
+			// all to the user
+            using (XmlTextReader r = (XmlTextReader)XmlTextReader.Create(new StringReader (metadata), s))
+			{
+				while (!r.EOF && r.NodeType != XmlNodeType.None)
+				{
+					r.Read();
+					this.metadata.Add(r.Name, r.ReadString());                
+					r.ReadEndElement();
+				}
 			}
 		}
     }

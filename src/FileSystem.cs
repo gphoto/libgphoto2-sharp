@@ -122,7 +122,7 @@ namespace Gphoto2
 		{
 			if(file == null)
 				throw new ArgumentNullException("file");
-			camera.CameraDevice.DeleteFile(file.Path, file.FileName, this.camera.Context);
+			camera.CameraDevice.DeleteFile(file.Path, file.Filename, this.camera.Context);
 		}
 		
 		public void DeleteAll(string folder)
@@ -134,6 +134,17 @@ namespace Gphoto2
 		{
 			if(string.IsNullOrEmpty(folder))
 				throw new ArgumentException("folder cannot be null or empty");
+			
+			string path = CombinePath(BaseDirectory, folder);
+			camera.CameraDevice.DeleteAll(path, camera.Context);
+			
+			if(!removeFolder)
+				return;
+			
+			int index = path.LastIndexOf(Camera.DirectorySeperator);
+			string pathToDirectory = path.Substring(0, index);
+			string directory = path.Length > index ? path.Substring(index + 1) : "";
+			camera.CameraDevice.RemoveDirectory(pathToDirectory, directory, camera.Context);
 		}
 		
 		public File GetFile(string directory, string filename)
@@ -143,15 +154,18 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
-			return null;
+			using (Base.CameraFile metadata = camera.CameraDevice.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+				return File.Create(metadata, directory, filename);
 		}
 		
-		public File[] GetFiles(string directory)
+		public string[] GetFiles(string directory)
 		{
 			if(string.IsNullOrEmpty(directory))
 				throw new ArgumentException("directory cannot be null or empty");
 			
-			return null;
+			string path = CombinePath(BaseDirectory, directory);
+			using (Base.CameraList list = camera.CameraDevice.ListFiles(path, camera.Context))
+				return ParseList(list);
 		}
 
 		public string[] GetFolders(string directory)
@@ -159,12 +173,24 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(directory))
 				throw new ArgumentException("directory cannot be null or empty");
 			
-			return null;
+			using (Base.CameraList list = camera.CameraDevice.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
+				return ParseList(list);
+		}
+		
+		private string[] ParseList(Base.CameraList list)
+		{
+			int count = list.Count();
+			string[] results = new string[count];
+			
+			for(int i = 0; i < count; i++)
+				results[i] = list.GetName(i);
+			
+			return results;
 		}
 		
 		public void Upload(File file)
 		{
-			
+			throw new NotImplementedException();
 		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
@@ -175,6 +201,14 @@ namespace Gphoto2
 		private bool HasField(Base.CameraStorageAccessType field)
 		{
 			return (storage.access & field) == field;
+		}
+		
+		internal string CombinePath(string path1, string path2)
+		{
+			if(path2 == Camera.DirectorySeperator.ToString())
+				return path1;
+			
+			return path1 + Camera.DirectorySeperator + path2;
 		}
 	}
 }

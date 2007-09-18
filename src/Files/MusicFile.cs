@@ -12,108 +12,86 @@ namespace Gphoto2
 	{
 		public string Album
 		{
-			get { return null; }
+			get { return GetString("Album"); }
+			set { SetString("Album", value); }
 		}
 		
 		public string Artist
 		{
-			get { return null; }
+			get { return GetString("Artist"); }
+			set { SetString("Artist", value); }
 		}
 		
 		public int Bitrate
 		{
-			get { return 1; }
+			get { return GetInt("AudioBitDepth"); }
+			set { SetInt("AudioBitDepth", value); }
 		}
 		
-		public double Duration
+		public int Duration
 		{
-			get { return -1; }
+			get { return GetInt("Duration"); }
+			set { SetInt("Duration", value); }
 		}
 		
 		public string Format
 		{
-			get { return null; }
+			get { return GetString("AudioWAVECodec"); }
+			set { SetString("AudioWAVECodec", value); }
 		}
 		
 		public string Genre
 		{
-			get {return null; }
+			get {return GetString("Genre"); }
+			set { SetString("Genre", value); }
 		}
 		
 		public string Title
 		{
-			get { return null; }
+			get { return GetString("Name"); }
+			set { SetString("Name", value); }
 		}
 		
 		public int Track
 		{
-			get { return -1; }
+			get { return GetInt("Track"); }
+			set { SetInt("Track", value); }
 		}
 		
 		public int UseCount
 		{
-			get { return -1; }
+			get { return GetInt("UseCount"); }
+			set { SetInt("UseCount", value); }
 		}
 
 		public int Year
 		{
-			get { return -1; }
+			get
+			{
+				int year;
+				string releaseDate = GetString("OriginalReleaseDate");
+				
+				if(releaseDate.Length > 4)
+					releaseDate = releaseDate.Substring(0, 4);
+				
+				if(!int.TryParse(releaseDate, out year))
+					return -1;
+				
+				return year;
+			}
+			set
+			{
+				SetString("OriginalReleaseDate", string.Format("{0:0000}0101T0000.0", value));
+			}
 		}
 		
-		internal MusicFile(string metadata)
+		internal MusicFile(string metadata, string directory, string filename)
+			: base (metadata, directory, filename)
 		{
 			if(string.IsNullOrEmpty(metadata))
 				throw new ArgumentException("metadata cannot be null or empty");
 			
 			ParseMetadata(metadata);
 		}
-		
-		
-		private void ParseMetadata(string metadata)
-        {
-            /*XmlReaderSettings s = new XmlReaderSettings();
-            s.ConformanceLevel = ConformanceLevel.Fragment;
-			
-            using(XmlTextReader r = (XmlTextReader)XmlTextReader.Create(new StringReader (metadata), s))
-            while(!r.EOF && r.NodeType != XmlNodeType.None)
-            {
-                r.Read();
-                switch(r.Name)
-                {
-                case "AlbumName":
-                    AlbumName = r.ReadString(); break;
-                    
-                case "Artist":
-                    Artist = r.ReadString(); break;
-                    
-                case "Duration":
-                    double.TryParse(r.ReadString(), out Duration); break;
-                
-                case "Genre":
-                    Genre = r.ReadString(); break;
-                    
-                case "OriginalReleaseDate":
-                        string releaseDate = r.ReadString();
-                        if(releaseDate.Length > 4)
-                            releaseDate = releaseDate.Substring(0, 4);
-                        int.TryParse(releaseDate, out Year);
-                        break;
-                    
-                case "Name":
-                    Name = r.ReadString(); break;
-                
-                case "Track":
-                    uint.TryParse(r.ReadString(), out Track); break;
-                    
-                case "UseCount":
-                    uint.TryParse(r.ReadString(), out UseCount); break;
-                
-                default:    // Log these missing ones. Might be worth parsing in the future
-                    break;
-                }
-                
-                r.ReadEndElement();
-            }*/
-        }
 	}
 }
