@@ -1,5 +1,9 @@
 2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Camera.cs: Cosmetic
+
+2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs: Should be converting the string to byte[]
 	* src/Abilities.cs: Simplified the code
 

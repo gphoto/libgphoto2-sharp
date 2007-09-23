@@ -147,22 +147,14 @@ namespace Gphoto2
 		
 		public void Dispose()
 		{
-			Dispose(true);
-		}
-		
-		protected virtual void Dispose(bool disposing)
-		{
 			if(Disposed)
 				return;
 			
 			// This just makes sure that we have disconnected
 			disposed = true;
-			if(disposing)
-			{
-				if(Connected)
-					Disconnect();
-				camera.Dispose();
-			}
+			if(Connected)
+				Disconnect();
+			camera.Dispose();
 		}
 		
 		// FIXME: The actual conditions for ignoring 'usb:' ones is
