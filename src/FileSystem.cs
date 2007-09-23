@@ -208,7 +208,7 @@ namespace Gphoto2
 			{
 				meta.SetName(file.Filename);
 				meta.SetFileType(Base.CameraFileType.MetaData);
-				meta.SetDataAndSize(file.MetadataToXml());
+				meta.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(file.MetadataToXml()));
 				camera.CameraDevice.PutFile(path, meta, camera.Context);
 			}
 			

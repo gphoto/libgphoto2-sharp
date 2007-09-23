@@ -13,12 +13,12 @@ namespace Gphoto2
 		/// </value>
 		public bool CanDeleteFiles
 		{
-			get { return (abilities.file_operations & CameraFileOperation.Delete) == CameraFileOperation.Delete; }
+			get { return HasField(CameraFileOperation.Delete); }
 		}
 		
 		public bool CanPreviewViewfinder
 		{
-			get { return (abilities.file_operations & CameraFileOperation.Preview) == CameraFileOperation.Preview;}
+			get { return HasField(CameraFileOperation.Preview);}
 		}
 		
 		
@@ -27,7 +27,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanRetrieveRaw
 		{
-			get { return (abilities.file_operations & CameraFileOperation.Raw) == CameraFileOperation.Raw; }
+			get { return HasField(CameraFileOperation.Raw); }
 		}
 
 		/// <value>
@@ -35,7 +35,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanRetrieveAudio
 		{
-			get { return (abilities.file_operations & CameraFileOperation.Audio) == CameraFileOperation.Audio; }
+			get { return HasField(CameraFileOperation.Audio); }
 		}
 		
 		/// <value>
@@ -43,7 +43,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanRetrieveExif
 		{
-			get { return (abilities.file_operations & CameraFileOperation.Exif) == CameraFileOperation.Exif; }
+			get { return HasField(CameraFileOperation.Exif); }
 		}
 		
 		
@@ -53,7 +53,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanDeleteAll
 		{
-			get { return (abilities.folder_operations & CameraFolderOperation.DeleteAll) == CameraFolderOperation.DeleteAll; }
+			get { return HasField(CameraFolderOperation.DeleteAll); }
 		}
 		
 		/// <value>
@@ -61,7 +61,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanUploadFile
 		{
-			get { return (abilities.folder_operations & CameraFolderOperation.PutFile) == CameraFolderOperation.PutFile; }
+			get { return HasField(CameraFolderOperation.PutFile); }
 		}
 		
 		
@@ -70,7 +70,7 @@ namespace Gphoto2
 		/// </value>
 		public bool CanCreateDirectory
 		{
-			get { return (abilities.folder_operations & CameraFolderOperation.MakeDirectory) == CameraFolderOperation.MakeDirectory; }
+			get { return HasField(CameraFolderOperation.MakeDirectory); }
 		}
 		
 		/// <value>
@@ -78,39 +78,54 @@ namespace Gphoto2
 		/// </value>
 		public bool CanDeleteDirectory
 		{
-			get { return (abilities.folder_operations & CameraFolderOperation.RemoveDirectory) == CameraFolderOperation.RemoveDirectory; }
+			get { return HasField(CameraFolderOperation.RemoveDirectory); }
 		}
 		
 
 		/* Camera Operations */
 		public bool CanCaptureImages
 		{
-			get { return (abilities.operations & CameraOperation.CaptureImage) == CameraOperation.CaptureImage; }
+			get { return HasField(CameraOperation.CaptureImage); }
 		}
 		
 		public bool CanCaptureVideo
 		{
-			get { return (abilities.operations & CameraOperation.CaptureVideo) == CameraOperation.CaptureVideo; }
+			get { return HasField(CameraOperation.CaptureVideo); }
 		}
 		
 		public bool CanCaptureAudio
 		{
-			get { return (abilities.operations & CameraOperation.CaptureAudio) == CameraOperation.CaptureAudio; }
+			get { return HasField(CameraOperation.CaptureAudio); }
 		}
 		
 		public bool CanCapturePreview
 		{
-			get { return (abilities.operations & CameraOperation.CapturePreview) == CameraOperation.CapturePreview; }
+			get { return HasField(CameraOperation.CapturePreview); }
 		}
 		
 		public bool CanConfigureCamera
 		{
-			get { return (abilities.operations & CameraOperation.Config) == CameraOperation.Config; }
+			get { return HasField(CameraOperation.Config); }
 		}
 
 		internal Abilities(CameraAbilities abilities)
 		{
 			this.abilities = abilities;
+		}
+		
+		private bool HasField(CameraOperation operation)
+		{
+			return (abilities.operations & operation) == operation;
+		}
+		
+		private bool HasField(CameraFolderOperation operation)
+		{
+			return (abilities.folder_operations & operation) == operation;
+		}
+		
+		private bool HasField(CameraFileOperation operation)
+		{
+			return (abilities.file_operations & operation) == operation;
 		}
 	}
 }
