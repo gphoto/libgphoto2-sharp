@@ -94,7 +94,7 @@ namespace Gphoto2
 		
 		public long UsedSpace
 		{
-			get { return Capacity - UsedSpace; }
+			get { return Capacity - FreeSpace; }
 		}
 		
 		

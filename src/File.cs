@@ -47,6 +47,7 @@ namespace Gphoto2
 			get { return path; }
 		}
 		
+		// FIXME: Implement this.
 		/// <value>
 		///  The size of the file in bytes
 		/// </value>
