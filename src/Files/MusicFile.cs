@@ -88,10 +88,7 @@ namespace Gphoto2
 		internal MusicFile(Camera camera, string metadata, string directory, string filename, bool local)
 			: base (camera, metadata, directory, filename, local)
 		{
-			if(string.IsNullOrEmpty(metadata))
-				throw new ArgumentException("metadata cannot be null or empty");
-			
-			ParseMetadata(metadata);
+
 		}
 	}
 }

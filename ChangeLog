@@ -1,5 +1,9 @@
 2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Files/MusicFile.cs: Metadata is parsed in the base class
+
+2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Added a fixme
 	* src/FileSystem.cs: Fixed infinite recursion ;)
 
