@@ -10,9 +10,11 @@ namespace Gphoto2
 	{
 		private bool dirty;
 		private string fileName;
+		private bool localFile;
 		private Dictionary<string, string> metadata;
 		private string path;
 		
+		private Camera camera;
 		/// <value>
 		/// True if the metadata has been changed and needs to be updated on the device
 		/// </value>
@@ -27,10 +29,16 @@ namespace Gphoto2
 			get { return fileName; }
 		}
 		
+		public bool LocalFile
+		{
+			get { return localFile; }
+		}
+		
 		public Dictionary<string, string> Metadata
 		{
 			get { return metadata; }
 		}
+		
 		/// <value>
 		/// The fully qualified path to the file
 		/// </value>
@@ -47,16 +55,26 @@ namespace Gphoto2
 			get { return -1; }
 		}
 		
-		protected File(string metadata, string path, string filename)
+		protected File(Camera camera, string metadata, string path, string filename, bool local)
 		{
 			if(metadata == null)
 				throw new ArgumentNullException("metadata");
 			
+			this.camera = camera;
 			this.fileName = filename;
+			this.localFile = local;
 			this.path = path;
 			this.metadata = new Dictionary<string, string>();
 			
 			ParseMetadata(metadata);
+		}
+		
+		// When the user creates a file, it can only reference a local file
+		// So we only need the path to the file and it's filename
+		public File(string path, string filename)
+			: this (null, "", path, filename, true)
+		{
+			
 		}
 		
 		/// <summary>
@@ -67,7 +85,11 @@ namespace Gphoto2
 		/// </returns>
 		public byte[] Download()
 		{
-			return null;
+			if(LocalFile)
+				throw new InvalidOperationException("This file is already on the local filesystem");
+			
+			using (Base.CameraFile file = camera.CameraDevice.GetFile(path, fileName, Base.CameraFileType.Normal, camera.Context))
+				return file.GetDataAndSize();
 		}
 		
 		/// <summary>
@@ -79,12 +101,12 @@ namespace Gphoto2
 			stream.Write(data, 0, data.Length);
 		}
 		
-		protected void SetInt(string key, int value)
+		protected void SetValue(string key, int value)
 		{
-			SetString(key, value.ToString());
+			SetValue(key, value.ToString());
 		}
 		
-		protected void SetString(string key, string value)
+		protected void SetValue(string key, string value)
 		{
 			if(!Metadata.ContainsKey(key))
 			{
@@ -131,7 +153,13 @@ namespace Gphoto2
 		public void Update()
 		{
 			string metadata = MetadataToXml();
-			// I just need to push this to the device. Figure this out from banshee code
+			using (Base.CameraFile file = new Base.CameraFile())
+			{
+				file.SetFileType(Base.CameraFileType.MetaData);
+				file.SetName(Filename);
+				file.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(metadata));
+				camera.CameraDevice.PutFile(path, file, camera.Context);
+			}
 			dirty = false;
 		}
 		
@@ -144,10 +172,10 @@ namespace Gphoto2
 		/// <returns>
 		/// A <see cref="File"/>
 		/// </returns>
-		internal static File Create(Base.CameraFile file, string directory, string filename)
+		internal static File Create(Camera camera, Base.CameraFile metadataFile, string directory, string filename)
 		{
-			string mime = file.GetMimeType();
-			string metadata = System.Text.Encoding.UTF8.GetString(file.GetDataAndSize());
+			string mime = metadataFile.GetMimeType();
+			string metadata = System.Text.Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 			File camFile;
 			switch(mime)
 			{
@@ -156,20 +184,18 @@ namespace Gphoto2
 			case Base.MimeTypes.WMA:
 			case Base.MimeTypes.WAV:
 			case Base.MimeTypes.OGG:
-				camFile = new MusicFile(metadata, directory, filename);
+				camFile = new MusicFile(camera, metadata, directory, filename, false);
 				break;
 				
-				
-				// FIXME: Return a 'generic' file
 			default:
-				camFile = new GenericFile(metadata, directory, filename);
+				camFile = new GenericFile(camera, metadata, directory, filename, false);
 				break;
 			}
 			
 			return camFile;
 		}
 		
-		private string MetadataToXml()
+		internal string MetadataToXml()
 		{
 			StringBuilder sb = new StringBuilder(metadata.Count * 32);
 			XmlWriterSettings settings = new XmlWriterSettings();

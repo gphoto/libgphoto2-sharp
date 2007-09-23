@@ -13,55 +13,55 @@ namespace Gphoto2
 		public string Album
 		{
 			get { return GetString("Album"); }
-			set { SetString("Album", value); }
+			set { SetValue("Album", value); }
 		}
 		
 		public string Artist
 		{
 			get { return GetString("Artist"); }
-			set { SetString("Artist", value); }
+			set { SetValue("Artist", value); }
 		}
 		
 		public int Bitrate
 		{
 			get { return GetInt("AudioBitDepth"); }
-			set { SetInt("AudioBitDepth", value); }
+			set { SetValue("AudioBitDepth", value); }
 		}
 		
 		public int Duration
 		{
 			get { return GetInt("Duration"); }
-			set { SetInt("Duration", value); }
+			set { SetValue("Duration", value); }
 		}
 		
 		public string Format
 		{
 			get { return GetString("AudioWAVECodec"); }
-			set { SetString("AudioWAVECodec", value); }
+			set { SetValue("AudioWAVECodec", value); }
 		}
 		
 		public string Genre
 		{
 			get {return GetString("Genre"); }
-			set { SetString("Genre", value); }
+			set { SetValue("Genre", value); }
 		}
 		
 		public string Title
 		{
 			get { return GetString("Name"); }
-			set { SetString("Name", value); }
+			set { SetValue("Name", value); }
 		}
 		
 		public int Track
 		{
 			get { return GetInt("Track"); }
-			set { SetInt("Track", value); }
+			set { SetValue("Track", value); }
 		}
 		
 		public int UseCount
 		{
 			get { return GetInt("UseCount"); }
-			set { SetInt("UseCount", value); }
+			set { SetValue("UseCount", value); }
 		}
 
 		public int Year
@@ -81,12 +81,12 @@ namespace Gphoto2
 			}
 			set
 			{
-				SetString("OriginalReleaseDate", string.Format("{0:0000}0101T0000.0", value));
+				SetValue("OriginalReleaseDate", string.Format("{0:0000}0101T0000.0", value));
 			}
 		}
 		
-		internal MusicFile(string metadata, string directory, string filename)
-			: base (metadata, directory, filename)
+		internal MusicFile(Camera camera, string metadata, string directory, string filename, bool local)
+			: base (camera, metadata, directory, filename, local)
 		{
 			if(string.IsNullOrEmpty(metadata))
 				throw new ArgumentException("metadata cannot be null or empty");

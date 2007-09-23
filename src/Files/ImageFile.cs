@@ -19,23 +19,23 @@ namespace Gphoto2
 		public int Depth
 		{
 			get { return GetInt("ImageBitDepth"); }
-			set { SetInt("ImageBitDepth", value); }
+			set { SetValue("ImageBitDepth", value); }
 		}
 		
 		public int Height
 		{
 			get { return GetInt("Height"); }
-			set { SetInt("Height", value); }
+			set { SetValue("Height", value); }
 		}
 		
 		public int Width
 		{
 			get { return GetInt("Width"); }
-			set { SetInt("Width", value); }
+			set { SetValue("Width", value); }
 		}
 		
-		public ImageFile(string metadata, string directory, string filename)
-			: base (metadata, directory, filename)
+		internal ImageFile(Camera camera, string metadata, string directory, string filename, bool local)
+			: base (camera, metadata, directory, filename, local)
 		{
 			
 		}

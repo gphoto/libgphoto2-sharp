@@ -1,3 +1,10 @@
+2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs: Implemented metadata uploading/syncing and file downloading.
+	* src/FileSystem.cs: Implemented file uploading
+	* src/Files/GenericFile.cs, src/Files/MusicFile.cs, src/Files/ImageFile.cs:
+	  Misc cosmetic changes
+
 2007-09-18  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Files/ImageFile.cs: Added the supporting property code for the

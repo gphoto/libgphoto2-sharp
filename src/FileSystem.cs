@@ -155,7 +155,7 @@ namespace Gphoto2
 				throw new ArgumentException("filename cannot be null or empty");
 			
 			using (Base.CameraFile metadata = camera.CameraDevice.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
-				return File.Create(metadata, directory, filename);
+				return File.Create(camera, metadata, directory, filename);
 		}
 		
 		public string[] GetFiles(string directory)
@@ -188,9 +188,33 @@ namespace Gphoto2
 			return results;
 		}
 		
-		public void Upload(File file)
+		// FIXME: I can do some sanity checks to make sure i can actually upload
+		// which will speed things up hugely in cases where uploading is not possible
+		public File Upload(File file, string path)
 		{
-			throw new NotImplementedException();
+			path = CombinePath(BaseDirectory, path);
+			
+			// First put the actual file data on the camera
+			using(Base.CameraFile data = new Gphoto2.Base.CameraFile())
+			{
+				data.SetName(file.Filename);
+				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
+				data.SetFileType(Base.CameraFileType.Normal);
+				camera.CameraDevice.PutFile(path, data, camera.Context);
+			}
+			
+			// Then put the metadata on camera.
+			using(Base.CameraFile meta = new Gphoto2.Base.CameraFile())
+			{
+				meta.SetName(file.Filename);
+				meta.SetFileType(Base.CameraFileType.MetaData);
+				meta.SetDataAndSize(file.MetadataToXml());
+				camera.CameraDevice.PutFile(path, meta, camera.Context);
+			}
+			
+			// Then return the user a File object referencing the file on the camera
+			using (Base.CameraFile camfile = camera.CameraDevice.GetFile(path, file.Filename, Base.CameraFileType.MetaData, camera.Context))
+				return File.Create(camera, camfile, path, file.Filename);
 		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
