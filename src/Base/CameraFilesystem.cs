@@ -172,8 +172,6 @@ namespace Gphoto2.Base
     public class CameraFilesystem : Object
     {
         bool need_dispose;
-        CameraList file_list;
-        CameraList folder_list;
         
         public CameraFilesystem ()
         {
@@ -341,8 +339,8 @@ namespace Gphoto2.Base
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_filesystem_set_info (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, CameraFileInfo info, HandleRef context);
 
-        [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
+        //[DllImport ("libgphoto2.so")]
+        //private static extern ErrorCode gp_filesystem_set_info_noop (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, CameraFileInfo info, HandleRef context);
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_filesystem_number (HandleRef fs, [MarshalAs (UnmanagedType.LPTStr)] string folder, [MarshalAs (UnmanagedType.LPTStr)] string filename, HandleRef context);

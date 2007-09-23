@@ -268,13 +268,13 @@ namespace Gphoto2.Base
         [DllImport ("libgphoto2_port.so")]
         private static extern ErrorCode gp_port_set_timeout (HandleRef port, int timeout);
 
-        [DllImport ("libgphoto2_port.so")]
-        private static extern ErrorCode gp_port_get_pin (HandleRef port, Pin pin, out Level level);
+        //[DllImport ("libgphoto2_port.so")]
+        //private static extern ErrorCode gp_port_get_pin (HandleRef port, Pin pin, out Level level);
 
-        [DllImport ("libgphoto2_port.so")]
-        private static extern ErrorCode gp_port_set_pin (HandleRef port, Pin pin, Level level);
+        //[DllImport ("libgphoto2_port.so")]
+        //private static extern ErrorCode gp_port_set_pin (HandleRef port, Pin pin, Level level);
 
-        [DllImport ("libgphoto2_port.so")]
-        private static extern string gp_port_get_error (HandleRef port);
+        //[DllImport ("libgphoto2_port.so")]
+        //private static extern string gp_port_get_error (HandleRef port);
     }
 }
