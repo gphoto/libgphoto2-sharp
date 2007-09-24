@@ -158,14 +158,22 @@ namespace Gphoto2
 				return File.Create(camera, metadata, directory, filename);
 		}
 		
-		public string[] GetFiles(string directory)
+		public File[] GetFiles(string directory)
 		{
 			if(string.IsNullOrEmpty(directory))
 				throw new ArgumentException("directory cannot be null or empty");
 			
 			string path = CombinePath(BaseDirectory, directory);
+			
 			using (Base.CameraList list = camera.CameraDevice.ListFiles(path, camera.Context))
-				return ParseList(list);
+			{
+				string[] filenames = ParseList(list);
+				File[] files = new File[filenames.Length];
+				for(int i = 0; i < files.Length; i++)
+					files[i] = GetFile(path, filenames[i]);
+				
+				return files;
+			}
 		}
 
 		public string[] GetFolders(string directory)
@@ -184,7 +192,7 @@ namespace Gphoto2
 			
 			for(int i = 0; i < count; i++)
 				results[i] = list.GetName(i);
-			
+
 			return results;
 		}
 		
@@ -227,7 +235,7 @@ namespace Gphoto2
 			return (storage.access & field) == field;
 		}
 		
-		internal string CombinePath(string path1, string path2)
+		public static string CombinePath(string path1, string path2)
 		{
 			if(path2 == Camera.DirectorySeperator.ToString())
 				return path1;

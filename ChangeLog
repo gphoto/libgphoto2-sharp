@@ -1,3 +1,11 @@
+2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs: Fixed the XML parsing. It still borks when libgphoto2 returns
+	  invalid XML. I need a proper workaround for mimetype detection when i
+	  only have the metadata.
+	* src/FileSystem.cs: GetFiles returns a list of files rather than strings
+	* src/Files/MusicFile.cs: Identifier is 'AlbumName' not 'Album'
+
 2007-09-23  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Base/CameraFilesystem.cs, src/Base/Port.cs: Cosmetic changes to clean

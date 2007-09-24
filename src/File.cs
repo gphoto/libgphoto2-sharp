@@ -189,10 +189,10 @@ namespace Gphoto2
 				break;
 				
 			default:
-				camFile = new GenericFile(camera, metadata, directory, filename, false);
+				camFile = new MusicFile(camera, metadata, directory, filename, false);
+				//camFile = new GenericFile(camera, metadata, directory, filename, false);
 				break;
 			}
-			
 			return camFile;
 		}
 		
@@ -217,18 +217,21 @@ namespace Gphoto2
 		protected void ParseMetadata(string metadata)
 		{
 			XmlReaderSettings s = new XmlReaderSettings();
-            s.ConformanceLevel = ConformanceLevel.Fragment;
+			s.ConformanceLevel = ConformanceLevel.Fragment;
+			s.IgnoreWhitespace = true;
+			s.CheckCharacters = false;
 			
 			// Parse the metadata into a dictionary so we can show it
 			// all to the user
-            using (XmlTextReader r = (XmlTextReader)XmlTextReader.Create(new StringReader (metadata), s))
+			try
 			{
-				while (!r.EOF && r.NodeType != XmlNodeType.None)
-				{
-					r.Read();
-					this.metadata.Add(r.Name, r.ReadString());                
-					r.ReadEndElement();
-				}
+				using (XmlReader r = (XmlReader)XmlReader.Create(new StringReader (metadata), s))
+					while(r.Read())
+						this.metadata.Add(r.Name, r.ReadString());
+			}
+			catch(Exception ex)
+			{
+				return;
 			}
 		}
     }

@@ -17,9 +17,10 @@ namespace Sample
 	{
 	
 		public static void Main(string[] args)
-		{
+		{	
 			Console.WriteLine("Searching...");
 			Camera[] cameras = Camera.Detect();
+			
 			if(cameras.Length == 0)
 			{
 				Console.WriteLine("No cameras were detected");
@@ -27,15 +28,32 @@ namespace Sample
 			}
 			
 			Console.WriteLine("About to connect...");
-			for(int i = 0; i < cameras.Length; i++)
+			foreach(Camera camera in cameras)
 			{
-				Console.WriteLine("Name: {0}", cameras[i].Name);
-				Console.WriteLine("Can upload files: {0}", cameras[i].Abilities.CanUploadFile);
-				cameras[i].Connect();
-				//cameras[i].GetStorageInfo();
-				//Gphoto2.Base.CameraStorageInformation[] storage = cameras[i].GetStorageInfo();
-				//Console.WriteLine("Storage: {0:0.00}MB / {1:0.00}MB", storage[0].freekbytes / 1024.0, storage[0].capacitykbytes / 1024.0);
-				cameras[i].Disconnect();
+				camera.Connect();
+				Console.WriteLine("Connected to: {0} - {1}", camera.Name, camera.Connected);
+				foreach(Gphoto2.FileSystem fs in camera.FileSystems)
+				{
+					Console.WriteLine("Filesystem: {0}", fs.Label);
+					Console.WriteLine("Used: {2:0.00}MB, Freespace: {0:0.00}MB, Capacity: {1:0.00}MB", fs.FreeSpace / (1024.0 * 1024.0), fs.Capacity / (1024.0 * 1024.0), fs.UsedSpace / (1024.0 * 1024.0));
+					Console.WriteLine("Can read: {0}, Can write: {1}, Can Delete: {2}", fs.CanRead, fs.CanWrite, fs.CanDelete);
+					
+					Console.WriteLine("Folders....");
+					foreach(string s in fs.GetFolders("Music/"))
+					{
+						string path = FileSystem.CombinePath("Music", s);
+						File[] files = fs.GetFiles(path);
+						//Console.WriteLine("Found {0} files in {1}", files.Length, path);
+						foreach(File file in files)
+						{
+							MusicFile music = (MusicFile)file;
+							Console.WriteLine("Artist: {0}, Album: {1}, Track: {2}, Duration: {3:0.00}, UseCount: {4}",
+							                  music.Artist, music.Album, music.Track, music.Duration / (1000.0 * 60), music.UseCount);
+						}
+					}
+				}
+				
+				camera.Disconnect();
 			}
 			
 			Console.WriteLine("Done");

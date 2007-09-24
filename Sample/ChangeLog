@@ -1,3 +1,7 @@
+2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Main.cs: Doing a lot of cool feature-usage now
+
 2007-09-16  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* Main.cs: Added XML comments and fixed compilation

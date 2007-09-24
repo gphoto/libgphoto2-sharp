@@ -12,8 +12,8 @@ namespace Gphoto2
 	{
 		public string Album
 		{
-			get { return GetString("Album"); }
-			set { SetValue("Album", value); }
+			get { return GetString("AlbumName"); }
+			set { SetValue("AlbumName", value); }
 		}
 		
 		public string Artist
