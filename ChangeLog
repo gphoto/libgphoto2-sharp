@@ -1,5 +1,9 @@
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: Added in some checks to fix path combining.
+
+2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFile.cs: Removing the call to free the pointer as i
 	  shouldn't be doing that.
 

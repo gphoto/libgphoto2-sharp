@@ -239,6 +239,12 @@ namespace Gphoto2
 		{
 			if(path2 == Camera.DirectorySeperator.ToString())
 				return path1;
+
+			if(path2.StartsWith("/"))
+				path2 = path2.Substring(1);
+			
+			if(path1.EndsWith("/"))
+				path1 = path1.Substring(0, path1.Length -1);
 			
 			return path1 + Camera.DirectorySeperator + path2;
 		}
