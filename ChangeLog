@@ -1,5 +1,10 @@
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: The internal code correctly prefixes the path to a
+	  directory with the filesystems name
+
+2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs: Added in some checks to fix path combining.
 
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 

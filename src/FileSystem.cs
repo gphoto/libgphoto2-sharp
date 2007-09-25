@@ -146,6 +146,12 @@ namespace Gphoto2
 			string directory = path.Length > index ? path.Substring(index + 1) : "";
 			camera.CameraDevice.RemoveDirectory(pathToDirectory, directory, camera.Context);
 		}
+
+		private File GetFileInternal(string directory, string filename)
+		{
+			using (Base.CameraFile metadata = camera.CameraDevice.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+				return File.Create(camera, metadata, directory, filename);
+		}
 		
 		public File GetFile(string directory, string filename)
 		{
@@ -154,8 +160,7 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
-			using (Base.CameraFile metadata = camera.CameraDevice.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
-				return File.Create(camera, metadata, directory, filename);
+			return GetFileInternal(CombinePath(BaseDirectory, directory), filename);
 		}
 		
 		public File[] GetFiles(string directory)
@@ -170,7 +175,7 @@ namespace Gphoto2
 				string[] filenames = ParseList(list);
 				File[] files = new File[filenames.Length];
 				for(int i = 0; i < files.Length; i++)
-					files[i] = GetFile(path, filenames[i]);
+					files[i] = GetFileInternal(path, filenames[i]);
 				
 				return files;
 			}
