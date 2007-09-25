@@ -1,5 +1,10 @@
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/CameraFile.cs: Removing the call to free the pointer as i
+	  shouldn't be doing that.
+
+2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Fixed the XML parsing. It still borks when libgphoto2 returns
 	  invalid XML. I need a proper workaround for mimetype detection when i
 	  only have the metadata.
