@@ -1,3 +1,8 @@
+2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Base/CameraFile.cs: Passing the data the correct way to
+	  gp_file_set_data_and_size
+
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/FileSystem.cs: The internal code correctly prefixes the path to a

@@ -171,7 +171,20 @@ namespace Gphoto2.Base
         
         public void SetDataAndSize (byte[] data)
         {
-            Error.CheckError (gp_file_set_data_and_size (this.Handle, data, (ulong)data.Length));
+			// The lifetime of the data is controlled by C. It requires that i need to pass it
+			// a malloc'ed array.
+			IntPtr unmanagedData = Marshal.AllocHGlobal(data.Length);
+			try
+			{
+				Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, (ulong)data.Length));
+			}
+			catch
+			{
+				// If there's a problem uploading the file, then
+				// we need to be responsible for freeing the pointer
+				Marshal.FreeHGlobal(unmanagedData);
+				throw;
+			}
         }
         
         public byte[] GetDataAndSize ()
