@@ -260,7 +260,7 @@ namespace Gphoto2.Base
         private static extern ErrorCode gp_file_set_width_and_height (HandleRef file, int width, int height);
 
         [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_file_set_data_and_size (HandleRef file, byte[] data, ulong size);
+        private static extern ErrorCode gp_file_set_data_and_size (HandleRef file, IntPtr data, ulong size);
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);

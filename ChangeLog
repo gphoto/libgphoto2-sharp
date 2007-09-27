@@ -1,5 +1,9 @@
 2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/CameraFile.cs: Forgot to change the method declaration
+
+2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFile.cs: Passing the data the correct way to
 	  gp_file_set_data_and_size
 
