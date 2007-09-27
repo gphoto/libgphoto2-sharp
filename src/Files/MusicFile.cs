@@ -90,5 +90,11 @@ namespace Gphoto2
 		{
 
 		}
+		
+		public MusicFile(string directory, string filename)
+			: this(null, "", directory, filename, true)
+		{
+			
+		}
 	}
 }

@@ -1,5 +1,16 @@
 2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added method to help guess the mimetype
+	* src/FileSystem.cs: Added methods to check if a directory already exists,
+	  to create a new directory and remove an existing one. Setting mimetype
+	  on new files correctly.
+	* src/Files/MusicFile.cs: Added public constructor
+	* src/Base/CameraFile.cs: SetDataAndLength :Copy the data into the unmanaged
+	  array.  GetDataAndLength: If we are returned a null pointer, don't try
+	  to copy out data.
+
+2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFile.cs: Forgot to change the method declaration
 
 2007-09-27  Alan McGovern <alan.mcgovern@gmail.com> 

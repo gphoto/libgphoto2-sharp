@@ -174,6 +174,7 @@ namespace Gphoto2.Base
 			// The lifetime of the data is controlled by C. It requires that i need to pass it
 			// a malloc'ed array.
 			IntPtr unmanagedData = Marshal.AllocHGlobal(data.Length);
+			Marshal.Copy(data, 0, unmanagedData, data.Length);
 			try
 			{
 				Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, (ulong)data.Length));
@@ -195,8 +196,11 @@ namespace Gphoto2.Base
             IntPtr data_addr = IntPtr.Zero;
             Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
             data = new byte[size];
-            Marshal.Copy(data_addr, data, 0, (int)size);
-            
+			
+			if(data_addr == IntPtr.Zero)
+				return new byte[0];
+			
+			Marshal.Copy(data_addr, data, 0, (int)size);            
             return data;
         }
 

@@ -104,18 +104,67 @@ namespace Gphoto2
 			this.storage = storage;
 		}
 		
-		public void Count(string directory)
+		public bool CanUpload(File file)
 		{
-			if(string.IsNullOrEmpty(directory))
-				throw new ArgumentException("directory cannot be null or empty");
+			return FreeSpace > file.Size;
 		}
 		
-		public void DeleteFile(string folder, string filename)
+		// FIXME: These are nasty hacks as there is no API for this
+		
+		public bool Contains(string directory)
 		{
-			if(string.IsNullOrEmpty(folder))
-				throw new ArgumentException("folder cannot be null or empty");
+			try
+			{
+				camera.CameraDevice.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
+				return true;
+			}
+			catch(Gphoto2.Base.GPhotoException ex)
+			{
+				if(ex.Error != Gphoto2.Base.ErrorCode.DirectoryNotFound)
+					throw;
+			}
+			return false;
+		}
+		
+		public bool Contains(string directory, string filename)
+		{
+			if(!Contains(directory))
+				return false;
+			
+			try
+			{
+				GetFileInternal(FileSystem.CombinePath(BaseDirectory, directory), filename);
+				return true;
+			}
+			catch(Gphoto2.Base.GPhotoException ex)
+			{
+				if(ex.Error != Gphoto2.Base.ErrorCode.FileNotFound)
+					throw;
+			}
+			
+			return false;
+		}
+		
+		public void CreateDirectory(string path, string directory)
+		{
+			if(path == null)
+				throw new ArgumentNullException("path");
+			
+			if(string.IsNullOrEmpty(directory))
+				throw new ArgumentException("directory cannot be null or empty");
+			
+			string mtpPath = CombinePath(BaseDirectory, path);
+			camera.CameraDevice.MakeDirectory(mtpPath, directory, camera.Context);
+		}
+		
+		public void DeleteFile(string directory, string filename)
+		{
+			if(directory == null)
+				throw new ArgumentNullException("directory");
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
+			
+			camera.CameraDevice.DeleteFile(Path.Combine(BaseDirectory, directory), filename, camera.Context);
 		}
 		
 		public void DeleteFile(File file)
@@ -208,11 +257,12 @@ namespace Gphoto2
 			path = CombinePath(BaseDirectory, path);
 			
 			// First put the actual file data on the camera
-			using(Base.CameraFile data = new Gphoto2.Base.CameraFile())
+			using(Base.CameraFile data = new Base.CameraFile())
 			{
 				data.SetName(file.Filename);
-				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
 				data.SetFileType(Base.CameraFileType.Normal);
+				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
+				data.SetMimeType(file.MimeType);
 				camera.CameraDevice.PutFile(path, data, camera.Context);
 			}
 			

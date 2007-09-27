@@ -12,6 +12,7 @@ namespace Gphoto2
 		private string fileName;
 		private bool localFile;
 		private Dictionary<string, string> metadata;
+		private string mimetype;
 		private string path;
 		
 		private Camera camera;
@@ -37,6 +38,11 @@ namespace Gphoto2
 		public Dictionary<string, string> Metadata
 		{
 			get { return metadata; }
+		}
+		
+		internal string MimeType
+		{
+			get { return mimetype; }
 		}
 		
 		/// <value>
@@ -66,7 +72,7 @@ namespace Gphoto2
 			this.localFile = local;
 			this.path = path;
 			this.metadata = new Dictionary<string, string>();
-			
+			this.mimetype = GuessMimetype(filename);
 			ParseMetadata(metadata);
 		}
 		
@@ -176,6 +182,8 @@ namespace Gphoto2
 		internal static File Create(Camera camera, Base.CameraFile metadataFile, string directory, string filename)
 		{
 			string mime = metadataFile.GetMimeType();
+			mime = GuessMimetype(filename);
+			
 			string metadata = System.Text.Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 			File camFile;
 			switch(mime)
@@ -189,10 +197,10 @@ namespace Gphoto2
 				break;
 				
 			default:
-				camFile = new MusicFile(camera, metadata, directory, filename, false);
-				//camFile = new GenericFile(camera, metadata, directory, filename, false);
+				camFile = new GenericFile(camera, metadata, directory, filename, false);
 				break;
 			}
+			
 			return camFile;
 		}
 		
@@ -210,8 +218,9 @@ namespace Gphoto2
 					writer.WriteString(keypair.Value);
 					writer.WriteEndElement();
 				}
+
 				return sb.ToString();
-			}	
+			}
 		}
 		
 		protected void ParseMetadata(string metadata)
@@ -233,6 +242,68 @@ namespace Gphoto2
 			{
 				return;
 			}
+		}
+		
+		private static string GuessMimetype(string filename)
+		{
+			if(filename.EndsWith(".asf", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.ASF;
+			
+			if(filename.EndsWith(".avi", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.AVI;
+			
+			if(filename.EndsWith(".BMP", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.BMP;
+						
+			if(filename.EndsWith(".CRW", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.CRW;	
+			
+			if(filename.EndsWith(".EXIF", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.EXIF;	
+			
+			if(filename.EndsWith(".JPEG", System.StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith(".JPG", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.JPEG;	
+			
+			if(filename.EndsWith(".MP3", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.MP3;	
+			
+			if(filename.EndsWith(".MPG", System.StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith(".MPEG", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.MPEG;	
+			
+			if(filename.EndsWith(".OGG", System.StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith(".OGM", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.OGG;
+						
+			if(filename.EndsWith(".PGM", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.PGM;
+						
+			if(filename.EndsWith(".PNG", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.PNG;
+						
+			if(filename.EndsWith(".PNM", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.PNM;
+						
+			if(filename.EndsWith(".PPM", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.PPM;
+									
+			if(filename.EndsWith(".MOV", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.QUICKTIME;
+									
+			if(filename.EndsWith(".RAW", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.RAW;
+									
+			if(filename.EndsWith(".TIFF", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.TIFF;
+									
+			if(filename.EndsWith(".WAV", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.WAV;
+									
+			if(filename.EndsWith(".WMA", System.StringComparison.OrdinalIgnoreCase))
+				return Base.MimeTypes.WMA;
+
+			return Base.MimeTypes.UNKNOWN;
 		}
     }
 }
