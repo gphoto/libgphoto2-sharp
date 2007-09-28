@@ -22,7 +22,7 @@ namespace Gphoto2
 			get { return this.abilities; }
 		}
 		
-		internal Base.Camera CameraDevice
+		internal Base.Camera Device
 		{
 			get { return camera; }
 		}

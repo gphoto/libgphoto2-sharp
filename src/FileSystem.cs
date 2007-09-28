@@ -115,7 +115,7 @@ namespace Gphoto2
 		{
 			try
 			{
-				camera.CameraDevice.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
+				camera.Device.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
 				return true;
 			}
 			catch(Gphoto2.Base.GPhotoException ex)
@@ -154,7 +154,7 @@ namespace Gphoto2
 				throw new ArgumentException("directory cannot be null or empty");
 			
 			string mtpPath = CombinePath(BaseDirectory, path);
-			camera.CameraDevice.MakeDirectory(mtpPath, directory, camera.Context);
+			camera.Device.MakeDirectory(mtpPath, directory, camera.Context);
 		}
 		
 		public void DeleteFile(string directory, string filename)
@@ -164,14 +164,14 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
-			camera.CameraDevice.DeleteFile(Path.Combine(BaseDirectory, directory), filename, camera.Context);
+			camera.Device.DeleteFile(Path.Combine(BaseDirectory, directory), filename, camera.Context);
 		}
 		
 		public void DeleteFile(File file)
 		{
 			if(file == null)
 				throw new ArgumentNullException("file");
-			camera.CameraDevice.DeleteFile(file.Path, file.Filename, this.camera.Context);
+			camera.Device.DeleteFile(file.Path, file.Filename, this.camera.Context);
 		}
 		
 		public void DeleteAll(string folder)
@@ -185,7 +185,7 @@ namespace Gphoto2
 				throw new ArgumentException("folder cannot be null or empty");
 			
 			string path = CombinePath(BaseDirectory, folder);
-			camera.CameraDevice.DeleteAll(path, camera.Context);
+			camera.Device.DeleteAll(path, camera.Context);
 			
 			if(!removeFolder)
 				return;
@@ -193,12 +193,12 @@ namespace Gphoto2
 			int index = path.LastIndexOf(Camera.DirectorySeperator);
 			string pathToDirectory = path.Substring(0, index);
 			string directory = path.Length > index ? path.Substring(index + 1) : "";
-			camera.CameraDevice.RemoveDirectory(pathToDirectory, directory, camera.Context);
+			camera.Device.RemoveDirectory(pathToDirectory, directory, camera.Context);
 		}
 
 		private File GetFileInternal(string directory, string filename)
 		{
-			using (Base.CameraFile metadata = camera.CameraDevice.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+			using (Base.CameraFile metadata = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
 				return File.Create(camera, metadata, directory, filename);
 		}
 		
@@ -219,7 +219,7 @@ namespace Gphoto2
 			
 			string path = CombinePath(BaseDirectory, directory);
 			
-			using (Base.CameraList list = camera.CameraDevice.ListFiles(path, camera.Context))
+			using (Base.CameraList list = camera.Device.ListFiles(path, camera.Context))
 			{
 				string[] filenames = ParseList(list);
 				File[] files = new File[filenames.Length];
@@ -235,7 +235,7 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(directory))
 				throw new ArgumentException("directory cannot be null or empty");
 			
-			using (Base.CameraList list = camera.CameraDevice.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
+			using (Base.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
 				return ParseList(list);
 		}
 		
@@ -263,7 +263,7 @@ namespace Gphoto2
 				data.SetFileType(Base.CameraFileType.Normal);
 				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
 				data.SetMimeType(file.MimeType);
-				camera.CameraDevice.PutFile(path, data, camera.Context);
+				camera.Device.PutFile(path, data, camera.Context);
 			}
 			
 			// Then put the metadata on camera.
@@ -272,11 +272,11 @@ namespace Gphoto2
 				meta.SetName(file.Filename);
 				meta.SetFileType(Base.CameraFileType.MetaData);
 				meta.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(file.MetadataToXml()));
-				camera.CameraDevice.PutFile(path, meta, camera.Context);
+				camera.Device.PutFile(path, meta, camera.Context);
 			}
 			
 			// Then return the user a File object referencing the file on the camera
-			using (Base.CameraFile camfile = camera.CameraDevice.GetFile(path, file.Filename, Base.CameraFileType.MetaData, camera.Context))
+			using (Base.CameraFile camfile = camera.Device.GetFile(path, file.Filename, Base.CameraFileType.MetaData, camera.Context))
 				return File.Create(camera, camfile, path, file.Filename);
 		}
 		

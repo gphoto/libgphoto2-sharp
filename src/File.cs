@@ -95,7 +95,7 @@ namespace Gphoto2
 			if(LocalFile)
 				throw new InvalidOperationException("This file is already on the local filesystem");
 			
-			using (Base.CameraFile file = camera.CameraDevice.GetFile(path, fileName, Base.CameraFileType.Normal, camera.Context))
+			using (Base.CameraFile file = camera.Device.GetFile(path, fileName, Base.CameraFileType.Normal, camera.Context))
 				return file.GetDataAndSize();
 		}
 		
@@ -165,7 +165,7 @@ namespace Gphoto2
 				file.SetFileType(Base.CameraFileType.MetaData);
 				file.SetName(Filename);
 				file.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(metadata));
-				camera.CameraDevice.PutFile(path, file, camera.Context);
+				camera.Device.PutFile(path, file, camera.Context);
 			}
 			dirty = false;
 		}
@@ -238,8 +238,9 @@ namespace Gphoto2
 					while(r.Read())
 						this.metadata.Add(r.Name, r.ReadString());
 			}
-			catch(Exception ex)
+			catch
 			{
+				// FIXME: What should i do? Empty the metadata dict? Throw an exception? (probably not)
 				return;
 			}
 		}
