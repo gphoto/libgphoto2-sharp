@@ -204,8 +204,8 @@ namespace Gphoto2
 		
 		public File GetFile(string directory, string filename)
 		{
-			if(string.IsNullOrEmpty(directory))
-				throw new ArgumentException("directory cannot be null or empty");
+			if(directory == null)
+				throw new ArgumentNullException("directory cannot be null or empty");
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
@@ -214,8 +214,8 @@ namespace Gphoto2
 		
 		public File[] GetFiles(string directory)
 		{
-			if(string.IsNullOrEmpty(directory))
-				throw new ArgumentException("directory cannot be null or empty");
+			if(directory == null)
+				throw new ArgumentNullException("directoryð");
 			
 			string path = CombinePath(BaseDirectory, directory);
 			
@@ -232,8 +232,8 @@ namespace Gphoto2
 
 		public string[] GetFolders(string directory)
 		{
-			if(string.IsNullOrEmpty(directory))
-				throw new ArgumentException("directory cannot be null or empty");
+			if(directory == null)
+				throw new ArgumentNullException("directory");
 			
 			using (Base.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
 				return ParseList(list);

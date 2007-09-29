@@ -1,5 +1,10 @@
 2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: An empty directory is allowable, it'll just work off
+	  the root directory then.
+
+2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFile.cs: GetDataAndSize handles the scenario when a null
 	  pointer is returned.
 
