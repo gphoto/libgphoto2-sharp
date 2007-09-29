@@ -1,5 +1,10 @@
 2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: Stripping out the 'BaseDirectory' correctly when
+	  reading files from the camera.
+
+2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs: Fixed bug in DeleteFile(string, string). Also minor
 	  cosmetic changes for other methods
 

@@ -199,8 +199,9 @@ namespace Gphoto2
 
 		private File GetFileInternal(string directory, string filename)
 		{
+			// We strip out the 'base directory' when creating the File object
 			using (Base.CameraFile metadata = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
-				return File.Create(camera, metadata, directory, filename);
+				return File.Create(camera, metadata, directory.Substring(BaseDirectory.Length + 1), filename);
 		}
 		
 		public File GetFile(string directory, string filename)
@@ -282,8 +283,7 @@ namespace Gphoto2
 			}
 			
 			// Then return the user a File object referencing the file on the camera
-			using (Base.CameraFile camfile = camera.Device.GetFile(path, file.Filename, Base.CameraFileType.MetaData, camera.Context))
-				return File.Create(camera, camfile, path, file.Filename);
+			return GetFileInternal(path, file.Filename);
 		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
