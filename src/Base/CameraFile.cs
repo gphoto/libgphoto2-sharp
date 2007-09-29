@@ -74,12 +74,12 @@ namespace Gphoto2.Base
 
         protected override void Dispose (bool disposing)
         {
-			if(!Disposed)
-			{
-				// Don't check the error as we don't want to throw an exception if it fails
-				gp_file_unref (this.Handle);
-				base.Dispose(disposing);
-			}
+            if(!Disposed)
+            {
+                // Don't check the error as we don't want to throw an exception if it fails
+                gp_file_unref (this.Handle);
+                base.Dispose(disposing);
+            }
         }
         
         public void Append (byte[] data)
@@ -171,36 +171,36 @@ namespace Gphoto2.Base
         
         public void SetDataAndSize (byte[] data)
         {
-			// The lifetime of the data is controlled by C. It requires that i need to pass it
-			// a malloc'ed array.
-			IntPtr unmanagedData = Marshal.AllocHGlobal(data.Length);
-			Marshal.Copy(data, 0, unmanagedData, data.Length);
-			try
-			{
-				Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, (ulong)data.Length));
-			}
-			catch
-			{
-				// If there's a problem uploading the file, then
-				// we need to be responsible for freeing the pointer
-				Marshal.FreeHGlobal(unmanagedData);
-				throw;
-			}
+            // The lifetime of the data is controlled by C. It requires that i need to pass it
+            // a malloc'ed array.
+            IntPtr unmanagedData = Marshal.AllocHGlobal(data.Length);
+            Marshal.Copy(data, 0, unmanagedData, data.Length);
+            try
+            {
+                Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, (ulong)data.Length));
+            }
+            catch
+            {
+                // If there's a problem uploading the file, then
+                // we need to be responsible for freeing the pointer
+                Marshal.FreeHGlobal(unmanagedData);
+                throw;
+            }
         }
         
         public byte[] GetDataAndSize ()
         {
             ulong size;
             byte[] data;
+            IntPtr data_addr;
             
-            IntPtr data_addr = IntPtr.Zero;
             Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
+            
+            if(data_addr == IntPtr.Zero || size == 0)
+                return new byte[0];
+            
             data = new byte[size];
-			
-			if(data_addr == IntPtr.Zero)
-				return new byte[0];
-			
-			Marshal.Copy(data_addr, data, 0, (int)size);            
+            Marshal.Copy(data_addr, data, 0, (int)size);            
             return data;
         }
 

@@ -1,3 +1,8 @@
+2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Base/CameraFile.cs: GetDataAndSize handles the scenario when a null
+	  pointer is returned.
+
 2007-09-28  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs, src/FileSystem.cs, src/Camera.cs: Renamed the CameraDevice
