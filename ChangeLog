@@ -1,5 +1,10 @@
 2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: Fixed bug in DeleteFile(string, string). Also minor
+	  cosmetic changes for other methods
+
+2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Put in a check to make sure metadata isn't updated on a local
 	  file (as it'll fail)
 	* src/FileSystem.cs: Added a parameterless overload for GetFolders which

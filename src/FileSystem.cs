@@ -153,8 +153,8 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(directory))
 				throw new ArgumentException("directory cannot be null or empty");
 			
-			string mtpPath = CombinePath(BaseDirectory, path);
-			camera.Device.MakeDirectory(mtpPath, directory, camera.Context);
+			path = CombinePath(BaseDirectory, path);
+			camera.Device.MakeDirectory(path, directory, camera.Context);
 		}
 		
 		public void DeleteFile(string directory, string filename)
@@ -171,7 +171,8 @@ namespace Gphoto2
 		{
 			if(file == null)
 				throw new ArgumentNullException("file");
-			camera.Device.DeleteFile(file.Path, file.Filename, this.camera.Context);
+			
+			DeleteFile(file.Path, file.Filename);
 		}
 		
 		public void DeleteAll(string folder)
@@ -181,13 +182,13 @@ namespace Gphoto2
 		
 		public void DeleteAll(string folder, bool removeFolder)
 		{
-			if(string.IsNullOrEmpty(folder))
-				throw new ArgumentException("folder cannot be null or empty");
+			if(folder == null)
+				throw new ArgumentNullException("folder");
 			
 			string path = CombinePath(BaseDirectory, folder);
 			camera.Device.DeleteAll(path, camera.Context);
 			
-			if(!removeFolder)
+			if(!removeFolder || folder == "")
 				return;
 			
 			int index = path.LastIndexOf(Camera.DirectorySeperator);
@@ -215,16 +216,16 @@ namespace Gphoto2
 		public File[] GetFiles(string directory)
 		{
 			if(directory == null)
-				throw new ArgumentNullException("directoryð");
+				throw new ArgumentNullException("directory");
 			
-			string path = CombinePath(BaseDirectory, directory);
+			directory = CombinePath(BaseDirectory, directory);
 			
-			using (Base.CameraList list = camera.Device.ListFiles(path, camera.Context))
+			using (Base.CameraList list = camera.Device.ListFiles(directory, camera.Context))
 			{
 				string[] filenames = ParseList(list);
 				File[] files = new File[filenames.Length];
 				for(int i = 0; i < files.Length; i++)
-					files[i] = GetFileInternal(path, filenames[i]);
+					files[i] = GetFileInternal(directory, filenames[i]);
 				
 				return files;
 			}
