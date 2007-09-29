@@ -16,6 +16,7 @@ namespace Gphoto2
 		private string path;
 		
 		private Camera camera;
+		
 		/// <value>
 		/// True if the metadata has been changed and needs to be updated on the device
 		/// </value>
@@ -159,6 +160,9 @@ namespace Gphoto2
 		/// </returns>
 		public void Update()
 		{
+			if(LocalFile)
+				throw new InvalidOperationException("Cannot update metadata on a local file");
+			
 			string metadata = MetadataToXml();
 			using (Base.CameraFile file = new Base.CameraFile())
 			{

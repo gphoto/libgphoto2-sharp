@@ -1,5 +1,12 @@
 2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Put in a check to make sure metadata isn't updated on a local
+	  file (as it'll fail)
+	* src/FileSystem.cs: Added a parameterless overload for GetFolders which
+	  returns all the folders in the root directory.
+
+2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs: An empty directory is allowable, it'll just work off
 	  the root directory then.
 

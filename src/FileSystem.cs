@@ -229,6 +229,11 @@ namespace Gphoto2
 				return files;
 			}
 		}
+		
+		public string[] GetFolders()
+		{
+			return GetFolders("");
+		}
 
 		public string[] GetFolders(string directory)
 		{
