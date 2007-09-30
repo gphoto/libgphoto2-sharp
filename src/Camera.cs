@@ -162,9 +162,9 @@ namespace Gphoto2
 				return;
 			
 			// This just makes sure that we have disconnected
-			disposed = true;
 			if(Connected)
 				Disconnect();
+			disposed = true;
 		}
 		
 		// FIXME: The actual conditions for ignoring 'usb:' ones is
