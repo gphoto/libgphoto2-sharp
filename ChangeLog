@@ -1,5 +1,9 @@
 2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added in helper properties to reveal more information
+
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Updated the mimetype usage a bit
 	* src/FileSystem.cs: Added in methods which count how many files there are
 	  in a folder

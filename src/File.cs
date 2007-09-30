@@ -17,6 +17,21 @@ namespace Gphoto2
 		
 		private Camera camera;
 		
+		public DateTime DateAdded
+		{
+		    get { return ParseDate(GetString("DateAdded")); }
+		}
+		
+		public DateTime DateCreated
+		{
+		    get { return ParseDate(GetString("DateCreated")); }
+		}
+		
+		public DateTime DateModified
+		{
+		    get { return ParseDate(GetString("DateModified")); }
+		}
+		
 		/// <value>
 		/// True if the metadata has been changed and needs to be updated on the device
 		/// </value>
@@ -29,6 +44,11 @@ namespace Gphoto2
 		public string Filename
 		{
 			get { return fileName; }
+		}
+		
+		public DateTime LastPlayed
+		{
+		    get { return ParseDate(GetString("LastAccessed")); }
 		}
 		
 		public bool LocalFile
@@ -52,6 +72,11 @@ namespace Gphoto2
 		public string Path
 		{
 			get { return path; }
+		}
+		
+		public int Rating
+		{
+		    get { return GetInt("Rating"); }
 		}
 		
 		// FIXME: Implement this.
@@ -246,6 +271,11 @@ namespace Gphoto2
 
 				return sb.ToString();
 			}
+		}
+		
+		private DateTime ParseDate(string date)
+		{
+		    return DateTime.Now;
 		}
 		
 		protected void ParseMetadata(string metadata)
