@@ -145,6 +145,39 @@ namespace Gphoto2
 			return false;
 		}
 		
+		public int Count()
+		{
+			return Count("");
+		}
+		
+		public int Count(string directory)
+		{
+			return Count(directory, false);
+		}
+		
+		public int Count(string directory, bool recursive)
+		{
+			directory = CombinePath(BaseDirectory, directory);
+			return CountRecursive(directory, recursive);
+		}
+		
+		private int CountRecursive(string directory, bool recursive)
+		{
+			int count = 0;
+			
+			using (Base.CameraList list = camera.Device.ListFiles(directory, camera.Context))
+				count += list.Count();
+			
+			if(!recursive)
+				return count;
+			
+			using (Base.CameraList list = camera.Device.ListFolders(directory, camera.Context))
+				foreach(string s in ParseList(list))
+					count += CountRecursive(CombinePath(directory, s), recursive);
+			
+			return count;
+		}
+		
 		public void CreateDirectory(string path, string directory)
 		{
 			if(path == null)
@@ -206,8 +239,6 @@ namespace Gphoto2
 		
 		public File GetFile(string directory, string filename)
 		{
-			if(directory == null)
-				throw new ArgumentNullException("directory cannot be null or empty");
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
@@ -216,9 +247,6 @@ namespace Gphoto2
 		
 		public File[] GetFiles(string directory)
 		{
-			if(directory == null)
-				throw new ArgumentNullException("directory");
-			
 			directory = CombinePath(BaseDirectory, directory);
 			
 			using (Base.CameraList list = camera.Device.ListFiles(directory, camera.Context))
@@ -238,10 +266,7 @@ namespace Gphoto2
 		}
 
 		public string[] GetFolders(string directory)
-		{
-			if(directory == null)
-				throw new ArgumentNullException("directory");
-			
+		{			
 			using (Base.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
 				return ParseList(list);
 		}
@@ -301,10 +326,10 @@ namespace Gphoto2
 			if(path2 == Camera.DirectorySeperator.ToString())
 				return path1;
 
-			if(path2.StartsWith("/"))
+			if(path2 != null && path2.StartsWith("/"))
 				path2 = path2.Substring(1);
 			
-			if(path1.EndsWith("/"))
+			if(path1 != null && path1.EndsWith("/"))
 				path1 = path1.Substring(0, path1.Length -1);
 			
 			return path1 + Camera.DirectorySeperator + path2;

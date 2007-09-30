@@ -192,7 +192,6 @@ namespace Gphoto2
 			File camFile;
 			switch(mime)
 			{
-			case Base.MimeTypes.ASF:
 			case Base.MimeTypes.MP3:
 			case Base.MimeTypes.WMA:
 			case Base.MimeTypes.WAV:
@@ -200,8 +199,30 @@ namespace Gphoto2
 				camFile = new MusicFile(camera, metadata, directory, filename, false);
 				break;
 				
+			case Base.MimeTypes.BMP:
+			case Base.MimeTypes.JPEG:
+			case Base.MimeTypes.PNG:
+			case Base.MimeTypes.RAW:
+			case Base.MimeTypes.TIFF:
+				camFile = new ImageFile(camera, metadata, directory, filename, false);
+				break;
+				
+			case Base.MimeTypes.ASF:
+			case Base.MimeTypes.AVI:
+			case Base.MimeTypes.CRW:
+			case Base.MimeTypes.EXIF:
+			case Base.MimeTypes.MPEG:
+			case Base.MimeTypes.PGM:
+			case Base.MimeTypes.PNM:
+			case Base.MimeTypes.PPM:
+			case Base.MimeTypes.QUICKTIME:
+			case Base.MimeTypes.UNKNOWN:
 			default:
-				camFile = new GenericFile(camera, metadata, directory, filename, false);
+				if(filename.EndsWith(".pla", StringComparison.OrdinalIgnoreCase)
+				   || filename.EndsWith(".m3u", System.StringComparison.OrdinalIgnoreCase))
+					camFile = new PlaylistFile(camera, metadata, directory, filename, false);
+				else
+					camFile = new GenericFile(camera, metadata, directory, filename, false);
 				break;
 			}
 			

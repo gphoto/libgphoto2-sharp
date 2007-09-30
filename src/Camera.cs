@@ -13,7 +13,7 @@ namespace Gphoto2
 		private bool connected;
 		private bool disposed;
 		private Base.Context context;
-		private Gphoto2.FileSystem[] fileSystems;
+		private List<Gphoto2.FileSystem> fileSystems;
 		private PortInfo port;
 		
 		
@@ -42,7 +42,7 @@ namespace Gphoto2
 			get { return disposed; }
 		}
 		
-		public Gphoto2.FileSystem[] FileSystems
+		public List<Gphoto2.FileSystem> FileSystems
 		{
 			get { return fileSystems; }
 		}
@@ -50,6 +50,16 @@ namespace Gphoto2
 		public string Name
 		{
 			get { return baseAbilities.model; }
+		}
+		
+		public int Product
+		{
+			get { return baseAbilities.usb_product; }
+		}
+		
+		public int Vendor
+		{
+			get { return baseAbilities.usb_vendor; }
 		}
 		
 		private Camera (CameraAbilities abilities, PortInfo port, Context context)
@@ -80,9 +90,9 @@ namespace Gphoto2
 			try
 			{
 				Base.CameraStorageInformation[] storages = camera.GetStorageInformation(Context);
-				fileSystems = new FileSystem[storages.Length];
+				fileSystems = new List<FileSystem>(storages.Length);
 				for (int i = 0; i < storages.Length; i++)
-					fileSystems[i] = new FileSystem(this, storages[i]);
+					fileSystems.Add(new FileSystem(this, storages[i]));
 			}
 			catch
 			{
@@ -111,9 +121,9 @@ namespace Gphoto2
 		/// Detects all usable cameras which are connected to the system
 		/// </summary>
 		/// <returns></returns>
-		public static Camera[] Detect()
+		public static List<Camera> Detect()
 		{
-			Camera[] cameras;
+			List<Camera> cameras;
 			Context c = new Context();
 			
 			using (CameraAbilitiesList abilities = new CameraAbilitiesList())
@@ -132,12 +142,13 @@ namespace Gphoto2
 				// Scan through all the detected cameras and remove any duplicates
 				using (CameraList cams = RemoveDuplicates(cameraList))
 				{
-					cameras = new Camera[cams.Count()];
-					for(int i = 0; i < cams.Count(); i++)
+					int count = cams.Count();
+					cameras = new List<Camera>(count);
+					for(int i = 0; i < count; i++)
 					{
 						CameraAbilities ability = abilities.GetAbilities(abilities.LookupModel(cams.GetName(i)));
 						PortInfo portInfo = portInfoList.GetInfo(portInfoList.LookupPath(cams.GetValue(i)));
-						cameras[i] = new Gphoto2.Camera(ability, portInfo, c);
+						cameras.Add(new Gphoto2.Camera(ability, portInfo, c));
 					}
 				}
 			}
@@ -154,7 +165,6 @@ namespace Gphoto2
 			disposed = true;
 			if(Connected)
 				Disconnect();
-			camera.Dispose();
 		}
 		
 		// FIXME: The actual conditions for ignoring 'usb:' ones is

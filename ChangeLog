@@ -1,3 +1,13 @@
+2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs: Updated the mimetype usage a bit
+	* src/FileSystem.cs: Added in methods which count how many files there are
+	  in a folder
+	* src/Camera.cs: Expose a List<FileSystem> rather than FileSystem[]. Same
+	  for the Camera[]
+	* src/Files/PlaylistFile.cs, src/Makefile.am, libgphoto2-sharp.mdp: Added
+	  PlaylistFile class
+
 2007-09-29  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/FileSystem.cs: Stripping out the 'BaseDirectory' correctly when
