@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
-    public abstract class File
+	public abstract class File
 	{
 		private bool dirty;
 		private string fileName;
@@ -19,17 +19,17 @@ namespace Gphoto2
 		
 		public DateTime DateAdded
 		{
-		    get { return ParseDate(GetString("DateAdded")); }
+			get { return ParseDate(GetString("DateAdded")); }
 		}
 		
 		public DateTime DateCreated
 		{
-		    get { return ParseDate(GetString("DateCreated")); }
+			get { return ParseDate(GetString("DateCreated")); }
 		}
 		
 		public DateTime DateModified
 		{
-		    get { return ParseDate(GetString("DateModified")); }
+			get { return ParseDate(GetString("DateModified")); }
 		}
 		
 		/// <value>
@@ -48,7 +48,7 @@ namespace Gphoto2
 		
 		public DateTime LastPlayed
 		{
-		    get { return ParseDate(GetString("LastAccessed")); }
+			get { return ParseDate(GetString("LastAccessed")); }
 		}
 		
 		public bool LocalFile
@@ -76,7 +76,7 @@ namespace Gphoto2
 		
 		public int Rating
 		{
-		    get { return GetInt("Rating"); }
+			  get { return GetInt("Rating"); }
 		}
 		
 		// FIXME: Implement this.
@@ -275,7 +275,7 @@ namespace Gphoto2
 		
 		private DateTime ParseDate(string date)
 		{
-		    return DateTime.Now;
+			return DateTime.Now;
 		}
 		
 		protected void ParseMetadata(string metadata)
@@ -361,7 +361,7 @@ namespace Gphoto2
 
 			return Base.MimeTypes.UNKNOWN;
 		}
-    }
+	}
 }
 
 
