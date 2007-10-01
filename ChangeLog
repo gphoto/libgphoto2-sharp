@@ -1,5 +1,9 @@
 2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added a setter for Rating
+
+2007-10-01  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Camera.cs: Always return a non-null list even if no cameras are found
 
 2007-09-30  Alan McGovern <alan.mcgovern@gmail.com> 

@@ -77,6 +77,7 @@ namespace Gphoto2
 		public int Rating
 		{
 			  get { return GetInt("Rating"); }
+			  set { SetValue("Rating", value); }
 		}
 		
 		// FIXME: Implement this.
