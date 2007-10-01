@@ -123,7 +123,7 @@ namespace Gphoto2
 		/// <returns></returns>
 		public static List<Camera> Detect()
 		{
-			List<Camera> cameras;
+			List<Camera> cameras = new List<Camera>();
 			Context c = new Context();
 			
 			using (CameraAbilitiesList abilities = new CameraAbilitiesList())
@@ -143,7 +143,6 @@ namespace Gphoto2
 				using (CameraList cams = RemoveDuplicates(cameraList))
 				{
 					int count = cams.Count();
-					cameras = new List<Camera>(count);
 					for(int i = 0; i < count; i++)
 					{
 						CameraAbilities ability = abilities.GetAbilities(abilities.LookupModel(cams.GetName(i)));
@@ -184,7 +183,7 @@ namespace Gphoto2
 					
 					if(value == "usb:")
 						continue;
-					
+						
 					list.Append(name, value);
 				}
 			}
