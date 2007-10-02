@@ -15,6 +15,8 @@ namespace Gphoto2
 		private Base.Context context;
 		private List<Gphoto2.FileSystem> fileSystems;
 		private PortInfo port;
+		private int usbBusNumber;
+		private int usbDeviceNumber;
 		
 		
 		public Abilities Abilities
@@ -22,9 +24,19 @@ namespace Gphoto2
 			get { return this.abilities; }
 		}
 		
+		public int UsbBusNumber
+		{
+		    get { return usbBusNumber; }
+		}
+		
 		internal Base.Camera Device
 		{
 			get { return camera; }
+		}
+		
+		public int UsbDeviceNumber
+		{
+		    get { return usbDeviceNumber; }
 		}
 		
 		internal Base.Context Context
@@ -64,10 +76,13 @@ namespace Gphoto2
 		
 		private Camera (CameraAbilities abilities, PortInfo port, Context context)
 		{
+		    string[] parts = port.Path.Substring(4).Split(',');
 			this.abilities = new Abilities(abilities);
 			this.baseAbilities = abilities;
 			this.context = context;
 			this.port = port;
+			this.usbBusNumber = int.Parse(parts[0]);
+			this.usbDeviceNumber = int.Parse(parts[1]);
 		}
 		
 		private void CheckConnected(bool alreadyConnected)
