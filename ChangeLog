@@ -1,3 +1,7 @@
+2007-10-05  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/FileSystem.cs: Made BaseDirectory internal 
+
 2007-10-02  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Camera.cs: Exposing the usb device and bus numbers to make it easier

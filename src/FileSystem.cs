@@ -15,7 +15,7 @@ namespace Gphoto2
 		private Camera camera;
 		private Base.CameraStorageInformation storage;
 		
-		private string BaseDirectory
+		internal string BaseDirectory
 		{
 			get { return HasField(Base.CameraStorageInfoFields.Base) ? storage.basedir : null;}
 		}
