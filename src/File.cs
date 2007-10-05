@@ -142,6 +142,8 @@ namespace Gphoto2
 		
 		protected void SetValue(string key, string value)
 		{
+			value = value ?? "";
+			
 			if(!Metadata.ContainsKey(key))
 			{
 				dirty = true;

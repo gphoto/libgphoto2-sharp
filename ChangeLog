@@ -1,5 +1,10 @@
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: when storing values, if the value is null store an empty
+	  string instead
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	
 
 2007-10-05  Alan McGovern <alan.mcgovern@gmail.com> 
