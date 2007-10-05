@@ -8,14 +8,14 @@ namespace Gphoto2
 {
 	public abstract class File
 	{
+		private Camera camera;
 		private bool dirty;
 		private string fileName;
 		private bool localFile;
 		private Dictionary<string, string> metadata;
 		private string mimetype;
 		private string path;
-		
-		private Camera camera;
+
 		
 		public DateTime DateAdded
 		{
@@ -209,50 +209,50 @@ namespace Gphoto2
 		/// <returns>
 		/// A <see cref="File"/>
 		/// </returns>
-		internal static File Create(Camera camera, Base.CameraFile metadataFile, string directory, string filename)
+		internal static File Create(Camera camera, FileSystem fs, string directory, string filename)
 		{
-			string mime = metadataFile.GetMimeType();
-			mime = GuessMimetype(filename);
+			Base.CameraFile metadataFile;
+			string metadata = null;
+			string mime = GuessMimetype(filename);
 			
-			string metadata = System.Text.Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
-			File camFile;
-			switch(mime)
+			
+			/* First check to see if it's a music file */
+			if (mime == Base.MimeTypes.MP3 ||
+			    mime == Base.MimeTypes.WMA ||
+			    mime ==  Base.MimeTypes.WAV ||
+			    mime ==  Base.MimeTypes.OGG)
 			{
-			case Base.MimeTypes.MP3:
-			case Base.MimeTypes.WMA:
-			case Base.MimeTypes.WAV:
-			case Base.MimeTypes.OGG:
-				camFile = new MusicFile(camera, metadata, directory, filename, false);
-				break;
-				
-			case Base.MimeTypes.BMP:
-			case Base.MimeTypes.JPEG:
-			case Base.MimeTypes.PNG:
-			case Base.MimeTypes.RAW:
-			case Base.MimeTypes.TIFF:
-				camFile = new ImageFile(camera, metadata, directory, filename, false);
-				break;
-				
-			case Base.MimeTypes.ASF:
-			case Base.MimeTypes.AVI:
-			case Base.MimeTypes.CRW:
-			case Base.MimeTypes.EXIF:
-			case Base.MimeTypes.MPEG:
-			case Base.MimeTypes.PGM:
-			case Base.MimeTypes.PNM:
-			case Base.MimeTypes.PPM:
-			case Base.MimeTypes.QUICKTIME:
-			case Base.MimeTypes.UNKNOWN:
-			default:
-				if(filename.EndsWith(".pla", StringComparison.OrdinalIgnoreCase)
-				   || filename.EndsWith(".m3u", System.StringComparison.OrdinalIgnoreCase))
-					camFile = new PlaylistFile(camera, metadata, directory, filename, false);
-				else
-					camFile = new GenericFile(camera, metadata, directory, filename, false);
-				break;
+				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
+				return new MusicFile(camera, metadata, directory, filename, false);
 			}
 			
-			return camFile;
+			/* Second check to see if it's an image */
+			if(mime == Base.MimeTypes.BMP ||
+			   mime ==  Base.MimeTypes.JPEG ||
+			   mime ==  Base.MimeTypes.PNG ||
+			   mime ==  Base.MimeTypes.RAW ||
+			   mime ==  Base.MimeTypes.TIFF)
+			{
+				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
+				return new ImageFile(camera, metadata, directory, filename, false);
+			}
+
+			/* Third check to see if it's a playlist */
+			if(filename.EndsWith(".zpl"))
+			{
+				// A playlist needs the actual data to work correctly as opposed to the metadata
+				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.Normal, camera.Context))
+					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
+				return new PlaylistFile(camera, metadata, directory, filename, false);
+			}
+			
+			/* There is no specific handling for this type of file, so return a generic file */
+			using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+				metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
+			
+			return new GenericFile(camera, metadata, directory, filename, false);
 		}
 		
 		internal string MetadataToXml()
