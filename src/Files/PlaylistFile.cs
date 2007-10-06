@@ -19,6 +19,12 @@ namespace Gphoto2
 			get { return files; }
 		}
 		
+		public PlaylistFile(string path, string filename)
+			: base(path, filename)
+		{
+			
+		}
+		
 		internal PlaylistFile(Camera camera, string metadata, string directory, string filename, bool local)
 			: base (camera, metadata, directory, filename, local)
 		{
