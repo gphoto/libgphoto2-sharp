@@ -221,7 +221,7 @@ namespace Gphoto2
 			string path = CombinePath(BaseDirectory, folder);
 			camera.Device.DeleteAll(path, camera.Context);
 			
-			if(!removeFolder || folder == "")
+			if(!removeFolder || string.IsNullOrEmpty(folder))
 				return;
 			
 			int index = path.LastIndexOf(Camera.DirectorySeperator);

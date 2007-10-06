@@ -1,5 +1,13 @@
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Loading metadata on all filetypes now as opposed to selective
+	  metadata/normal
+	* src/FileSystem.cs: Added check for null aswel.
+	* src/Files/PlaylistFile.cs: Playlist is loading metadata and contents fully
+	  now.
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Files/PlaylistFile.cs: Fixed bug
 
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 

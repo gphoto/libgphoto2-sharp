@@ -19,10 +19,10 @@ namespace Gphoto2
 			get { return files; }
 		}
 		
-		public PlaylistFile(string path, string filename)
-			: base(path, filename)
+		public string Name
 		{
-			
+			get { GetString("Name"); }
+			set { SetValue("Name", value); }
 		}
 		
 		internal PlaylistFile(Camera camera, string metadata, string directory, string filename, bool local)
@@ -31,16 +31,17 @@ namespace Gphoto2
 			string file;
 			string filesystem;
 			files = new List<Gphoto2.File>();
+
+			// The 'data' is a list of full filepaths seperated by newlines
+			using (Base.CameraFile camfile = camera.Device.GetFile(directory, filename, Base.CameraFileType.Normal, camera.Context))
+				metadata = System.Text.Encoding.UTF8.GetString(camfile.GetDataAndSize());
 			
-			// The 'metadata' is a list of full filepaths seperated by newlines
-			StringReader reader = new StringReader(metadata);
-			while((file = reader.ReadLine()) != null)
+			StringReader r = new StringReader(metadata);
+			while(file = r.ReadLine() != null)
 			{
 				FileSystem.SplitPath(file, out filesystem, out directory, out filename);
-				FileSystem filesys = camera.FileSystems.Find(delegate (FileSystem fs) { return fs.BaseDirectory == filesystem; });
-
-				// Load the files from the camera
-				files.Add(File.Create(camera, filesys, FileSystem.CombinePath(filesystem, directory), filename));
+				FileSystem fs = camera.FileSystems.Find(delegate (FileSystem filesys) { return filesys.BaseDirectory == filesystem; });
+				files.Add(File.Create(camera, fs, directory, filename));
 			}
 		}
 	}

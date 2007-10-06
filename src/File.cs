@@ -216,7 +216,7 @@ namespace Gphoto2
 			Base.CameraFile metadataFile;
 			string metadata = null;
 			string mime = GuessMimetype(filename);
-			
+			Base.CameraFileType type =  Base.CameraFileType.MetaData;
 			
 			/* First check to see if it's a music file */
 			if (mime == Base.MimeTypes.MP3 ||
@@ -224,7 +224,7 @@ namespace Gphoto2
 			    mime ==  Base.MimeTypes.WAV ||
 			    mime ==  Base.MimeTypes.OGG)
 			{
-				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+				using (metadataFile = camera.Device.GetFile(directory, filename, type, camera.Context))
 					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 				return new MusicFile(camera, metadata, directory, filename, false);
 			}
@@ -236,7 +236,7 @@ namespace Gphoto2
 			   mime ==  Base.MimeTypes.RAW ||
 			   mime ==  Base.MimeTypes.TIFF)
 			{
-				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+				using (metadataFile = camera.Device.GetFile(directory, filename, type, camera.Context))
 					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 				return new ImageFile(camera, metadata, directory, filename, false);
 			}
@@ -245,13 +245,13 @@ namespace Gphoto2
 			if(filename.EndsWith(".zpl"))
 			{
 				// A playlist needs the actual data to work correctly as opposed to the metadata
-				using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.Normal, camera.Context))
+				using (metadataFile = camera.Device.GetFile(directory, filename, type, camera.Context))
 					metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 				return new PlaylistFile(camera, metadata, directory, filename, false);
 			}
 			
 			/* There is no specific handling for this type of file, so return a generic file */
-			using (metadataFile = camera.Device.GetFile(directory, filename, Base.CameraFileType.MetaData, camera.Context))
+			using (metadataFile = camera.Device.GetFile(directory, filename, type, camera.Context))
 				metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 			
 			return new GenericFile(camera, metadata, directory, filename, false);
