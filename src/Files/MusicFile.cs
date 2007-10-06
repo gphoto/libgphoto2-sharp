@@ -96,5 +96,32 @@ namespace Gphoto2
 		{
 			
 		}
+		
+		public override bool Equals (object o)
+		{
+			MusicFile f = o as MusicFile;
+			return f == null ? false : Equals(f); 
+		}
+		
+		public bool Equals(MusicFile file)
+		{
+			return file == null
+				? false : this.Album == file.Album 
+					&& this.Artist == file.Artist
+					&& this.Title == file.Title
+					&& this.Track == file.Track;
+		}
+		
+		public override int GetHashCode ()
+		{
+			int result = 0;
+			
+			result ^= Album.GetHashCode();
+			result ^= Artist.GetHashCode();
+			result ^= Title.GetHashCode();
+			result ^= Track;
+			
+			return result;
+		}
 	}
 }

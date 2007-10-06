@@ -1,5 +1,9 @@
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Files/MusicFile.cs: Overrode equals and gethashcode
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Files/PlaylistFile.cs: Added some brackets to fix bug.
 
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
