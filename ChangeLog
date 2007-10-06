@@ -1,5 +1,9 @@
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Files/PlaylistFile.cs: Added some brackets to fix bug.
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Loading metadata on all filetypes now as opposed to selective
 	  metadata/normal
 	* src/FileSystem.cs: Added check for null aswel.

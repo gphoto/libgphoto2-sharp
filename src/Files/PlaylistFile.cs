@@ -21,7 +21,7 @@ namespace Gphoto2
 		
 		public string Name
 		{
-			get { GetString("Name"); }
+			get { return GetString("Name"); }
 			set { SetValue("Name", value); }
 		}
 		
@@ -37,7 +37,7 @@ namespace Gphoto2
 				metadata = System.Text.Encoding.UTF8.GetString(camfile.GetDataAndSize());
 			
 			StringReader r = new StringReader(metadata);
-			while(file = r.ReadLine() != null)
+			while((file = r.ReadLine()) != null)
 			{
 				FileSystem.SplitPath(file, out filesystem, out directory, out filename);
 				FileSystem fs = camera.FileSystems.Find(delegate (FileSystem filesys) { return filesys.BaseDirectory == filesystem; });
