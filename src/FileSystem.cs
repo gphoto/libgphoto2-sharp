@@ -282,6 +282,16 @@ namespace Gphoto2
 			return results;
 		}
 		
+		internal static void SplitPath(string path, out string filesystem, out string directory, out string filename)
+		{
+			string[] parts = path.Split(Camera.DirectorySeperator);
+			directory = "";
+			filesystem = parts[0];
+			filename = parts[parts.Length - 1];
+			for(int i=0; i < parts.Length - 1; i++)
+				directory = CombinePath(directory, parts[i]);
+		}
+		
 		// FIXME: I can do some sanity checks to make sure i can actually upload
 		// which will speed things up hugely in cases where uploading is not possible
 		public File Upload(File file, string path)

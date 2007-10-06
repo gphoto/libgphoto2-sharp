@@ -1,5 +1,11 @@
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: Added a helper method to split paths
+	* src/Files/PlaylistFile.cs: Playlists are now being populated with a list
+	  of the files in them
+
+2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: when storing values, if the value is null store an empty
 	  string instead
 
