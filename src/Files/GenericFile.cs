@@ -10,8 +10,8 @@ namespace Gphoto2
 {
 	public class GenericFile : File
 	{
-		internal GenericFile(Camera camera, string metadata, string path, string filename, bool local)
-			: base(camera, metadata, path, filename, local)
+		internal GenericFile(Camera camera, FileSystem fs, string metadata, string path, string filename, bool local)
+			: base(camera, fs, metadata, path, filename, local)
 		{
 			
 		}

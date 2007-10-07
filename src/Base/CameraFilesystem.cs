@@ -36,8 +36,8 @@ namespace Gphoto2.Base
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public ulong size;
-        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
+        public uint size;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
     }
     
     [StructLayout (LayoutKind.Sequential)]
@@ -45,10 +45,10 @@ namespace Gphoto2.Base
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public ulong size;
-        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
-        
-        public uint width, height;
+        public uint size;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
+        public uint width;
+		public uint height;
     }
     
     [StructLayout (LayoutKind.Sequential)]
@@ -56,13 +56,14 @@ namespace Gphoto2.Base
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public ulong size;
-        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] type;
+        public uint size;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
         
-        public uint width, height;
-        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public char[] name;
+        public uint width;
+		public uint height;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string name;
         public CameraFilePermissions permissions;
-        public long time;
+        public uint time;
     }
     
     [StructLayout (LayoutKind.Sequential)]

@@ -34,8 +34,8 @@ namespace Gphoto2
 			set { SetValue("Width", value); }
 		}
 		
-		internal ImageFile(Camera camera, string metadata, string directory, string filename, bool local)
-			: base (camera, metadata, directory, filename, local)
+		internal ImageFile(Camera camera, FileSystem fs, string metadata, string directory, string filename, bool local)
+			: base (camera, fs, metadata, directory, filename, local)
 		{
 			
 		}

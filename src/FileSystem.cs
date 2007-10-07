@@ -133,7 +133,7 @@ namespace Gphoto2
 			
 			try
 			{
-				GetFileInternal(FileSystem.CombinePath(BaseDirectory, directory), filename);
+				GetFileInternal(directory, filename);
 				return true;
 			}
 			catch(Gphoto2.Base.GPhotoException ex)
@@ -192,12 +192,10 @@ namespace Gphoto2
 		
 		public void DeleteFile(string directory, string filename)
 		{
-			if(directory == null)
-				throw new ArgumentNullException("directory");
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
-			camera.Device.DeleteFile(Path.Combine(BaseDirectory, directory), filename, camera.Context);
+			camera.Device.DeleteFile(CombinePath(BaseDirectory, directory), filename, camera.Context);
 		}
 		
 		public void DeleteFile(File file)
@@ -304,7 +302,7 @@ namespace Gphoto2
 		// which will speed things up hugely in cases where uploading is not possible
 		public File Upload(File file, string path)
 		{
-			path = CombinePath(BaseDirectory, path);
+			string fullPath = CombinePath(BaseDirectory, path);
 			
 			// First put the actual file data on the camera
 			using(Base.CameraFile data = new Base.CameraFile())
@@ -313,7 +311,7 @@ namespace Gphoto2
 				data.SetFileType(Base.CameraFileType.Normal);
 				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
 				data.SetMimeType(file.MimeType);
-				camera.Device.PutFile(path, data, camera.Context);
+				camera.Device.PutFile(fullPath, data, camera.Context);
 			}
 			
 			// Then put the metadata on camera.
@@ -322,7 +320,7 @@ namespace Gphoto2
 				meta.SetName(file.Filename);
 				meta.SetFileType(Base.CameraFileType.MetaData);
 				meta.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(file.MetadataToXml()));
-				camera.Device.PutFile(path, meta, camera.Context);
+				camera.Device.PutFile(fullPath, meta, camera.Context);
 			}
 			
 			// Then return the user a File object referencing the file on the camera
@@ -341,7 +339,7 @@ namespace Gphoto2
 		
 		public static string CombinePath(string path1, string path2)
 		{
-			if(path2 == Camera.DirectorySeperator.ToString())
+			if(string.IsNullOrEmpty(path2) || path2 == Camera.DirectorySeperator.ToString())
 				return path1;
 
 			if(path2 != null && path2.StartsWith("/"))

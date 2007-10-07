@@ -15,7 +15,7 @@ namespace Gphoto2
 		private Dictionary<string, string> metadata;
 		private string mimetype;
 		private string path;
-
+		private long size;
 		
 		public DateTime DateAdded
 		{
@@ -84,12 +84,12 @@ namespace Gphoto2
 		/// <value>
 		///  The size of the file in bytes
 		/// </value>
-		public int Size
+		public long Size
 		{
-			get { return -1; }
+			get { return size; }
 		}
 		
-		protected File(Camera camera, string metadata, string path, string filename, bool local)
+		protected File(Camera camera, FileSystem fs, string metadata, string path, string filename, bool local)
 		{
 			if(metadata == null)
 				throw new ArgumentNullException("metadata");
@@ -101,12 +101,17 @@ namespace Gphoto2
 			this.metadata = new Dictionary<string, string>();
 			this.mimetype = GuessMimetype(filename);
 			ParseMetadata(metadata);
+			
+			if(local)
+				size = new FileInfo(System.IO.Path.Combine(path, filename)).Length;
+			else
+				size = (long)camera.Device.GetFileInfo(FileSystem.CombinePath(fs.BaseDirectory, path), filename, camera.Context).file.size;
 		}
 		
 		// When the user creates a file, it can only reference a local file
 		// So we only need the path to the file and it's filename
 		public File(string path, string filename)
-			: this (null, "", path, filename, true)
+			: this (null, null, "", path, filename, true)
 		{
 			
 		}
@@ -228,7 +233,7 @@ namespace Gphoto2
 			    mime ==  Base.MimeTypes.WAV ||
 			    mime ==  Base.MimeTypes.OGG)
 			{
-				return new MusicFile(camera, metadata, directory, filename, false);
+				return new MusicFile(camera, fs, metadata, directory, filename, false);
 			}
 			
 			/* Second check to see if it's an image */
@@ -238,7 +243,7 @@ namespace Gphoto2
 			   mime ==  Base.MimeTypes.RAW ||
 			   mime ==  Base.MimeTypes.TIFF)
 			{
-				return new ImageFile(camera, metadata, directory, filename, false);
+				return new ImageFile(camera, fs, metadata, directory, filename, false);
 			}
 
 			/* Third check to see if it's a playlist */
@@ -249,7 +254,7 @@ namespace Gphoto2
 				return new PlaylistFile(camera, fs, metadata, directory, filename, false);
 			}
 			
-			return new GenericFile(camera, metadata, directory, filename, false);
+			return new GenericFile(camera, fs, metadata, directory, filename, false);
 		}
 		
 		internal string MetadataToXml()

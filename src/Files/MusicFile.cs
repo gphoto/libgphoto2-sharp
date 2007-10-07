@@ -85,14 +85,14 @@ namespace Gphoto2
 			}
 		}
 		
-		internal MusicFile(Camera camera, string metadata, string directory, string filename, bool local)
-			: base (camera, metadata, directory, filename, local)
+		internal MusicFile(Camera camera, FileSystem fs, string metadata, string directory, string filename, bool local)
+			: base (camera, fs, metadata, directory, filename, local)
 		{
 
 		}
 		
 		public MusicFile(string directory, string filename)
-			: this(null, "", directory, filename, true)
+			: this(null, null, "", directory, filename, true)
 		{
 			
 		}

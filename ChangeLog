@@ -1,5 +1,16 @@
 2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added the FileSystem to the constructor and implemented the
+	  'Size' property.
+	* src/FileSystem.cs: Some path fixes for BaseDirectory usage. Removed
+	  needless null check in DeleteFile(string, string)
+	* src/Files/GenericFile.cs, src/Files/MusicFile.cs,
+	  src/Files/PlaylistFile.cs, src/Files/ImageFile.cs: Added the FileSystem
+	  to the constructor
+	* src/Base/CameraFilesystem.cs: Fixed the p/invoke declaration.
+
+2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Since i'm getting the 'metadata' in every case, pull it up to
 	  the top. Did some fixing up for the handling of the basedirectory
 	* src/FileSystem.cs, src/Files/PlaylistFile.cs: Did some fixing up for the

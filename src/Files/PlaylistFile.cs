@@ -26,7 +26,7 @@ namespace Gphoto2
 		}
 		
 		internal PlaylistFile(Camera camera, FileSystem fsystem, string metadata, string directory, string filename, bool local)
-			: base (camera, metadata, directory, filename, local)
+			: base (camera, fsystem, metadata, directory, filename, local)
 		{
 			string file;
 			string filesystem;
