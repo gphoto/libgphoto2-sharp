@@ -25,15 +25,16 @@ namespace Gphoto2
 			set { SetValue("Name", value); }
 		}
 		
-		internal PlaylistFile(Camera camera, string metadata, string directory, string filename, bool local)
+		internal PlaylistFile(Camera camera, FileSystem fsystem, string metadata, string directory, string filename, bool local)
 			: base (camera, metadata, directory, filename, local)
 		{
 			string file;
 			string filesystem;
 			files = new List<Gphoto2.File>();
+			string fullDirectory = FileSystem.CombinePath(fsystem.BaseDirectory, directory);
 
 			// The 'data' is a list of full filepaths seperated by newlines
-			using (Base.CameraFile camfile = camera.Device.GetFile(directory, filename, Base.CameraFileType.Normal, camera.Context))
+			using (Base.CameraFile camfile = camera.Device.GetFile(fullDirectory, filename, Base.CameraFileType.Normal, camera.Context))
 				metadata = System.Text.Encoding.UTF8.GetString(camfile.GetDataAndSize());
 			
 			StringReader r = new StringReader(metadata);

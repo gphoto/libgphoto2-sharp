@@ -178,7 +178,14 @@ namespace Gphoto2
 			// This just makes sure that we have disconnected
 			if(Connected)
 				Disconnect();
+			
 			disposed = true;
+		}
+		
+		public void Reconnect()
+		{
+			Disconnect();
+			Connect();
 		}
 		
 		// FIXME: The actual conditions for ignoring 'usb:' ones is

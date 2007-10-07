@@ -1,3 +1,11 @@
+2007-10-07  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs: Since i'm getting the 'metadata' in every case, pull it up to
+	  the top. Did some fixing up for the handling of the basedirectory
+	* src/FileSystem.cs, src/Files/PlaylistFile.cs: Did some fixing up for the
+	  handling of the basedirectory
+	* src/Camera.cs: Added a 'reconnect' method.
+
 2007-10-06  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Files/MusicFile.cs: Overrode equals and gethashcode

@@ -242,14 +242,14 @@ namespace Gphoto2
 			if(string.IsNullOrEmpty(filename))
 				throw new ArgumentException("filename cannot be null or empty");
 			
-			return GetFileInternal(CombinePath(BaseDirectory, directory), filename);
+			return GetFileInternal(directory, filename);
 		}
 		
 		public File[] GetFiles(string directory)
 		{
-			directory = CombinePath(BaseDirectory, directory);
+			string fullDirectory = CombinePath(BaseDirectory, directory);
 			
-			using (Base.CameraList list = camera.Device.ListFiles(directory, camera.Context))
+			using (Base.CameraList list = camera.Device.ListFiles(fullDirectory, camera.Context))
 			{
 				string[] filenames = ParseList(list);
 				File[] files = new File[filenames.Length];
@@ -284,11 +284,19 @@ namespace Gphoto2
 		
 		internal static void SplitPath(string path, out string filesystem, out string directory, out string filename)
 		{
-			string[] parts = path.Split(Camera.DirectorySeperator);
+			// Split the path up and remove all empty entries
+			List<string> parts = new List<string>(path.Split(Camera.DirectorySeperator));
+			parts.RemoveAll(delegate (string s) { return string.IsNullOrEmpty(s); });
+			
+			// The filesystem is the first part and needs to be prepended with '/'
+			filesystem = "/" + parts[0];
+			
+			// The filename is the last part
+			filename = parts[parts.Count - 1];
+			
+			// Everything else is the 'directory' which contains the file
 			directory = "";
-			filesystem = parts[0];
-			filename = parts[parts.Length - 1];
-			for(int i=0; i < parts.Length - 1; i++)
+			for(int i = 1; i < parts.Count - 1; i++)
 				directory = CombinePath(directory, parts[i]);
 		}
 		
