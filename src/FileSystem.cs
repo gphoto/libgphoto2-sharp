@@ -178,16 +178,39 @@ namespace Gphoto2
 			return count;
 		}
 		
-		public void CreateDirectory(string path, string directory)
+		public void CreateDirectory(string path)
+		{
+			if(string.IsNullOrEmpty(path))
+				throw new ArgumentException("path cannot be null or empty");
+			
+			string[] parts = path.Split(Camera.DirectorySeperator);
+			
+			string current = "";
+			foreach(string s in parts)
+			{
+				if(string.IsNullOrEmpty(s))
+					continue;
+				
+				if (!Contains(CombinePath(current, s)))
+					CreateDirectory(current, s);
+				
+				current = CombinePath(current, s);
+			}
+			
+			Console.WriteLine("Created");
+		}
+		
+		public void CreateDirectory(string path, string foldername)
 		{
 			if(path == null)
 				throw new ArgumentNullException("path");
 			
-			if(string.IsNullOrEmpty(directory))
+			if(string.IsNullOrEmpty(foldername))
 				throw new ArgumentException("directory cannot be null or empty");
 			
 			path = CombinePath(BaseDirectory, path);
-			camera.Device.MakeDirectory(path, directory, camera.Context);
+			
+			camera.Device.MakeDirectory(path, foldername, camera.Context);
 		}
 		
 		public void DeleteFile(string directory, string filename)
@@ -302,12 +325,20 @@ namespace Gphoto2
 		// which will speed things up hugely in cases where uploading is not possible
 		public File Upload(File file, string path)
 		{
+			return Upload(file, path, file.Filename);
+		}
+
+		public File Upload(File file, string path, string filename)
+		{
+			if(!Contains(path))
+				CreateDirectory(path);
+			
 			string fullPath = CombinePath(BaseDirectory, path);
 			
 			// First put the actual file data on the camera
 			using(Base.CameraFile data = new Base.CameraFile())
 			{
-				data.SetName(file.Filename);
+				data.SetName(filename);
 				data.SetFileType(Base.CameraFileType.Normal);
 				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
 				data.SetMimeType(file.MimeType);
@@ -317,14 +348,14 @@ namespace Gphoto2
 			// Then put the metadata on camera.
 			using(Base.CameraFile meta = new Gphoto2.Base.CameraFile())
 			{
-				meta.SetName(file.Filename);
+				meta.SetName(filename);
 				meta.SetFileType(Base.CameraFileType.MetaData);
 				meta.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(file.MetadataToXml()));
 				camera.Device.PutFile(fullPath, meta, camera.Context);
 			}
 			
 			// Then return the user a File object referencing the file on the camera
-			return GetFileInternal(path, file.Filename);
+			return GetFileInternal(path, filename);
 		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)
