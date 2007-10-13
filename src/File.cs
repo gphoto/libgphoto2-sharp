@@ -293,14 +293,15 @@ namespace Gphoto2
 			try
 			{
 				using (XmlReader r = (XmlReader)XmlReader.Create(new StringReader (metadata), s))
-					while(r.Read())
+					while (r.Read())
 						this.metadata.Add(r.Name, r.ReadString());
 			}
-			catch
+			catch (Exception ex)
 			{
 				Console.WriteLine("Warning: Couldn't parse metadata for file: {0}", this.fileName);
 				Console.WriteLine("Please attach the following data to a bug report:");
 				Console.WriteLine(metadata);
+				Console.WriteLine(ex.ToString());
 				return;
 			}
 		}

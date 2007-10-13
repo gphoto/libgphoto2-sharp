@@ -1,5 +1,9 @@
 2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Push the stacktrace too
+
+2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Added some proper handling for metadata parsing errors
 
 2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
