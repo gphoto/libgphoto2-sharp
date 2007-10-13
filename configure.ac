@@ -34,7 +34,7 @@ AC_SUBST([pkgconfigdir])
 AC_SUBST([cslibdir],[${libdir}/${PACKAGE_TARNAME}])
 
 dnl --- Check for libgphoto2
-GP_CHECK_LIBRARY([LIBGPHOTO2], [libgphoto2], [>= 2.3.1.1.trunk])
+GP_CHECK_LIBRARY([LIBGPHOTO2], [libgphoto2], [>= 2.3.1])
 
 dnl --- Use abock's Shamrock macros to check for Mono components
 SHAMROCK_CHECK_MONO_MODULE(1.1.10)
