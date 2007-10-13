@@ -298,7 +298,9 @@ namespace Gphoto2
 			}
 			catch
 			{
-				// FIXME: What should i do? Empty the metadata dict? Throw an exception? (probably not)
+				Console.WriteLine("Warning: Couldn't parse metadata for file: {0}", this.fileName);
+				Console.WriteLine("Please attach the following data to a bug report:");
+				Console.WriteLine(metadata);
 				return;
 			}
 		}
