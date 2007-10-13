@@ -355,7 +355,17 @@ namespace Gphoto2
 			}
 			
 			// Then return the user a File object referencing the file on the camera
-			return GetFileInternal(path, filename);
+			// FIXME: Hack to copy the metadata correctly. Libgphoto returns null
+			// metadata until the device refreshes it's database. Workaround is to manually
+			// copy the metadata over from the old file.
+			File returnFile = GetFileInternal(path, filename);
+			returnFile.Metadata.Clear();
+			foreach (KeyValuePair<string, string> kp in file.Metadata)
+				returnFile.Metadata.Add(kp.Key, kp.Value);
+			
+			// FIXME: This is another hack to fix the above issue
+			returnFile.Size = file.Size;
+			return returnFile;
 		}
 		
 		private bool HasField(Base.CameraStorageInfoFields field)

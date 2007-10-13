@@ -1,5 +1,12 @@
 2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Bugfix for updating the metadata, hack/workaround for
+	  libgphoto error: made Size settable. Correctly saving the filesystem
+	* src/FileSystem.cs: Hack/Workaround for libgphoto bug. Copying metadata
+	  over manually from old file -> new file
+
+2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: Push the stacktrace too
 
 2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 

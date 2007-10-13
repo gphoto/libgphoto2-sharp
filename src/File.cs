@@ -12,6 +12,7 @@ namespace Gphoto2
 		private bool dirty;
 		private string fileName;
 		private bool localFile;
+		private FileSystem filesystem;
 		private Dictionary<string, string> metadata;
 		private string mimetype;
 		private string path;
@@ -87,6 +88,7 @@ namespace Gphoto2
 		public long Size
 		{
 			get { return size; }
+			internal set { size = value; } // FIXME: This is a hack to workaround a libgphoto2 issue for uploading new files
 		}
 		
 		protected File(Camera camera, FileSystem fs, string metadata, string path, string filename, bool local)
@@ -96,6 +98,7 @@ namespace Gphoto2
 			
 			this.camera = camera;
 			this.fileName = filename;
+			this.filesystem = fs;
 			this.localFile = local;
 			this.path = path;
 			this.metadata = new Dictionary<string, string>();
@@ -127,7 +130,8 @@ namespace Gphoto2
 			if(LocalFile)
 				throw new InvalidOperationException("This file is already on the local filesystem");
 			
-			using (Base.CameraFile file = camera.Device.GetFile(path, fileName, Base.CameraFileType.Normal, camera.Context))
+			string fullPath = FileSystem.CombinePath(filesystem.BaseDirectory, path);
+			using (Base.CameraFile file = camera.Device.GetFile(fullPath, fileName, Base.CameraFileType.Normal, camera.Context))
 				return file.GetDataAndSize();
 		}
 		
@@ -202,7 +206,7 @@ namespace Gphoto2
 				file.SetFileType(Base.CameraFileType.MetaData);
 				file.SetName(Filename);
 				file.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(metadata));
-				camera.Device.PutFile(path, file, camera.Context);
+				camera.Device.PutFile(FileSystem.CombinePath(filesystem.BaseDirectory, path), file, camera.Context);
 			}
 			dirty = false;
 		}
