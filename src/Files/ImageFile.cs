@@ -41,20 +41,37 @@ namespace Gphoto2
 		
 		public int Depth
 		{
-			get { return GetInt("ImageBitDepth"); }
-			set { SetValue("ImageBitDepth", value); }
+			get { return GetInt ("ImageBitDepth"); }
+			set { SetValue ("ImageBitDepth", value); }
 		}
 		
+		public int ExposureIndex
+		{
+			get { return GetInt ("ExposureIndex"); }
+			set { SetValue ("ExposureIndex", value); }
+		}
+		
+		public int Fnumber
+		{
+			get { return GetInt ("Fnumber"); }
+			set { SetValue ("Fnumber", value); }
+		}
+		
+		public int ExposureTime
+		{
+			get { return GetInt ("ExposureTime"); }
+			set { SetValue ("ExposureTime", value); }
+		}
 		public int Height
 		{
-			get { return GetInt("Height"); }
-			set { SetValue("Height", value); }
+			get { return GetInt ("Height"); }
+			set { SetValue ("Height", value); }
 		}
 		
 		public int Width
 		{
-			get { return GetInt("Width"); }
-			set { SetValue("Width", value); }
+			get { return GetInt ("Width"); }
+			set { SetValue ("Width", value); }
 		}
 		
 		internal ImageFile (Camera camera, FileSystem fs, string metadata, string directory, string filename, bool local)

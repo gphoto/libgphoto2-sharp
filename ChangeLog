@@ -1,5 +1,9 @@
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Files/ImageFile.cs: Added some useful helper properties
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* Sample/Main.cs, src/TestGphoto2Sharp.cs, src/Abilities.cs,
 	  src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,
 	  src/Base/CameraFilesystem.cs, src/Base/PortInfo.cs,
