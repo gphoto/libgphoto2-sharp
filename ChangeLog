@@ -1,5 +1,12 @@
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: made methods alphabetical
+	* src/FileSystem.cs: Removed old debug line. Renamed 'path' to 'directory'
+	  to keep API consistant. Removed old FIXMEs that have been fixed.
+	* src/Files/ImageFile.cs: Cosmetic changes
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Files/ImageFile.cs: Added some useful helper properties
 
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 

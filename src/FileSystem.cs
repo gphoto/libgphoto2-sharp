@@ -218,11 +218,9 @@ namespace Gphoto2
 				
 				current = CombinePath(current, s);
 			}
-			
-			Console.WriteLine("Created");
 		}
 		
-		public void CreateDirectory(string path, string foldername)
+		private void CreateDirectory(string path, string foldername)
 		{
 			if(path == null)
 				throw new ArgumentNullException("path");
@@ -275,8 +273,6 @@ namespace Gphoto2
 
 		private File GetFileInternal(string directory, string filename)
 		{
-			// We strip out the 'base directory' when creating the File object
-			// so when we return it to the user, they don't see it
 			return File.Create(camera, this, directory, filename);
 		}
 		
@@ -345,17 +341,17 @@ namespace Gphoto2
 		
 		// FIXME: I can do some sanity checks to make sure i can actually upload
 		// which will speed things up hugely in cases where uploading is not possible
-		public File Upload(File file, string path)
+		public File Upload(File file, string directory)
 		{
-			return Upload(file, path, file.Filename);
+			return Upload(file, directory, file.Filename);
 		}
 
-		public File Upload(File file, string path, string filename)
+		public File Upload(File file, string directory, string filename)
 		{
-			if(!Contains(path))
-				CreateDirectory(path);
+			if(!Contains(directory))
+				CreateDirectory(directory);
 			
-			string fullPath = CombinePath(BaseDirectory, path);
+			string fullPath = CombinePath(BaseDirectory, directory);
 			
 			// First put the actual file data on the camera
 			using (LibGPhoto2.CameraFile data = new LibGPhoto2.CameraFile())
@@ -380,7 +376,7 @@ namespace Gphoto2
 			// FIXME: Hack to copy the metadata correctly. Libgphoto returns null
 			// metadata until the device refreshes it's database. Workaround is to manually
 			// copy the metadata over from the old file.
-			File returnFile = GetFileInternal(path, filename);
+			File returnFile = GetFileInternal(directory, filename);
 			returnFile.Metadata.Clear();
 			foreach (KeyValuePair<string, string> kp in file.Metadata)
 				returnFile.Metadata.Add(kp.Key, kp.Value);

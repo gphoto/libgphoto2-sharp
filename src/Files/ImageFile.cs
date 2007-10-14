@@ -32,13 +32,7 @@ using System;
 namespace Gphoto2
 {
 	public class ImageFile : File
-	{
-		// Format enum for the images?
-//		public int Format
-//		{
-//			get { return -1; }
-//		}
-		
+	{	
 		public int Depth
 		{
 			get { return GetInt ("ImageBitDepth"); }

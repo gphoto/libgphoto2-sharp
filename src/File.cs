@@ -62,18 +62,18 @@ namespace Gphoto2
 			get { return ParseDate(GetString("DateModified")); }
 		}
 		
-		/// <value>
-		/// True if the metadata has been changed and needs to be updated on the device
-		/// </value>
-		public bool Dirty
-		{
-			get { return dirty; }
-			protected set { dirty = value; }
-		}
-		
 		public string Filename
 		{
 			get { return fileName; }
+		}
+		
+		/// <value>
+		/// True if the metadata has been changed and needs to be syncronised with the device
+		/// </value>
+		public bool IsDirty
+		{
+			get { return dirty; }
+			protected set { dirty = value; }
 		}
 		
 		public DateTime LastPlayed
@@ -110,7 +110,6 @@ namespace Gphoto2
 			  set { SetValue("Rating", value); }
 		}
 		
-		// FIXME: Implement this.
 		/// <value>
 		///  The size of the file in bytes
 		/// </value>
@@ -173,28 +172,6 @@ namespace Gphoto2
 			stream.Write(data, 0, data.Length);
 		}
 		
-		protected void SetValue(string key, int value)
-		{
-			SetValue(key, value.ToString());
-		}
-		
-		protected void SetValue(string key, string value)
-		{
-			value = value ?? "";
-			
-			if(!Metadata.ContainsKey(key))
-			{
-				dirty = true;
-				Metadata.Add(key, value);
-				return;
-			}
-
-			if(Metadata[key] != value)
-				dirty = true;
-			
-			Metadata[key] = value;
-		}
-		
 		protected int GetInt(string key)
 		{
 			int val;
@@ -213,6 +190,78 @@ namespace Gphoto2
 				return "";
 			
 			return str ?? "";
+		}
+		
+		
+		internal string MetadataToXml()
+		{
+			StringBuilder sb = new StringBuilder(metadata.Count * 32);
+			XmlWriterSettings settings = new XmlWriterSettings();
+			settings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
+			
+			using (XmlWriter writer = XmlWriter.Create(sb, settings))
+			{
+				foreach(KeyValuePair<string, string> keypair in metadata)
+				{
+					writer.WriteStartElement(keypair.Key);
+					writer.WriteString(keypair.Value);
+					writer.WriteEndElement();
+				}
+
+				return sb.ToString();
+			}
+		}
+		
+		private DateTime ParseDate(string date)
+		{
+			return DateTime.Now;
+		}
+		
+		protected void ParseMetadata(string metadata)
+		{
+			XmlReaderSettings s = new XmlReaderSettings();
+			s.ConformanceLevel = ConformanceLevel.Fragment;
+			s.IgnoreWhitespace = true;
+			s.CheckCharacters = false;
+			
+			// Parse the metadata into a dictionary so we can show it
+			// all to the user
+			try
+			{
+				using (XmlReader r = (XmlReader)XmlReader.Create(new StringReader (metadata), s))
+					while (r.Read())
+						this.metadata.Add(r.Name, r.ReadString());
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Warning: Couldn't parse metadata for file: {0}", this.fileName);
+				Console.WriteLine("Please attach the following data to a bug report:");
+				Console.WriteLine(metadata);
+				Console.WriteLine(ex.ToString());
+				return;
+			}
+		}
+		
+		protected void SetValue(string key, int value)
+		{
+			SetValue(key, value.ToString());
+		}
+		
+		protected void SetValue(string key, string value)
+		{
+			value = value ?? "";
+			
+			if(!Metadata.ContainsKey(key))
+			{
+				dirty = true;
+				Metadata.Add(key, value);
+				return;
+			}
+			
+			if(Metadata[key] != value)
+				dirty = true;
+			
+			Metadata[key] = value;
 		}
 		
 		/// <summary>
@@ -288,55 +337,6 @@ namespace Gphoto2
 			}
 			
 			return new GenericFile(camera, fs, metadata, directory, filename, false);
-		}
-		
-		internal string MetadataToXml()
-		{
-			StringBuilder sb = new StringBuilder(metadata.Count * 32);
-			XmlWriterSettings settings = new XmlWriterSettings();
-			settings.ConformanceLevel = System.Xml.ConformanceLevel.Fragment;
-			
-			using (XmlWriter writer = XmlWriter.Create(sb, settings))
-			{
-				foreach(KeyValuePair<string, string> keypair in metadata)
-				{
-					writer.WriteStartElement(keypair.Key);
-					writer.WriteString(keypair.Value);
-					writer.WriteEndElement();
-				}
-
-				return sb.ToString();
-			}
-		}
-		
-		private DateTime ParseDate(string date)
-		{
-			return DateTime.Now;
-		}
-		
-		protected void ParseMetadata(string metadata)
-		{
-			XmlReaderSettings s = new XmlReaderSettings();
-			s.ConformanceLevel = ConformanceLevel.Fragment;
-			s.IgnoreWhitespace = true;
-			s.CheckCharacters = false;
-			
-			// Parse the metadata into a dictionary so we can show it
-			// all to the user
-			try
-			{
-				using (XmlReader r = (XmlReader)XmlReader.Create(new StringReader (metadata), s))
-					while (r.Read())
-						this.metadata.Add(r.Name, r.ReadString());
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine("Warning: Couldn't parse metadata for file: {0}", this.fileName);
-				Console.WriteLine("Please attach the following data to a bug report:");
-				Console.WriteLine(metadata);
-				Console.WriteLine(ex.ToString());
-				return;
-			}
 		}
 		
 		private static string GuessMimetype(string filename)
