@@ -1,5 +1,9 @@
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/Camera.cs: Added debug out
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Base/CameraFilesystem.cs, src/Base/Camera.cs: First attempt at working
 	  around the 64bit long issue.
 

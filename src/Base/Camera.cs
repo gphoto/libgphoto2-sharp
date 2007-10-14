@@ -223,10 +223,12 @@ namespace LibGPhoto2
         {
 			if (IntPtr.Size == 4)
 			{
+				Console.WriteLine("Using 32 bit method");
 				return Get32BitStorageInformation(context);
 			}
 			else
 			{
+				Console.WriteLine("Using 64bit method");
 				return Get64BitStorageInformation(context);
 			}
         }
