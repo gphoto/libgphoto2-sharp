@@ -1,3 +1,32 @@
+/***************************************************************************
+ *  File.cs
+ *
+ *  Copyright (C) 2007 Alan McGovern
+ *  Written by Alan McGovern <alan.mcgovern@gmail.com>
+ ****************************************************************************/
+
+/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a
+ *  copy of this software and associated documentation files (the "Software"),  
+ *  to deal in the Software without restriction, including without limitation  
+ *  the rights to use, copy, modify, merge, publish, distribute, sublicense,  
+ *  and/or sell copies of the Software, and to permit persons to whom the  
+ *  Software is furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ *  DEALINGS IN THE SOFTWARE.
+ */
+
+
 using System;
 using System.IO;
 using System.Xml;
@@ -131,7 +160,7 @@ namespace Gphoto2
 				throw new InvalidOperationException("This file is already on the local filesystem");
 			
 			string fullPath = FileSystem.CombinePath(filesystem.BaseDirectory, path);
-			using (Base.CameraFile file = camera.Device.GetFile(fullPath, fileName, Base.CameraFileType.Normal, camera.Context))
+			using ( LibGPhoto2.CameraFile file = camera.Device.GetFile(fullPath, fileName,  LibGPhoto2.CameraFileType.Normal, camera.Context))
 				return file.GetDataAndSize();
 		}
 		
@@ -183,14 +212,14 @@ namespace Gphoto2
 			if(!Metadata.TryGetValue(key, out str))
 				return "";
 			
-			return str;
+			return str ?? "";
 		}
 		
 		/// <summary>
 		/// Updates the metadata of the file on the camara
 		/// </summary>
 		/// <param name="file">
-		/// A <see cref="Base.CameraFile"/>
+		/// A <see cref=" LibGPhoto2.CameraFile"/>
 		/// </param>
 		/// <returns>
 		/// A <see cref="File"/>
@@ -201,9 +230,9 @@ namespace Gphoto2
 				throw new InvalidOperationException("Cannot update metadata on a local file");
 			
 			string metadata = MetadataToXml();
-			using (Base.CameraFile file = new Base.CameraFile())
+			using ( LibGPhoto2.CameraFile file = new  LibGPhoto2.CameraFile())
 			{
-				file.SetFileType(Base.CameraFileType.MetaData);
+				file.SetFileType( LibGPhoto2.CameraFileType.MetaData);
 				file.SetName(Filename);
 				file.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(metadata));
 				camera.Device.PutFile(FileSystem.CombinePath(filesystem.BaseDirectory, path), file, camera.Context);
@@ -215,37 +244,37 @@ namespace Gphoto2
 		/// 
 		/// </summary>
 		/// <param name="file">
-		/// A <see cref="Base.CameraFile"/>
+		/// A <see cref=" LibGPhoto2.CameraFile"/>
 		/// </param>
 		/// <returns>
 		/// A <see cref="File"/>
 		/// </returns>
 		internal static File Create(Camera camera, FileSystem fs, string directory, string filename)
 		{
-			Base.CameraFile metadataFile;
+			 LibGPhoto2.CameraFile metadataFile;
 			string metadata = null;
 			string mime = GuessMimetype(filename);
-			Base.CameraFileType type =  Base.CameraFileType.MetaData;
+			 LibGPhoto2.CameraFileType type =   LibGPhoto2.CameraFileType.MetaData;
 			string fullDirectory = FileSystem.CombinePath(fs.BaseDirectory, directory);
 			
 			using (metadataFile = camera.Device.GetFile(fullDirectory, filename, type, camera.Context))
 				metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 			
 			/* First check to see if it's a music file */
-			if (mime == Base.MimeTypes.MP3 ||
-			    mime == Base.MimeTypes.WMA ||
-			    mime ==  Base.MimeTypes.WAV ||
-			    mime ==  Base.MimeTypes.OGG)
+			if (mime ==  LibGPhoto2.MimeTypes.MP3 ||
+			    mime ==  LibGPhoto2.MimeTypes.WMA ||
+			    mime ==   LibGPhoto2.MimeTypes.WAV ||
+			    mime ==   LibGPhoto2.MimeTypes.OGG)
 			{
 				return new MusicFile(camera, fs, metadata, directory, filename, false);
 			}
 			
 			/* Second check to see if it's an image */
-			if(mime == Base.MimeTypes.BMP ||
-			   mime ==  Base.MimeTypes.JPEG ||
-			   mime ==  Base.MimeTypes.PNG ||
-			   mime ==  Base.MimeTypes.RAW ||
-			   mime ==  Base.MimeTypes.TIFF)
+			if(mime ==  LibGPhoto2.MimeTypes.BMP ||
+			   mime ==   LibGPhoto2.MimeTypes.JPEG ||
+			   mime ==   LibGPhoto2.MimeTypes.PNG ||
+			   mime ==   LibGPhoto2.MimeTypes.RAW ||
+			   mime ==   LibGPhoto2.MimeTypes.TIFF)
 			{
 				return new ImageFile(camera, fs, metadata, directory, filename, false);
 			}
@@ -313,63 +342,63 @@ namespace Gphoto2
 		private static string GuessMimetype(string filename)
 		{
 			if(filename.EndsWith(".asf", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.ASF;
+				return  LibGPhoto2.MimeTypes.ASF;
 			
 			if(filename.EndsWith(".avi", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.AVI;
+				return  LibGPhoto2.MimeTypes.AVI;
 			
 			if(filename.EndsWith(".BMP", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.BMP;
+				return  LibGPhoto2.MimeTypes.BMP;
 						
 			if(filename.EndsWith(".CRW", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.CRW;	
+				return  LibGPhoto2.MimeTypes.CRW;	
 			
 			if(filename.EndsWith(".EXIF", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.EXIF;	
+				return  LibGPhoto2.MimeTypes.EXIF;	
 			
 			if(filename.EndsWith(".JPEG", System.StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith(".JPG", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.JPEG;	
+				return  LibGPhoto2.MimeTypes.JPEG;	
 			
 			if(filename.EndsWith(".MP3", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.MP3;	
+				return  LibGPhoto2.MimeTypes.MP3;	
 			
 			if(filename.EndsWith(".MPG", System.StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith(".MPEG", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.MPEG;	
+				return  LibGPhoto2.MimeTypes.MPEG;	
 			
 			if(filename.EndsWith(".OGG", System.StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith(".OGM", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.OGG;
+				return  LibGPhoto2.MimeTypes.OGG;
 						
 			if(filename.EndsWith(".PGM", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.PGM;
+				return  LibGPhoto2.MimeTypes.PGM;
 						
 			if(filename.EndsWith(".PNG", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.PNG;
+				return  LibGPhoto2.MimeTypes.PNG;
 						
 			if(filename.EndsWith(".PNM", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.PNM;
+				return  LibGPhoto2.MimeTypes.PNM;
 						
 			if(filename.EndsWith(".PPM", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.PPM;
+				return  LibGPhoto2.MimeTypes.PPM;
 									
 			if(filename.EndsWith(".MOV", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.QUICKTIME;
+				return  LibGPhoto2.MimeTypes.QUICKTIME;
 									
 			if(filename.EndsWith(".RAW", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.RAW;
+				return  LibGPhoto2.MimeTypes.RAW;
 									
 			if(filename.EndsWith(".TIFF", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.TIFF;
+				return  LibGPhoto2.MimeTypes.TIFF;
 									
 			if(filename.EndsWith(".WAV", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.WAV;
+				return  LibGPhoto2.MimeTypes.WAV;
 									
 			if(filename.EndsWith(".WMA", System.StringComparison.OrdinalIgnoreCase))
-				return Base.MimeTypes.WMA;
+				return  LibGPhoto2.MimeTypes.WMA;
 
-			return Base.MimeTypes.UNKNOWN;
+			return  LibGPhoto2.MimeTypes.UNKNOWN;
 		}
 	}
 }

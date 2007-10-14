@@ -1,8 +1,31 @@
-// PlaylistFile.cs created with MonoDevelop
-// User: alan at 14:04 30/09/2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/***************************************************************************
+ *  PlaylistFile.cs
+ *
+ *  Copyright (C) 2007 Alan McGovern
+ *  Written by Alan McGovern <alan.mcgovern@gmail.com>
+ ****************************************************************************/
+
+/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a
+ *  copy of this software and associated documentation files (the "Software"),  
+ *  to deal in the Software without restriction, including without limitation  
+ *  the rights to use, copy, modify, merge, publish, distribute, sublicense,  
+ *  and/or sell copies of the Software, and to permit persons to whom the  
+ *  Software is furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ *  DEALINGS IN THE SOFTWARE.
+ */
+
 
 using System;
 using System.IO;
@@ -34,7 +57,7 @@ namespace Gphoto2
 			string fullDirectory = FileSystem.CombinePath(fsystem.BaseDirectory, directory);
 
 			// The 'data' is a list of full filepaths seperated by newlines
-			using (Base.CameraFile camfile = camera.Device.GetFile(fullDirectory, filename, Base.CameraFileType.Normal, camera.Context))
+			using (LibGPhoto2.CameraFile camfile = camera.Device.GetFile(fullDirectory, filename, LibGPhoto2.CameraFileType.Normal, camera.Context))
 				metadata = System.Text.Encoding.UTF8.GetString(camfile.GetDataAndSize());
 			
 			StringReader r = new StringReader(metadata);

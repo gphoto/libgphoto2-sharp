@@ -4,7 +4,7 @@
  */
 
 using System;
-using Gphoto2.Base;
+using LibGPhoto2;
 
 class Gphoto2SharpTest {
 

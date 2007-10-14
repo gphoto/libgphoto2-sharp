@@ -1,3 +1,17 @@
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Sample/Main.cs, src/TestGphoto2Sharp.cs, src/Abilities.cs,
+	  src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,
+	  src/Base/CameraFilesystem.cs, src/Base/PortInfo.cs,
+	  src/Base/CameraList.cs, src/Base/Context.cs, src/Base/Port.cs,
+	  src/Base/Object.cs, src/Base/ErrorCodes.cs, src/Base/Camera.cs,
+	  src/Base/CameraFile.cs, src/Base/CameraAbilitiesList.cs: made the
+	  library API-compatible with the previous release
+	* src/File.cs, src/FileSystem.cs, src/Camera.cs, src/Files/GenericFile.cs,
+	  src/Files/MusicFile.cs, src/Files/PlaylistFile.cs,
+	  src/Files/ImageFile.cs: Added license header and made the library
+	  API-compatible with the previous release
+
 2007-10-13  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs: Bugfix for updating the metadata, hack/workaround for

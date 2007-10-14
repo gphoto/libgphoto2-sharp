@@ -1,6 +1,35 @@
+/***************************************************************************
+ *  Camera.cs
+ *
+ *  Copyright (C) 2007 Alan McGovern
+ *  Written by Alan McGovern <alan.mcgovern@gmail.com>
+ ****************************************************************************/
+
+/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a
+ *  copy of this software and associated documentation files (the "Software"),  
+ *  to deal in the Software without restriction, including without limitation  
+ *  the rights to use, copy, modify, merge, publish, distribute, sublicense,  
+ *  and/or sell copies of the Software, and to permit persons to whom the  
+ *  Software is furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ *  DEALINGS IN THE SOFTWARE.
+ */
+
+
 using System;
 using System.Collections.Generic;
-using Gphoto2.Base;
+using LibGPhoto2;
 
 namespace Gphoto2
 {
@@ -9,10 +38,10 @@ namespace Gphoto2
 		public static char DirectorySeperator = '/';
 		private Abilities abilities;
 		private CameraAbilities baseAbilities;
-		private Base.Camera camera;
+		private LibGPhoto2.Camera camera;
 		private bool connected;
 		private bool disposed;
-		private Base.Context context;
+		private LibGPhoto2.Context context;
 		private List<Gphoto2.FileSystem> fileSystems;
 		private PortInfo port;
 		private int usbBusNumber;
@@ -29,7 +58,7 @@ namespace Gphoto2
 		    get { return usbBusNumber; }
 		}
 		
-		internal Base.Camera Device
+		internal LibGPhoto2.Camera Device
 		{
 			get { return camera; }
 		}
@@ -39,7 +68,7 @@ namespace Gphoto2
 		    get { return usbDeviceNumber; }
 		}
 		
-		internal Base.Context Context
+		internal LibGPhoto2.Context Context
 		{
 			get { return context; }
 		}
@@ -54,7 +83,7 @@ namespace Gphoto2
 			get { return disposed; }
 		}
 		
-		public List<Gphoto2.FileSystem> FileSystems
+		public List<FileSystem> FileSystems
 		{
 			get { return fileSystems; }
 		}
@@ -98,13 +127,13 @@ namespace Gphoto2
 		public void Connect()
 		{
 			CheckConnected(false);
-			camera = new Base.Camera();
+			camera = new LibGPhoto2.Camera();
 			camera.SetAbilities(baseAbilities);
 			camera.SetPortInfo(port);
 			camera.Init(context);
 			try
 			{
-				Base.CameraStorageInformation[] storages = camera.GetStorageInformation(Context);
+				LibGPhoto2.CameraStorageInformation[] storages = camera.GetStorageInformation(Context);
 				fileSystems = new List<FileSystem>(storages.Length);
 				for (int i = 0; i < storages.Length; i++)
 					fileSystems.Add(new FileSystem(this, storages[i]));

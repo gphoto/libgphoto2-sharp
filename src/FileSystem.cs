@@ -1,8 +1,31 @@
-// FileSystem.cs created with MonoDevelop
-// User: alan at 14:55 09/09/2007
-//
-// To change standard headers go to Edit->Preferences->Coding->Standard Headers
-//
+/***************************************************************************
+ *  FileSystem.cs
+ *
+ *  Copyright (C) 2007 Alan McGovern
+ *  Written by Alan McGovern <alan.mcgovern@gmail.com>
+ ****************************************************************************/
+
+/*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a
+ *  copy of this software and associated documentation files (the "Software"),  
+ *  to deal in the Software without restriction, including without limitation  
+ *  the rights to use, copy, modify, merge, publish, distribute, sublicense,  
+ *  and/or sell copies of the Software, and to permit persons to whom the  
+ *  Software is furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in 
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ *  DEALINGS IN THE SOFTWARE.
+ */
+
 
 using System;
 using System.IO;
@@ -13,22 +36,22 @@ namespace Gphoto2
 	public class FileSystem
 	{
 		private Camera camera;
-		private Base.CameraStorageInformation storage;
+		private LibGPhoto2.CameraStorageInformation storage;
 		
 		internal string BaseDirectory
 		{
-			get { return HasField(Base.CameraStorageInfoFields.Base) ? storage.basedir : null;}
+			get { return HasField( LibGPhoto2.CameraStorageInfoFields.Base) ? storage.basedir : null;}
 		}
 		
 		public bool CanDelete
 		{
 			get 
 			{
-				if(!HasField(Base.CameraStorageInfoFields.Access))
+				if(!HasField(LibGPhoto2.CameraStorageInfoFields.Access))
 					return false;
 				
-				return HasField(Base.CameraStorageAccessType.ReadWrite)
-					|| HasField(Base.CameraStorageAccessType.ReadOnlyWithDelete);
+				return HasField(LibGPhoto2.CameraStorageAccessType.ReadWrite)
+					|| HasField(LibGPhoto2.CameraStorageAccessType.ReadOnlyWithDelete);
 			}
 		}
 		
@@ -36,12 +59,12 @@ namespace Gphoto2
 		{
 			get
 			{
-				if(!HasField(Base.CameraStorageInfoFields.Access))
+				if(!HasField(LibGPhoto2.CameraStorageInfoFields.Access))
 					return false;
 				
-				return HasField(Base.CameraStorageAccessType.ReadOnly)
-					|| HasField(Base.CameraStorageAccessType.ReadOnlyWithDelete)
-					|| HasField(Base.CameraStorageAccessType.ReadWrite);
+				return HasField(LibGPhoto2.CameraStorageAccessType.ReadOnly)
+					|| HasField(LibGPhoto2.CameraStorageAccessType.ReadOnlyWithDelete)
+					|| HasField(LibGPhoto2.CameraStorageAccessType.ReadWrite);
 			}
 		}
 
@@ -49,47 +72,47 @@ namespace Gphoto2
 		{
 			get
 			{
-				if(!HasField(Base.CameraStorageInfoFields.Access))
+				if(!HasField(LibGPhoto2.CameraStorageInfoFields.Access))
 					return false;
 				
-				return HasField(Base.CameraStorageAccessType.ReadWrite);
+				return HasField(LibGPhoto2.CameraStorageAccessType.ReadWrite);
 			}
 		}
 
 		public long Capacity
 		{
-			get { return HasField(Base.CameraStorageInfoFields.MaxCapacity)
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.MaxCapacity)
 				? (long)storage.capacitykbytes * 1024 : -1; }
 		}
 		
 		public string Description
 		{
-			get { return HasField(Base.CameraStorageInfoFields.Description)
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.Description)
 				? storage.description : ""; }
 		}
 
-		public Base.CameraStorageFilesystemType FilesystemType	
+		internal LibGPhoto2.CameraStorageFilesystemType FilesystemType	
 		{
-			get { return HasField(Base.CameraStorageInfoFields.FilesystemType)
-				? storage.fstype : Base.CameraStorageFilesystemType.Undefined; }
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FilesystemType)
+				? storage.fstype : LibGPhoto2.CameraStorageFilesystemType.Undefined; }
 		}
 		
 		public long FreeSpace
 		{
-			get { return HasField(Base.CameraStorageInfoFields.FreeSpaceKbytes)
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FreeSpaceKbytes)
 				? (long)storage.freekbytes * 1024 : -1; }
 		}
 		
 		public string Label
 		{
-			get { return HasField(Base.CameraStorageInfoFields.Label) 
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.Label) 
 				? storage.label : ""; }
 		}
 		
-		public Base.CameraStorageType StorageType
+		internal LibGPhoto2.CameraStorageType StorageType
 		{
-			get { return HasField(Base.CameraStorageInfoFields.StorageType)
-				? storage.type : Base.CameraStorageType.Unknown; }
+			get { return HasField(LibGPhoto2.CameraStorageInfoFields.StorageType)
+				? storage.type : LibGPhoto2.CameraStorageType.Unknown; }
 		}
 		
 		public long UsedSpace
@@ -98,7 +121,7 @@ namespace Gphoto2
 		}
 		
 		
-		internal FileSystem(Camera camera, Base.CameraStorageInformation storage)
+		internal FileSystem(Camera camera, LibGPhoto2.CameraStorageInformation storage)
 		{
 			this.camera = camera;
 			this.storage = storage;
@@ -110,7 +133,6 @@ namespace Gphoto2
 		}
 		
 		// FIXME: These are nasty hacks as there is no API for this
-		
 		public bool Contains(string directory)
 		{
 			try
@@ -118,9 +140,9 @@ namespace Gphoto2
 				camera.Device.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
 				return true;
 			}
-			catch(Gphoto2.Base.GPhotoException ex)
+			catch(LibGPhoto2.GPhotoException ex)
 			{
-				if(ex.Error != Gphoto2.Base.ErrorCode.DirectoryNotFound)
+				if(ex.Error != LibGPhoto2.ErrorCode.DirectoryNotFound)
 					throw;
 			}
 			return false;
@@ -136,9 +158,9 @@ namespace Gphoto2
 				GetFileInternal(directory, filename);
 				return true;
 			}
-			catch(Gphoto2.Base.GPhotoException ex)
+			catch(LibGPhoto2.GPhotoException ex)
 			{
-				if(ex.Error != Gphoto2.Base.ErrorCode.FileNotFound)
+				if(ex.Error != LibGPhoto2.ErrorCode.FileNotFound)
 					throw;
 			}
 			
@@ -165,13 +187,13 @@ namespace Gphoto2
 		{
 			int count = 0;
 			
-			using (Base.CameraList list = camera.Device.ListFiles(directory, camera.Context))
+			using (LibGPhoto2.CameraList list = camera.Device.ListFiles(directory, camera.Context))
 				count += list.Count();
 			
 			if(!recursive)
 				return count;
 			
-			using (Base.CameraList list = camera.Device.ListFolders(directory, camera.Context))
+			using (LibGPhoto2.CameraList list = camera.Device.ListFolders(directory, camera.Context))
 				foreach(string s in ParseList(list))
 					count += CountRecursive(CombinePath(directory, s), recursive);
 			
@@ -270,7 +292,7 @@ namespace Gphoto2
 		{
 			string fullDirectory = CombinePath(BaseDirectory, directory);
 			
-			using (Base.CameraList list = camera.Device.ListFiles(fullDirectory, camera.Context))
+			using (LibGPhoto2.CameraList list = camera.Device.ListFiles(fullDirectory, camera.Context))
 			{
 				string[] filenames = ParseList(list);
 				File[] files = new File[filenames.Length];
@@ -288,11 +310,11 @@ namespace Gphoto2
 
 		public string[] GetFolders(string directory)
 		{			
-			using (Base.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
+			using (LibGPhoto2.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
 				return ParseList(list);
 		}
 		
-		private string[] ParseList(Base.CameraList list)
+		private string[] ParseList(LibGPhoto2.CameraList list)
 		{
 			int count = list.Count();
 			string[] results = new string[count];
@@ -336,20 +358,20 @@ namespace Gphoto2
 			string fullPath = CombinePath(BaseDirectory, path);
 			
 			// First put the actual file data on the camera
-			using(Base.CameraFile data = new Base.CameraFile())
+			using (LibGPhoto2.CameraFile data = new LibGPhoto2.CameraFile())
 			{
 				data.SetName(filename);
-				data.SetFileType(Base.CameraFileType.Normal);
+				data.SetFileType(LibGPhoto2.CameraFileType.Normal);
 				data.SetDataAndSize(System.IO.File.ReadAllBytes(Path.Combine(file.Path, file.Filename)));
 				data.SetMimeType(file.MimeType);
 				camera.Device.PutFile(fullPath, data, camera.Context);
 			}
 			
 			// Then put the metadata on camera.
-			using(Base.CameraFile meta = new Gphoto2.Base.CameraFile())
+			using (LibGPhoto2.CameraFile meta = new LibGPhoto2.CameraFile())
 			{
 				meta.SetName(filename);
-				meta.SetFileType(Base.CameraFileType.MetaData);
+				meta.SetFileType(LibGPhoto2.CameraFileType.MetaData);
 				meta.SetDataAndSize(System.Text.Encoding.UTF8.GetBytes(file.MetadataToXml()));
 				camera.Device.PutFile(fullPath, meta, camera.Context);
 			}
@@ -368,12 +390,12 @@ namespace Gphoto2
 			return returnFile;
 		}
 		
-		private bool HasField(Base.CameraStorageInfoFields field)
+		private bool HasField(LibGPhoto2.CameraStorageInfoFields field)
 		{
 			return (storage.fields & field) == field;
 		}
 		
-		private bool HasField(Base.CameraStorageAccessType field)
+		private bool HasField(LibGPhoto2.CameraStorageAccessType field)
 		{
 			return (storage.access & field) == field;
 		}
