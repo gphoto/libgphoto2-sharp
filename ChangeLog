@@ -1,5 +1,10 @@
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Base/CameraFilesystem.cs, src/Base/Camera.cs: First attempt at working
+	  around the 64bit long issue.
+
+2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs: made methods alphabetical
 	* src/FileSystem.cs: Removed old debug line. Renamed 'path' to 'directory'
 	  to keep API consistant. Removed old FIXMEs that have been fixed.

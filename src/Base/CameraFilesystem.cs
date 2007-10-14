@@ -154,7 +154,9 @@ namespace LibGPhoto2
         GenericHierarchical = 2,
         Dcf                 = 3
     }
-
+	
+	//FIXME: This is a nasty hack to make the library work on 32bit
+	// and 64bit systems.
     [StructLayout (LayoutKind.Sequential)]
     public struct CameraStorageInformation
     {
@@ -168,6 +170,21 @@ namespace LibGPhoto2
         public uint capacitykbytes;
         public uint freekbytes;
         public uint freeimages;
+    }
+	
+	[StructLayout (LayoutKind.Sequential)]
+	public struct CameraStorageInformation64
+    {
+        public CameraStorageInfoFields fields;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string label;
+        [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string description;
+        public CameraStorageType type;
+        public CameraStorageFilesystemType fstype;
+        public CameraStorageAccessType access;
+        public long capacitykbytes;
+        public long freekbytes;
+        public long freeimages;
     }
     
     public class CameraFilesystem : Object

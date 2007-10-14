@@ -221,7 +221,51 @@ namespace LibGPhoto2
 
         public CameraStorageInformation[] GetStorageInformation (Context context)
         {
-            int num = 0;        
+			if (IntPtr.Size == 4)
+			{
+				return Get32BitStorageInformation(context);
+			}
+			else
+			{
+				return Get64BitStorageInformation(context);
+			}
+        }
+		
+		private CameraStorageInformation[] Get64BitStorageInformation(Context context)
+		{
+			int num = 0;        
+            IntPtr p = new IntPtr();
+            
+            Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
+
+            CameraStorageInformation64[] info_structs = new CameraStorageInformation64[num];
+            for (int i = 0; i < num; i++) {
+                IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation64)) * i);
+                info_structs[i] = (CameraStorageInformation64)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation64) );
+            }
+			
+			CameraStorageInformation[] structs = new CameraStorageInformation[info_structs.Length];
+			for(int i=0; i < info_structs.Length; i++)
+			{
+				structs[i].access = info_structs[i].access;
+				structs[i].basedir = info_structs[i].basedir;
+				structs[i].capacitykbytes = (uint)info_structs[i].capacitykbytes;
+				structs[i].description = info_structs[i].description;
+				structs[i].fields = info_structs[i].fields;
+				structs[i].freeimages = (uint)info_structs[i].freeimages;
+				structs[i].freekbytes = (uint)info_structs[i].freekbytes;
+				structs[i].fstype = info_structs[i].fstype;
+				structs[i].label = info_structs[i].label;
+				structs[i].type = info_structs[i].type;
+			}
+            // Free the unmanaged array
+            Marshal.FreeHGlobal(p);
+            return structs;
+		}
+		
+		private CameraStorageInformation[] Get32BitStorageInformation(Context context)
+		{
+			int num = 0;        
             IntPtr p = new IntPtr();
             
             Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
@@ -235,7 +279,7 @@ namespace LibGPhoto2
             // Free the unmanaged array
             Marshal.FreeHGlobal(p);
             return info_structs;
-        }
+		}
                 
         public CameraList ListFiles (string folder, Context context)
         {
