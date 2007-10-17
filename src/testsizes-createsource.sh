@@ -39,7 +39,7 @@ EOF
 ;;
 cs)
 cat<<EOF
-using Gphoto2.Base;
+using LibGPhoto2;
 
 class TestSizes {
 
