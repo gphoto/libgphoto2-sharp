@@ -219,74 +219,28 @@ namespace LibGPhoto2
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_camera_get_storageinfo (HandleRef camera, [In, Out] ref IntPtr info, ref int number, HandleRef context);
 
-        public CameraStorageInformation[] GetStorageInformation (Context context)
+		public CameraStorageInformation[] GetStorageInformation (Context context)
         {
-			if (IntPtr.Size == 4)
-			{
-				Console.WriteLine("Using 32 bit method");
-				return Get32BitStorageInformation(context);
-			}
-			else
-			{
-				Console.WriteLine("Using 64bit method");
-				return Get64BitStorageInformation(context);
-			}
-        }
-		
-		private CameraStorageInformation[] Get64BitStorageInformation(Context context)
-		{
 			int num = 0;        
-            IntPtr p = new IntPtr();
-            
-            Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
-
-            CameraStorageInformation64[] info_structs = new CameraStorageInformation64[num];
-            for (int i = 0; i < num; i++) {
-                IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation64)) * i);
-                info_structs[i] = (CameraStorageInformation64)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation64) );
-            }
+			IntPtr p = new IntPtr();
 			
-			CameraStorageInformation[] structs = new CameraStorageInformation[info_structs.Length];
-			for(int i=0; i < info_structs.Length; i++)
-			{
-				structs[i].access = info_structs[i].access;
-				structs[i].basedir = info_structs[i].basedir;
-				structs[i].capacitykbytes = (uint)info_structs[i].capacitykbytes;
-				structs[i].description = info_structs[i].description;
-				structs[i].fields = info_structs[i].fields;
-				structs[i].freeimages = (uint)info_structs[i].freeimages;
-				structs[i].freekbytes = (uint)info_structs[i].freekbytes;
-				structs[i].fstype = info_structs[i].fstype;
-				structs[i].label = info_structs[i].label;
-				structs[i].type = info_structs[i].type;
+			Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
+			
+			CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
+			for (int i = 0; i < num; i++) {
+				IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation)) * i);
+				info_structs[i] = (CameraStorageInformation)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation) );
 			}
-            // Free the unmanaged array
-            Marshal.FreeHGlobal(p);
-            return structs;
+			
+			// Free the unmanaged array
+			Marshal.FreeHGlobal(p);
+			return info_structs;
 		}
 		
-		private CameraStorageInformation[] Get32BitStorageInformation(Context context)
+		public CameraList ListFiles (string folder, Context context)
 		{
-			int num = 0;        
-            IntPtr p = new IntPtr();
-            
-            Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
-
-            CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
-            for (int i = 0; i < num; i++) {
-                IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation)) * i);
-                info_structs[i] = (CameraStorageInformation)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation) );
-            }
+			CameraList file_list = new CameraList ();
 			
-            // Free the unmanaged array
-            Marshal.FreeHGlobal(p);
-            return info_structs;
-		}
-                
-        public CameraList ListFiles (string folder, Context context)
-        {
-            CameraList file_list = new CameraList ();
-            
             Error.CheckError (gp_camera_folder_list_files (this.Handle, folder, file_list.Handle, context.Handle));
 
             return file_list;
@@ -341,15 +295,15 @@ namespace LibGPhoto2
         {
             CameraFileInfo fileinfo;
             
-            Error.CheckError (gp_camera_file_get_info(this.Handle, folder, name, out fileinfo, context.Handle));
-            
-            return fileinfo;
+			Error.CheckError (gp_camera_file_get_info(this.Handle, folder, name, out fileinfo, context.Handle));
+
+			return fileinfo;
         }
         
         public void SetFileInfo (string folder, string name, CameraFileInfo fileinfo, Context context)
-        {
-            Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
-        }
+		{
+			Error.CheckError (gp_camera_file_set_info(this.Handle, folder, name, fileinfo, context.Handle));
+		}
         
         public CameraText GetManual (Context context)
         {

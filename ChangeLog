@@ -1,3 +1,10 @@
+2007-10-17  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Utilities.cs, src/Camera.cs, src/Makefile.am,
+	  src/Base/CameraFilesystem.cs, src/Base/Camera.cs, libgphoto2-sharp.mdp:
+	  Added detection for 64bit systems and return an empty camera list for
+	  those systems as they are not supported.
+
 2007-10-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Base/Camera.cs: Added debug out

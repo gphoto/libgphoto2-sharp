@@ -37,7 +37,8 @@ LIBGPHOTO2_SHARP_CSFILES =					\
 	$(srcdir)/Files/GenericFile.cs				\
 	$(srcdir)/Files/ImageFile.cs				\
 	$(srcdir)/Files/MusicFile.cs				\
-	$(srcdir)/Files/PlaylistFile.cs
+	$(srcdir)/Files/PlaylistFile.cs				\
+	$(srcdir)/Utilities.cs
 
 MCSFLAGS = -debug -r:Mono.Posix
 
