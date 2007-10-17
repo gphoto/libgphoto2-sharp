@@ -68,6 +68,7 @@ fi
 AC_CONFIG_FILES([
 Makefile
 m4m/Makefile
+Sample/Makefile
 src/Makefile
 src/AssemblyInfo.cs
 src/libgphoto2-sharp.pc

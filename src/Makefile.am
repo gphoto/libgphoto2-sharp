@@ -13,6 +13,9 @@
 #
 # This Makefile.am relies on a few variables defined in configure.in.
 
+CLEANFILES =
+EXTRA_DIST =
+
 LIBGPHOTO2_SHARP_CSFILES =					\
 	$(srcdir)/Base/Camera.cs				\
 	$(srcdir)/Base/CameraAbilitiesList.cs			\
@@ -41,8 +44,11 @@ MCSFLAGS = -debug -r:Mono.Posix
 DOC_UPDATER = @MONODOCER@ -delete
 DOC_ASSEMBLER = @MDASSEMBLER@ --out libgphoto2-sharp-docs --ecma
 
+# Docs
+EXTRA_DIST += libgphoto2-sharp-docs.source
+EXTRA_DIST += $(srcdir)/en/*.xml $(srcdir)/en/*/*.xml
+CLEANFILES += libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree
 if BUILD_DOCS
-dnl --- this is crap --- docdir = $(DOCDIR)
 doc_DATA = \
 	libgphoto2-sharp-docs.zip \
 	libgphoto2-sharp-docs.tree \
@@ -59,19 +65,25 @@ cslib_DATA =				\
 	libgphoto2-sharp.dll.config	\
 	libgphoto2-sharp.dll.mdb
 
+CLEANFILES += libgphoto2-sharp.dll.mdb libgphoto2-sharp.dll
+EXTRA_DIST += $(LIBGPHOTO2_SHARP_CSFILES)
+EXTRA_DIST += AssemblyInfo.cs.in
+EXTRA_DIST += libgphoto2-sharp.dll.config
 libgphoto2-sharp.dll.mdb: libgphoto2-sharp.dll
 libgphoto2-sharp.dll: $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 	$(MCS) $(MCSFLAGS) -out:$@ /target:library $(LIBGPHOTO2_SHARP_GENERATED_CSFILES) $(LIBGPHOTO2_SHARP_CSFILES)
 
-
+CLEANFILES += TestGphoto2Sharp.exe TestGphoto2Sharp.exe.mdb
 TestGphoto2Sharp.exe.mdb: TestGphoto2Sharp.exe
 TestGphoto2Sharp.exe: $(srcdir)/TestGphoto2Sharp.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
+CLEANFILES += TestSizes.exe TestSizes.exe.mdb
 TestSizes.exe.mdb: TestSizes.exe
 TestSizes.exe: TestSizes.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
 
+CLEANFILES += Sample.exe.mdb Sample.exe
 Sample.exe.mdb: Sample.exe
 Sample.exe: $(top_srcdir)/Sample/Main.cs libgphoto2-sharp.dll
 	$(MCS) $(MCSFLAGS) -out:$@ -r:libgphoto2-sharp.dll $<
@@ -94,33 +106,18 @@ testsizes_CPPFLAGS = $(AM_CPPFLAGS) $(LIBGPHOTO2_PORT_CFLAGS) $(LIBGPHOTO2_CFLAG
 TESTS = check-sizes.sh
 INSTALL_TESTS = check-camera-list.sh check-sample.sh
 
-CLEANFILES =							\
-	TestGphoto2Sharp.exe					\
-	TestGphoto2Sharp.exe.mdb				\
-	TestSizes.exe						\
-	TestSizes.exe.mdb					\
-	libgphoto2-sharp.dll.mdb				\
-	libgphoto2-sharp.dll					\
-	libgphoto2-sharp-docs.{tree,zip}			\
-	$(check_SCRIPTS)					\
-	$(BUILT_SOURCES)
+CLEANFILES += $(check_SCRIPTS)
+CLEANFILES += $(BUILT_SOURCES)
 
-EXTRA_DIST =							\
-	libgphoto2-sharp.dll.config				\
-	libgphoto2-sharp.pc.in					\
-	$(LIBGPHOTO2_SHARP_CSFILES)				\
-	AssemblyInfo.cs.in					\
+EXTRA_DIST += libgphoto2-sharp.pc.in
+
+EXTRA_DIST +=							\
 	TestGphoto2Sharp.cs					\
 	testsizes-typelist.txt					\
 	testsizes-createsource.sh				\
 	check-sample.sh.in					\
 	check-sizes.sh.in					\
-	check-camera-list.sh.in					\
-	$(srcdir)/en/*.xml					\
-	$(srcdir)/en/*/*.xml					\
-	libgphoto2-sharp-docs.source
-
-DISTCLEANFILES = libgphoto2-sharp-docs.zip libgphoto2-sharp-docs.tree
+	check-camera-list.sh.in
 
 testsizes.c: testsizes-typelist.txt $(srcdir)/testsizes-createsource.sh
 	sh $(srcdir)/testsizes-createsource.sh c < $< > $@
