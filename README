@@ -29,3 +29,130 @@ BUILDING:
   * configure
   * make
   * make install
+
+
+NOTE FOR 64BIT USERS:
+The binding currently does not support 64bit systems due to limitations
+in the libgphoto2 api. They expose 'long' types in their public API, which
+change from 32bit length to 64bit length based on both platform and the
+compiler used. There are currently three ways to work around this issue. I
+have listed them in order of how easy they are to complete:
+
+1) Alter the libgphoto2 API to expose the standard types such as int64_t
+and int32_t in place of the 'long' type which will give a guaranteed
+sized variable. This can be easily P/Invoked from C# (and Java). This
+would involve changing approximately a dozen places in code from 'long'
+to 'int64_t'.
+
+2) Write a glue wrapper in C which replicates the functions and structs
+which expose 'long' types and replace the 'long' with int32_t or int64_t
+and then P/Invoke the wrapper instead of the actual libgphoto2 API. The
+wrapper will be in control of converting from the libgphoto2 struct
+to the wrapper struct which will be the one returned to C#.
+
+3) Replicate the strutures and methods in C# to have ones that work
+with a 32bit long and 64bit long platform. Use runtime detection to
+decide what platform your on and then call the correct P/Invoke method.
+If you're on a 64bit platform, you'll then have to convert the 64bit struct
+to a 32bit struct and then return that. An example of this is done below.
+This method is *not* recommended.
+
+
+//FIXME: This is a nasty hack to make the library work on 32bit
+// and 64bit systems.
+[StructLayout (LayoutKind.Sequential)]
+public struct CameraStorageInformation
+{
+	public CameraStorageInfoFields fields;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string label;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string description;
+	public CameraStorageType type;
+	public CameraStorageFilesystemType fstype;
+	public CameraStorageAccessType access;
+	public uint capacitykbytes;
+	public uint freekbytes;
+	public uint freeimages;
+}
+
+[StructLayout (LayoutKind.Sequential)]
+public struct CameraStorageInformation64
+{
+	public CameraStorageInfoFields fields;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string label;
+	[MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string description;
+	public CameraStorageType type;
+	public CameraStorageFilesystemType fstype;
+	public CameraStorageAccessType access;
+	public long capacitykbytes;
+	public long freekbytes;
+	public long freeimages;
+}
+	
+
+	
+public CameraStorageInformation[] GetStorageInformation (Context context)
+{
+	if (IntPtr.Size == 4)
+	{
+		Console.WriteLine("Using 64bit method");
+		return Get64BitStorageInformation(context);
+	}
+	else
+	{
+		Console.WriteLine("Using 32bit method");
+		return Get32BitStorageInformation(context);
+	}
+}
+	
+private CameraStorageInformation[] Get64BitStorageInformation(Context context)
+{
+	int num = 0;	
+	IntPtr p = new IntPtr();
+	
+	Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
+	
+	CameraStorageInformation64[] info_structs = new CameraStorageInformation64[num];
+	for (int i = 0; i < num; i++) {
+		IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation64)) * i);
+		info_structs[i] = (CameraStorageInformation64)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation64) );
+	}
+		
+	CameraStorageInformation[] structs = new CameraStorageInformation[info_structs.Length];
+	for(int i=0; i < info_structs.Length; i++)
+	{
+		structs[i].access = info_structs[i].access;
+		structs[i].basedir = info_structs[i].basedir;
+		structs[i].capacitykbytes = (uint)info_structs[i].capacitykbytes;
+		structs[i].description = info_structs[i].description;
+		structs[i].fields = info_structs[i].fields;
+		structs[i].freeimages = (uint)info_structs[i].freeimages;
+		structs[i].freekbytes = (uint)info_structs[i].freekbytes;
+		structs[i].fstype = info_structs[i].fstype;
+		structs[i].label = info_structs[i].label;
+		structs[i].type = info_structs[i].type;
+	}
+		// Free the unmanaged array
+		Marshal.FreeHGlobal(p);
+		return structs;
+}
+	
+private CameraStorageInformation[] Get32BitStorageInformation(Context context)
+{
+	int num = 0;	
+	IntPtr p = new IntPtr();
+		
+	Error.CheckError(gp_camera_get_storageinfo (this.Handle, ref p, ref num, context.Handle));
+		
+	CameraStorageInformation[] info_structs = new CameraStorageInformation[num];
+	for (int i = 0; i < num; i++) {
+		IntPtr ptrStruct = new IntPtr(p.ToInt64() + Marshal.SizeOf(typeof(CameraStorageInformation)) * i);
+		info_structs[i] = (CameraStorageInformation)Marshal.PtrToStructure(ptrStruct, typeof(CameraStorageInformation) );
+	}
+	
+	// Free the unmanaged array
+	Marshal.FreeHGlobal(p);
+	return info_structs;
+}
+

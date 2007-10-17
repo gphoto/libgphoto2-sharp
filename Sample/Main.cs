@@ -21,9 +21,9 @@ namespace Sample
 		public static void Main(string[] args)
 		{
 			Console.WriteLine("Starting");
-			string xmlstring = "<a>ContentA</a>";//<b>ContentB</b><c>ContentC</c>";
+			string xmlstring = "<b>ContentB</b><c>ContentC</c>";
 			
-			Regex regex = new Regex("</?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)/?>");
+			Regex regex = new Regex("<\\s(\\S+?)[^>]*?>(.*?)</\\s*\\0\\s*>");
 			foreach (Match m  in regex.Matches(xmlstring))
 			{
 				Console.WriteLine(m.Value);
