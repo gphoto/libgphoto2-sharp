@@ -84,7 +84,7 @@ namespace LibGPhoto2
         
         public void Append (byte[] data)
         {
-            Error.CheckError (gp_file_append (this.Handle, data, (ulong)data.Length));
+            Error.CheckError (gp_file_append (this.Handle, data, new IntPtr(data.Length)));
         }
         
         public void Open (string filename)
@@ -177,7 +177,7 @@ namespace LibGPhoto2
             Marshal.Copy(data, 0, unmanagedData, data.Length);
             try
             {
-                Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, (ulong)data.Length));
+                Error.CheckError (gp_file_set_data_and_size (this.Handle, unmanagedData, new IntPtr(data.Length)));
             }
             catch
             {
@@ -190,17 +190,17 @@ namespace LibGPhoto2
         
         public byte[] GetDataAndSize ()
         {
-            ulong size;
+            IntPtr size;
             byte[] data;
             IntPtr data_addr;
             
             Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
             
-            if(data_addr == IntPtr.Zero || size == 0)
+            if(data_addr == IntPtr.Zero || size.ToInt32() == 0)
                 return new byte[0];
             
-            data = new byte[size];
-            Marshal.Copy(data_addr, data, 0, (int)size);            
+            data = new byte[size.ToInt32()];
+            Marshal.Copy(data_addr, data, 0, (int)size.ToInt32());            
             return data;
         }
 
@@ -214,7 +214,7 @@ namespace LibGPhoto2
         private static extern ErrorCode gp_file_unref (HandleRef file);
 
         [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_file_append (HandleRef file, byte[] data, ulong size);
+        private static extern ErrorCode gp_file_append (HandleRef file, byte[] data, IntPtr size);
 
         [DllImport ("libgphoto2.so")]
         private static extern ErrorCode gp_file_open (HandleRef file, string filename);
@@ -264,10 +264,10 @@ namespace LibGPhoto2
         private static extern ErrorCode gp_file_set_width_and_height (HandleRef file, int width, int height);
 
         [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_file_set_data_and_size (HandleRef file, IntPtr data, ulong size);
+        private static extern ErrorCode gp_file_set_data_and_size (HandleRef file, IntPtr data, IntPtr size);
 
         [DllImport ("libgphoto2.so")]
-        private static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);
+        private static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out IntPtr size);
 
 
     }

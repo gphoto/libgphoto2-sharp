@@ -82,7 +82,7 @@ namespace Gphoto2
 		public long Capacity
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.MaxCapacity)
-				? (long)storage.capacitykbytes * 1024 : -1; }
+				? storage.capacitykbytes.ToInt64() * 1024 : -1; }
 		}
 		
 		public string Description
@@ -100,7 +100,7 @@ namespace Gphoto2
 		public long FreeSpace
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FreeSpaceKbytes)
-				? (long)storage.freekbytes * 1024 : -1; }
+				? storage.freekbytes.ToInt64() * 1024 : -1; }
 		}
 		
 		public string Label

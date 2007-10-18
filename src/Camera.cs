@@ -167,9 +167,9 @@ namespace Gphoto2
 		/// <returns></returns>
 		public static List<Camera> Detect()
 		{
-			if (Utilities.Is64Bit)
+			if (Utilities.Is64Bit && !Environment.OSVersion.Platform == PlatformID.Unix)
 			{
-				Console.WriteLine("A 64bit system has been detected. This is not supported");
+				Console.WriteLine("A 64bit windows system has been detected. This is not supported");
 				Console.WriteLine("due to the complexity of interoperating with libgphoto2");
 				Console.WriteLine("as it exposes variable length 'long' types in it's API.");
 				Console.WriteLine("The API is unlikely to change before version 3 of the library");
