@@ -1,5 +1,10 @@
 2007-10-18  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Added the last-ditch parser to handle invalid XML in a sane
+	  way. It should work on 99% of the 'invalid' xml.
+
+2007-10-18  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Camera.cs: Compile fix
 
 2007-10-18  Alan McGovern <alan.mcgovern@gmail.com> 

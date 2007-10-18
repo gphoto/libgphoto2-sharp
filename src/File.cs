@@ -31,6 +31,7 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace Gphoto2
@@ -217,6 +218,12 @@ namespace Gphoto2
 			return DateTime.Now;
 		}
 		
+		// s = start tag
+		// v = value
+		// e = end tag
+		//                                  s:1                v    e
+		static Regex element = new Regex(@"<([^<>]+?)>(?<value>.*?)</\1>", RegexOptions.Compiled);
+		
 		protected void ParseMetadata(string metadata)
 		{
 			XmlReaderSettings s = new XmlReaderSettings();
@@ -234,12 +241,22 @@ namespace Gphoto2
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("Warning: Couldn't parse metadata for file: {0}", this.fileName);
-				Console.WriteLine("Please attach the following data to a bug report:");
-				Console.WriteLine(metadata);
-				Console.WriteLine(ex.ToString());
-				return;
+				// If the standard XmlReader fails, the XML is 'invalid', so
+				// try using the last-ditch parser. It's a regex to attempt to
+				// match start/end tags and extract the value.
+				this.metadata = ParseToDictionary(metadata);
 			}
+		}
+		
+		public static Dictionary<string, string> ParseToDictionary(string xml)
+		{
+			Dictionary<string, string> dictionary = new Dictionary<string, string>();
+			MatchCollection matches = element.Matches(xml);
+			
+			foreach (Match match in matches)
+				dictionary.Add(match.Groups[1].Value, match.Groups["value"].Value);
+			
+			return dictionary;
 		}
 		
 		protected void SetValue(string key, int value)
