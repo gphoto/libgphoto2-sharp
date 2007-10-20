@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum CameraDriverStatus
+    internal enum CameraDriverStatus
     {
         Production,
         Testing,
@@ -12,7 +13,7 @@ namespace LibGPhoto2
     }
     
 	[Flags()]
-    public enum CameraOperation
+    internal enum CameraOperation
     {
         None            = 0,
         CaptureImage    = 1 << 0,
@@ -23,7 +24,7 @@ namespace LibGPhoto2
     }
     
 	[Flags()]
-    public enum CameraFileOperation
+    internal enum CameraFileOperation
     {
         None        = 0,
         Delete      = 1 << 1,
@@ -34,7 +35,7 @@ namespace LibGPhoto2
     }
     
 	[Flags()]
-    public enum CameraFolderOperation
+    internal enum CameraFolderOperation
     {
         None                = 0,
         DeleteAll           = 1 << 0,
@@ -44,7 +45,7 @@ namespace LibGPhoto2
     }
     
     [StructLayout(LayoutKind.Sequential)]
-    public struct CameraAbilities
+    internal struct CameraAbilities
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string model;
         public CameraDriverStatus status;
@@ -75,7 +76,7 @@ namespace LibGPhoto2
         public int reserved8;
     }
     
-    public class CameraAbilitiesList : Object
+    internal class CameraAbilitiesList : Object
     {
         public CameraAbilitiesList()
         {

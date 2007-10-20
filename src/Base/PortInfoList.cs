@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public class PortInfoList : Object 
+    internal class PortInfoList : Object 
     {
         public PortInfoList()
         {

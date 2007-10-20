@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public class Context : Object
+    internal class Context : Object
     {
         public Context ()
         {

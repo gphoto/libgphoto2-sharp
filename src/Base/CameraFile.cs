@@ -1,10 +1,11 @@
 using Mono.Unix;
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum CameraFileType
+    internal enum CameraFileType
     {
         Preview,
         Normal,
@@ -14,13 +15,13 @@ namespace LibGPhoto2
         MetaData
     }
 
-    public enum CameraFileAccessType
+    internal enum CameraFileAccessType
     {
         Memory,
         Fd
     }
     
-    public static class MimeTypes
+    internal static class MimeTypes
     {
         [MarshalAs(UnmanagedType.LPTStr)] public const string WAV = "audio/wav";
         [MarshalAs(UnmanagedType.LPTStr)] public const string RAW = "image/x-raw";
@@ -43,7 +44,7 @@ namespace LibGPhoto2
         [MarshalAs(UnmanagedType.LPTStr)] public const string MPEG = "video/mpeg";
     }
 
-    public class CameraFile : Object 
+    internal class CameraFile : Object 
     {
         public CameraFile()
         {

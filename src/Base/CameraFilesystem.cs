@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum CameraFilePermissions
+    internal enum CameraFilePermissions
     {
         None = 0,
         Read = 1 << 0,
@@ -11,13 +12,13 @@ namespace LibGPhoto2
         All = 0xFF
     }
 
-    public enum CameraFileStatus
+    internal enum CameraFileStatus
     {
         NotDownloaded,
         Downloaded
     }
     
-    public enum CameraFileInfoFields
+    internal enum CameraFileInfoFields
     {
         None        = 0,
         Type        = 1 << 0,
@@ -32,7 +33,7 @@ namespace LibGPhoto2
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public struct CameraFileInfoAudio
+    internal struct CameraFileInfoAudio
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -41,7 +42,7 @@ namespace LibGPhoto2
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public struct CameraFileInfoPreview
+    internal struct CameraFileInfoPreview
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -52,7 +53,7 @@ namespace LibGPhoto2
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public struct CameraFileInfoFile
+    internal struct CameraFileInfoFile
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
@@ -67,7 +68,7 @@ namespace LibGPhoto2
     }
     
     [StructLayout (LayoutKind.Sequential)]
-    public struct CameraFileInfo
+    internal struct CameraFileInfo
     {
         public CameraFileInfoPreview preview;
         public CameraFileInfoFile file;
@@ -118,7 +119,7 @@ namespace LibGPhoto2
     }
 #endif
 
-    public enum CameraStorageInfoFields
+    internal enum CameraStorageInfoFields
     {
         Base            = 1 << 0,
         Label           = 1 << 1,
@@ -131,7 +132,7 @@ namespace LibGPhoto2
         FreeSpaceImages = 1 << 8
     }
 
-    public enum CameraStorageType
+    internal enum CameraStorageType
     {
         Unknown         = 0,
         FixedRom        = 1,
@@ -140,14 +141,14 @@ namespace LibGPhoto2
         RemovableRam    = 4
     }
     
-    public enum CameraStorageAccessType
+    internal enum CameraStorageAccessType
     {
         ReadWrite           = 0,
         ReadOnly            = 1,
         ReadOnlyWithDelete  = 2
     }
 
-    public enum CameraStorageFilesystemType
+    internal enum CameraStorageFilesystemType
     {
         Undefined           = 0,
         GenericFlat         = 1,
@@ -156,7 +157,7 @@ namespace LibGPhoto2
     }
 
     [StructLayout (LayoutKind.Sequential)]
-    public struct CameraStorageInformation
+    internal struct CameraStorageInformation
     {
         public CameraStorageInfoFields fields;
         [MarshalAs (UnmanagedType.ByValTStr, SizeConst=256)] public string basedir;
@@ -170,7 +171,7 @@ namespace LibGPhoto2
         public IntPtr freeimages;
     }
 	
-    public class CameraFilesystem : Object
+    internal class CameraFilesystem : Object
     {
         bool need_dispose;
         

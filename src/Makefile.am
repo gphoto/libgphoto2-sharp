@@ -32,12 +32,14 @@ LIBGPHOTO2_SHARP_CSFILES =					\
 								\
 	$(srcdir)/Abilities.cs					\
 	$(srcdir)/Camera.cs					\
+	$(srcdir)/ErrorCode.cs					\
 	$(srcdir)/File.cs					\
 	$(srcdir)/FileSystem.cs					\
 	$(srcdir)/Files/GenericFile.cs				\
 	$(srcdir)/Files/ImageFile.cs				\
 	$(srcdir)/Files/MusicFile.cs				\
 	$(srcdir)/Files/PlaylistFile.cs				\
+	$(srcdir)/GphotoException.cs				\
 	$(srcdir)/Utilities.cs
 
 MCSFLAGS = -debug -r:Mono.Posix

@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum CameraWidgetType 
+    internal enum CameraWidgetType 
     {               /* Value (get/set):     */
         GP_WIDGET_WINDOW,
         GP_WIDGET_SECTION,
@@ -16,7 +17,7 @@ namespace LibGPhoto2
         GP_WIDGET_DATE      /* int                  */
     }
     
-    public class CameraWidget : IDisposable
+    internal class CameraWidget : IDisposable
     {
         protected HandleRef handle;
         

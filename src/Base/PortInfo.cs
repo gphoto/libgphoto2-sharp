@@ -14,7 +14,7 @@ namespace LibGPhoto2
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] internal string library_filename;
     }
     
-    public class PortInfo 
+    internal class PortInfo 
     {
         internal _PortInfo Handle;
 

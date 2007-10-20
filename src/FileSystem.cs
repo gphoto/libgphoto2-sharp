@@ -140,9 +140,9 @@ namespace Gphoto2
 				camera.Device.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
 				return true;
 			}
-			catch(LibGPhoto2.GPhotoException ex)
+			catch(GPhotoException ex)
 			{
-				if(ex.Error != LibGPhoto2.ErrorCode.DirectoryNotFound)
+				if(ex.Error != ErrorCode.DirectoryNotFound)
 					throw;
 			}
 			return false;
@@ -158,9 +158,9 @@ namespace Gphoto2
 				GetFileInternal(directory, filename);
 				return true;
 			}
-			catch(LibGPhoto2.GPhotoException ex)
+			catch(GPhotoException ex)
 			{
-				if(ex.Error != LibGPhoto2.ErrorCode.FileNotFound)
+				if(ex.Error != ErrorCode.FileNotFound)
 					throw;
 			}
 			

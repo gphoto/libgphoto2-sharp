@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace LibGPhoto2
 {
-    public abstract class Object : IDisposable
+    internal abstract class Object : IDisposable
     {
 		private bool disposed;
         protected HandleRef handle;

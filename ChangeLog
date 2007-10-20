@@ -1,3 +1,16 @@
+2007-10-21  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/GphotoException.cs, src/ErrorCode.cs, src/FileSystem.cs,
+	  src/Base/CameraWidget.cs, src/Base/PortInfoList.cs,
+	  src/Base/CameraFilesystem.cs, src/Base/PortInfo.cs,
+	  src/Base/CameraList.cs, src/Base/Context.cs, src/Base/Port.cs,
+	  src/Base/Object.cs, src/Base/ErrorCodes.cs, src/Base/Camera.cs,
+	  src/Base/CameraFile.cs, src/Base/CameraAbilitiesList.cs: Since the old
+	  API has to be broken to support 64bit linux, i might as well go the
+	  whole hog and hide all the old API from public view to force dev's to
+	  switch to the newer API. This way when it changes again, the users won't
+	  be affected.
+
 2007-10-20  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/Camera.cs: If .Connect() fails, clean up and rethrow the exception

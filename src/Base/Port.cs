@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum PortType
+    internal enum PortType
     {
         None    = 0,
         Serial  = 1 << 0,
@@ -12,14 +13,14 @@ namespace LibGPhoto2
         PTPIP   = 1 << 4
     }
 
-    public enum PortSerialParity
+    internal enum PortSerialParity
     {
         Off = 0,
         Even,
         Odd
     }
     
-    public enum Pin
+    internal enum Pin
     {
         RTS,
         DTR,
@@ -29,7 +30,7 @@ namespace LibGPhoto2
         RING
     }
     
-    public enum Level
+    internal enum Level
     {
         Low = 0,
         High = 1
@@ -46,7 +47,7 @@ namespace LibGPhoto2
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct PortSettingsSerial
+    internal struct PortSettingsSerial
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public char[] port;
         public int speed;
@@ -56,7 +57,7 @@ namespace LibGPhoto2
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct PortSettingsUSB
+    internal struct PortSettingsUSB
     {
         public int inep, outep, intep;
         public int config;
@@ -65,14 +66,14 @@ namespace LibGPhoto2
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct PortSettingsDisk
+    internal struct PortSettingsDisk
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public char[] mountpoint;
     }
 
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct PortSettings
+    internal struct PortSettings
     {
         [FieldOffset(0)] public PortSettingsSerial serial;
         [FieldOffset(0)] public PortSettingsUSB usb;
@@ -145,7 +146,7 @@ namespace LibGPhoto2
     }
 #endif
 
-    public class Port : Object
+    internal class Port : Object
     {
         public Port()
         {

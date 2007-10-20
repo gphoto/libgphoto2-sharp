@@ -1,47 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public enum ErrorCode
-    {
-        /* libgphoto2_port errors */
-        GeneralError        = -1,
-        BadParameters       = -2,
-        NoMemory            = -3,
-        Library             = -4,
-        UnknownPort         = -5,
-        NotSupported        = -6,
-        IO                  = -7,
-        Timout              = -10,
-        SupportedSerial     = -20,
-        SupportedUSB        = -21,
-        Init                = -31,
-        Read                = -34,
-        Write               = -35,
-        Update              = -37,
-        SerialSpeed         = -41,
-        USBClearHalt        = -51,
-        USBFind             = -52,
-        USBClaim            = -53,
-        Lock                = -60,
-        Hal                 = -70,
-
-        /* libgphoto2 errors */
-        CorruptedData       = -102,
-        FileExists          = -103,
-        ModelNotFound       = -105,
-        DirectoryNotFound   = -107,
-        FileNotFound        = -108,
-        DirectoryExists     = -109,
-        CameraBusy          = -110,
-        PathNotAbsolute     = -111,
-        Cancel              = -112,
-        CameraError         = -113,
-        OsFailure           = -114
-    }
-
-    public class Error
+    internal class Error
     {
         private static string GetErrorAsString(ErrorCode e)
         {
@@ -55,12 +18,12 @@ namespace LibGPhoto2
             return Marshal.PtrToStringAnsi(raw_message);
         }
         
-        public static bool IsError (ErrorCode error_code)
+        internal static bool IsError (ErrorCode error_code)
         {
             return (error_code < 0);
         }
         
-        public static GPhotoException ErrorException (ErrorCode error_code)
+        internal static GPhotoException ErrorException (ErrorCode error_code)
         {
             string message = "Unknown Error";
             int error_code_int = (int) error_code;
@@ -73,7 +36,7 @@ namespace LibGPhoto2
             return new GPhotoException(error_code, message);
         }
         
-        public static ErrorCode CheckError (ErrorCode error)
+        internal static ErrorCode CheckError (ErrorCode error)
         {
             if (IsError (error))
                 throw ErrorException (error);
@@ -86,34 +49,5 @@ namespace LibGPhoto2
         
         [DllImport ("libgphoto2_port.so")]
         private static extern IntPtr gp_port_result_as_string (ErrorCode result);
-    }
-    
-    public class GPhotoException : Exception
-    {
-        private ErrorCode error;
-        
-        public GPhotoException(ErrorCode error_code)
-        : base ("Unknown Error.")
-        {
-            error = error_code;
-        }
-        
-        public GPhotoException (ErrorCode error_code, string message)
-        : base (message)
-        {
-            error = error_code;
-        }
-        
-        public override string ToString()
-        {
-            return ("Error " + error.ToString() + ": " + base.ToString());
-        }
-
-        public ErrorCode Error
-        {
-            get {
-                return error;
-            }
-        }
     }
 }

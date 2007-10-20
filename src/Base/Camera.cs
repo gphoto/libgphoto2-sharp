@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
@@ -14,7 +15,7 @@ namespace LibGPhoto2
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct CameraText
+    internal struct CameraText
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=(32*1024))] string text;
         
@@ -83,13 +84,13 @@ namespace LibGPhoto2
 #endif
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct CameraFilePath
+    internal struct CameraFilePath
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string name;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string folder;
     }
 
-    public enum CameraCaptureType
+    internal enum CameraCaptureType
     {
         Image,
         Movie,
@@ -114,7 +115,7 @@ namespace LibGPhoto2
         }
     }
     
-    public class Camera : Object 
+    internal class Camera : Object 
     {
         public Camera()
         {

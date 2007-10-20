@@ -1,9 +1,10 @@
 using System;
 using System.Runtime.InteropServices;
+using Gphoto2;
 
 namespace LibGPhoto2
 {
-    public class CameraList : Object
+    internal class CameraList : Object
     {
         public CameraList ()
         {
