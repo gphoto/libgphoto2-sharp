@@ -1,3 +1,7 @@
+2007-10-20  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Camera.cs: If .Connect() fails, clean up and rethrow the exception
+
 2007-10-18  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs: Added the last-ditch parser to handle invalid XML in a sane

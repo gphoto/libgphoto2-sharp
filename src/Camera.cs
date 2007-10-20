@@ -140,8 +140,16 @@ namespace Gphoto2
 			}
 			catch
 			{
-				Disconnect();
-				return;
+				try
+				{
+					using (camera)
+						camera.Exit(context);
+				}
+				finally
+				{
+					camera = null;
+				}	
+				throw;
 			}
 			connected = true;
 		}
