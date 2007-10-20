@@ -1,3 +1,8 @@
+libgphoto2-sharp 2.4.0
+  * API breakage. A new abstracted API has been implemented which should
+    greatly simplify the usage of the library.
+  * Now properly supports 64bit systems (except for win64)
+
 libgphoto2-sharp 2.3.99.0.trunk
   * moved everything into new namespace, Gphoto2.Base to make space for
     new abstracted API.

@@ -32,7 +32,7 @@ BUILDING:
 
 
 NOTE FOR 64BIT USERS:
-The binding currently does not support 64bit systems due to limitations
+The binding currently does not support 64bit windows systems due to limitations
 in the libgphoto2 api. They expose 'long' types in their public API, which
 change from 32bit length to 64bit length based on both platform and the
 compiler used. There are currently three ways to work around this issue. I
