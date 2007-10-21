@@ -36,6 +36,17 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
+
+	/** \brief Ndim says this is a file class.
+	 *
+ 	 * Foo bar blah blah bleh.
+ 	 * Foo bar blah blah bleh.
+ 	 * <ul>
+ 	 *   <li>Foo bar blah blah bleh.</li>
+ 	 *   <li>Foo bar blah blah bleh.</li>
+ 	 * </ul>
+ 	 * Foo bar blah blah bleh.
+ 	 */
 	public abstract class File
 	{
 		private Camera camera;

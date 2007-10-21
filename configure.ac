@@ -28,6 +28,11 @@ AC_LIBTOOL_WIN32_DLL
 AC_LIBTOOL_DLOPEN
 AM_PROG_LIBTOOL
 
+dnl --- Documentation
+GP_CHECK_DOC_DIR()dnl
+GP_CHECK_DOXYGEN()dnl
+GP_INTERNAL_DOCS()dnl
+
 dnl --- Find directory to install .pc into
 pkgconfigdir='${libdir}/pkgconfig'
 AC_SUBST([pkgconfigdir])
@@ -67,6 +72,9 @@ fi
 
 AC_CONFIG_FILES([
 Makefile
+doc/Makefile
+doc/Doxyfile
+doc/Doxyfile-internals
 m4m/Makefile
 Sample/Makefile
 src/Makefile

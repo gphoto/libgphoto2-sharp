@@ -1,5 +1,5 @@
 EXTRA_DIST =
-SUBDIRS = src m4m Sample
+SUBDIRS = src m4m Sample doc
 ACLOCAL_AMFLAGS = -I m4m -I shamrock
 EXTRA_DIST += README.shamrock COPYING.shamrock
 EXTRA_DIST += shamrock/expansions.m4
