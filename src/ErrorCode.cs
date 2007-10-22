@@ -8,6 +8,10 @@ using System;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents all the possible errorcodes that can be
+	/// returned by libgphoto2
+	/// </summary>
 	public enum ErrorCode
 	{
 		/* libgphoto2_port errors */

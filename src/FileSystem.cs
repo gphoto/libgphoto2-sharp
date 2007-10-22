@@ -33,16 +33,29 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents a storage medium on the device
+	/// </summary>
 	public class FileSystem
 	{
+		// The camera that this filesystem is on
 		private Camera camera;
+		
+		// The struct which contains the information for this filesystem
 		private LibGPhoto2.CameraStorageInformation storage;
 		
+		/// <value>
+		/// The root directory for the filesystem. All paths must be prepended with this value
+		/// before being sent to the device
+		/// </value>
 		internal string BaseDirectory
 		{
 			get { return HasField( LibGPhoto2.CameraStorageInfoFields.Base) ? storage.basedir : null;}
 		}
 		
+		/// <value>
+		/// True if the filesystem supports file deletion.
+		/// </value>
 		public bool CanDelete
 		{
 			get 
@@ -55,6 +68,9 @@ namespace Gphoto2
 			}
 		}
 		
+		/// <value>
+		/// True if the filesystem supports reading
+		/// </value>
 		public bool CanRead
 		{
 			get
@@ -68,6 +84,9 @@ namespace Gphoto2
 			}
 		}
 
+		/// <value>
+		/// True if the filesystem supports writing
+		/// </value>
 		public bool CanWrite
 		{
 			get
@@ -79,42 +98,63 @@ namespace Gphoto2
 			}
 		}
 
+		/// <value>
+		/// The capacity of the filesystem in bytes
+		/// </value>
 		public long Capacity
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.MaxCapacity)
 				? storage.capacitykbytes.ToInt64() * 1024 : -1; }
 		}
 		
+		/// <value>
+		/// A verbose description of the filesystem
+		/// </value>
 		public string Description
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.Description)
 				? storage.description : ""; }
 		}
 
+		/// <value>
+		/// The type of filesystem hierarchy in use
+		/// </value>
 		internal LibGPhoto2.CameraStorageFilesystemType FilesystemType	
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FilesystemType)
 				? storage.fstype : LibGPhoto2.CameraStorageFilesystemType.Undefined; }
 		}
 		
+		/// <value>
+		/// The free space of the filesystem in bytes
+		/// </value>
 		public long FreeSpace
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FreeSpaceKbytes)
 				? storage.freekbytes.ToInt64() * 1024 : -1; }
 		}
 		
+		/// <value>
+		/// The label of the filesystem
+		/// </value>
 		public string Label
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.Label) 
 				? storage.label : ""; }
 		}
 		
+		/// <value>
+		/// The type of hardware the filesystem is on
+		/// </value>
 		internal LibGPhoto2.CameraStorageType StorageType
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.StorageType)
 				? storage.type : LibGPhoto2.CameraStorageType.Unknown; }
 		}
 		
+		/// <value>
+		/// The amount of space which has been used in bytes
+		/// </value>
 		public long UsedSpace
 		{
 			get { return Capacity - FreeSpace; }
@@ -127,12 +167,34 @@ namespace Gphoto2
 			this.storage = storage;
 		}
 		
+		/// <summary>
+		/// True if the file can fit on this filesystem
+		/// </summary>
+		/// <param name="file"> The file to check if it can be uploaded
+		/// A <see cref="File"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Boolean"/> True if the file fits
+		/// </returns>
 		public bool CanUpload(File file)
 		{
+			if (file == null)
+				throw new ArgumentNullException("file");
+			
 			return FreeSpace > file.Size;
 		}
 		
 		// FIXME: These are nasty hacks as there is no API for this
+		/// <summary>
+		/// Checks to see if the given directory exists on the filesystem
+		/// </summary>
+		/// <param name="directory">The directory to check if it exists. A null value is treated as
+		/// an empty string, which means the base directory.
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>
+		/// A <see cref="System.Boolean"/>
+		/// </returns>
 		public bool Contains(string directory)
 		{
 			try
@@ -148,6 +210,19 @@ namespace Gphoto2
 			return false;
 		}
 		
+		/// <summary>
+		/// Checks to see if the given file exists in the given directory
+		/// </summary>
+		/// <param name="directory">The directory where the file should be
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The name of the file
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>True if the file exists in the given directory, false if the directory doesn't
+		/// exist or if the file doesn't exist.
+		/// A <see cref="System.Boolean"/>
+		/// </returns>
 		public bool Contains(string directory, string filename)
 		{
 			if(!Contains(directory))
@@ -167,16 +242,51 @@ namespace Gphoto2
 			return false;
 		}
 		
+		public bool Contains (File file)
+		{
+			if (file == null)
+				throw new ArgumentNullException("file");
+			
+			return file.FileSystem == this;
+		}
+		
+		/// <summary>
+		/// Counts the number of files in the base directory
+		/// </summary>
+		/// <returns>The number of files
+		/// A <see cref="System.Int32"/>
+		/// </returns>
 		public int Count()
 		{
 			return Count("");
 		}
 		
+		/// <summary>
+		/// Counts the number of files in the specified directory
+		/// </summary>
+		/// <param name="directory">The directory to count the number of files in
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>The number of files
+		/// A <see cref="System.Int32"/>
+		/// </returns>
 		public int Count(string directory)
 		{
 			return Count(directory, false);
 		}
 		
+		/// <summary>
+		/// Counts the number of files in the specified directory and subdirectories (if recursive)
+		/// </summary>
+		/// <param name="directory">The directory to count the number of files in
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="recursive">True if files in all subdirectories should be counted too
+		/// A <see cref="System.Boolean"/>
+		/// </param>
+		/// <returns>The number of files
+		/// A <see cref="System.Int32"/>
+		/// </returns>
 		public int Count(string directory, bool recursive)
 		{
 			directory = CombinePath(BaseDirectory, directory);
@@ -199,7 +309,13 @@ namespace Gphoto2
 			
 			return count;
 		}
-		
+	
+		/// <summary>
+		/// Creates the supplied path on the device if it doesn't already exist
+		/// </summary>
+		/// <param name="path">The path to create
+		/// A <see cref="System.String"/>
+		/// </param>
 		public void CreateDirectory(string path)
 		{
 			if(string.IsNullOrEmpty(path))
@@ -233,6 +349,15 @@ namespace Gphoto2
 			camera.Device.MakeDirectory(path, foldername, camera.Context);
 		}
 		
+		/// <summary>
+		/// Deletes the specified file from the specified directory
+		/// </summary>
+		/// <param name="directory">The directory to delete the file from (can be null)
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The name of the file to delete
+		/// A <see cref="System.String"/>
+		/// </param>
 		public void DeleteFile(string directory, string filename)
 		{
 			if(string.IsNullOrEmpty(filename))
@@ -241,19 +366,41 @@ namespace Gphoto2
 			camera.Device.DeleteFile(CombinePath(BaseDirectory, directory), filename, camera.Context);
 		}
 		
+		/// <summary>
+		/// Deletes the specified file from the filesystem
+		/// </summary>
+		/// <param name="file">The file to delete
+		/// A <see cref="File"/>
+		/// </param>
 		public void DeleteFile(File file)
 		{
-			if(file == null)
+			if (file == null)
 				throw new ArgumentNullException("file");
 			
 			DeleteFile(file.Path, file.Filename);
 		}
 		
+		/// <summary>
+		/// Deletes all the files in the specified path
+		/// </summary>
+		/// <param name="path">The path to delete all the files in
+		/// A <see cref="System.String"/>
+		/// </param>
 		public void DeleteAll(string folder)
 		{
 			DeleteAll(folder, false);
 		}
 		
+		/// <summary>
+		/// Deletes all the files in a specified path. If removeFolder is true, the folder is
+		/// deleted if it is empty.
+		/// </summary>
+		/// <param name="folder">The path to delete all the files in
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="removeFolder">True if the folder should be removed
+		/// A <see cref="System.Boolean"/>
+		/// </param>
 		public void DeleteAll(string folder, bool removeFolder)
 		{
 			if(folder == null)
@@ -276,6 +423,18 @@ namespace Gphoto2
 			return File.Create(camera, this, directory, filename);
 		}
 		
+		/// <summary>
+		/// Gets the file at the specified path with the specified filename
+		/// </summary>
+		/// <param name="directory">The path to check for the file at
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The name of the file to get
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>A file object representing the file
+		/// A <see cref="File"/>
+		/// </returns>
 		public File GetFile(string directory, string filename)
 		{
 			if(string.IsNullOrEmpty(filename))
@@ -284,6 +443,15 @@ namespace Gphoto2
 			return GetFileInternal(directory, filename);
 		}
 		
+		/// <summary>
+		/// Gets all the files at the specified path
+		/// </summary>
+		/// <param name="directory">The path to get the files at 
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>An array containing all the files found
+		/// A <see cref="File"/>
+		/// </returns>
 		public File[] GetFiles(string directory)
 		{
 			string fullDirectory = CombinePath(BaseDirectory, directory);
@@ -299,11 +467,26 @@ namespace Gphoto2
 			}
 		}
 		
+		/// <summary>
+		/// Lists all the folders found in the root directory
+		/// </summary>
+		/// <returns>An array containing all the folders
+		/// A <see cref="System.String"/>
+		/// </returns>
 		public string[] GetFolders()
 		{
 			return GetFolders("");
 		}
 
+		/// <summary>
+		/// Lists all the folders found at the specified path
+		/// </summary>
+		/// <param name="directory">
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>An array containing the names of all the directories
+		/// A <see cref="System.String"/>
+		/// </returns>
 		public string[] GetFolders(string directory)
 		{			
 			using (LibGPhoto2.CameraList list = camera.Device.ListFolders(CombinePath(BaseDirectory, directory), camera.Context))
@@ -339,15 +522,52 @@ namespace Gphoto2
 				directory = CombinePath(directory, parts[i]);
 		}
 		
-		// FIXME: I can do some sanity checks to make sure i can actually upload
-		// which will speed things up hugely in cases where uploading is not possible
+		
+		/// <summary>
+		/// Uploads the specified file into the specified path
+		/// </summary>
+		/// <param name="file">The file to upload
+		/// A <see cref="File"/>
+		/// </param>
+		/// <param name="path">The path where the file should be uploaded to
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>An object representing the file on the camera
+		/// A <see cref="File"/>
+		/// </returns>
 		public File Upload(File file, string directory)
 		{
+			if (file == null)
+				throw new ArgumentNullException("file");
+			
 			return Upload(file, directory, file.Filename);
 		}
 
+		
+		/// <summary>
+		/// Uploads the specified file into the specified path saving it with the specified
+		/// filename
+		/// </summary>
+		/// <param name="file">The file to upload
+		/// A <see cref="File"/>
+		/// </param>
+		/// <param name="directory">The path where the file should be uploaded to
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The filename to save the file as on the filesystem
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>An object representing the file on the camera
+		/// A <see cref="File"/>
+		/// </returns>
 		public File Upload(File file, string directory, string filename)
 		{
+			if (file == null)
+				throw new ArgumentNullException("file");
+			
+			if (string.IsNullOrEmpty(filename))
+				throw new ArgumentException("filename cannot be null or empty");
+			
 			if(!Contains(directory))
 				CreateDirectory(directory);
 			
@@ -396,6 +616,18 @@ namespace Gphoto2
 			return (storage.access & field) == field;
 		}
 		
+		/// <summary>
+		/// Combines paths in the correct format to be used to access files on the filesystem
+		/// </summary>
+		/// <param name="path1">The first part of the path
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="path2">The second part of the path
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>A string containing the second path appended to the first path
+		/// A <see cref="System.String"/>
+		/// </returns>
 		public static string CombinePath(string path1, string path2)
 		{
 			if(string.IsNullOrEmpty(path2) || path2 == Camera.DirectorySeperator.ToString())

@@ -36,17 +36,9 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
-
-	/** \brief Ndim says this is a file class.
-	 *
- 	 * Foo bar blah blah bleh.
- 	 * Foo bar blah blah bleh.
- 	 * <ul>
- 	 *   <li>Foo bar blah blah bleh.</li>
- 	 *   <li>Foo bar blah blah bleh.</li>
- 	 * </ul>
- 	 * Foo bar blah blah bleh.
- 	 */
+	/// <summary>
+	/// The base class which represents a File on the camera
+	/// </summary>
 	public abstract class File
 	{
 		private Camera camera;
@@ -59,24 +51,41 @@ namespace Gphoto2
 		private string path;
 		private long size;
 		
+		/// <value>
+		/// The date when the file was added to the device
+		/// </value>
 		public DateTime DateAdded
 		{
 			get { return ParseDate(GetString("DateAdded")); }
 		}
 		
+		/// <value>
+		/// The date when the file was created
+		/// </value>
 		public DateTime DateCreated
 		{
 			get { return ParseDate(GetString("DateCreated")); }
 		}
 		
+		/// <value>
+		/// The date the file was last modified on
+		/// </value>
 		public DateTime DateModified
 		{
 			get { return ParseDate(GetString("DateModified")); }
 		}
 		
+		/// <value>
+		/// The name of the file
+		/// </value>
 		public string Filename
 		{
 			get { return fileName; }
+		}
+		
+		internal FileSystem FileSystem
+		{
+			get { return this.filesystem; }
 		}
 		
 		/// <value>
@@ -88,16 +97,25 @@ namespace Gphoto2
 			protected set { dirty = value; }
 		}
 		
+		/// <value>
+		/// The date when the file was last played
+		/// </value>
 		public DateTime LastPlayed
 		{
 			get { return ParseDate(GetString("LastAccessed")); }
 		}
 		
+		/// <value>
+		/// True if the file is on the local filesystem, false if the file is on the MTP device
+		/// </value>
 		public bool LocalFile
 		{
 			get { return localFile; }
 		}
 		
+		/// <value>
+		/// A list of key/value pairs representing the metadata stored for the file
+		/// </value>
 		public Dictionary<string, string> Metadata
 		{
 			get { return metadata; }
@@ -109,13 +127,16 @@ namespace Gphoto2
 		}
 		
 		/// <value>
-		/// The fully qualified path to the file
+		/// The path to the file
 		/// </value>
 		public string Path
 		{
 			get { return path; }
 		}
 		
+		/// <value>
+		/// The rating of the file
+		/// </value>
 		public int Rating
 		{
 			  get { return GetInt("Rating"); }
@@ -153,7 +174,7 @@ namespace Gphoto2
 		
 		// When the user creates a file, it can only reference a local file
 		// So we only need the path to the file and it's filename
-		public File(string path, string filename)
+		protected File(string path, string filename)
 			: this (null, null, "", path, filename, true)
 		{
 			
@@ -175,13 +196,21 @@ namespace Gphoto2
 				return file.GetDataAndSize();
 		}
 		
+
 		/// <summary>
 		/// Reads the entire file and writes it to the supplied stream
 		/// </summary>
-		public void Download(Stream stream)
+		/// <param name="stream">
+		/// A <see cref="Stream"/>
+		/// </param>
+		/// <returns>The number of bytes written
+		/// A <see cref="System.Int32"/>
+		/// </returns>
+		public long Download(Stream stream)
 		{
 			byte[] data = Download();
 			stream.Write(data, 0, data.Length);
+			return data.LongLength;
 		}
 		
 		protected int GetInt(string key)
@@ -259,7 +288,7 @@ namespace Gphoto2
 			}
 		}
 		
-		public static Dictionary<string, string> ParseToDictionary(string xml)
+		internal static Dictionary<string, string> ParseToDictionary(string xml)
 		{
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
 			MatchCollection matches = element.Matches(xml);
@@ -293,21 +322,18 @@ namespace Gphoto2
 		}
 		
 		/// <summary>
-		/// Updates the metadata of the file on the camara
+		/// Synchronises the file metadata with the camera
 		/// </summary>
-		/// <param name="file">
-		/// A <see cref=" LibGPhoto2.CameraFile"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="File"/>
-		/// </returns>
 		public void Update()
 		{
 			if(LocalFile)
 				throw new InvalidOperationException("Cannot update metadata on a local file");
 			
+			if (!IsDirty)
+				return;
+			
 			string metadata = MetadataToXml();
-			using ( LibGPhoto2.CameraFile file = new  LibGPhoto2.CameraFile())
+			using (LibGPhoto2.CameraFile file = new  LibGPhoto2.CameraFile())
 			{
 				file.SetFileType( LibGPhoto2.CameraFileType.MetaData);
 				file.SetName(Filename);
@@ -316,16 +342,7 @@ namespace Gphoto2
 			}
 			dirty = false;
 		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="file">
-		/// A <see cref=" LibGPhoto2.CameraFile"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="File"/>
-		/// </returns>
+
 		internal static File Create(Camera camera, FileSystem fs, string directory, string filename)
 		{
 			 LibGPhoto2.CameraFile metadataFile;

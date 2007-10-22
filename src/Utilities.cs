@@ -10,13 +10,16 @@ namespace Gphoto2
 {
 	public static class Utilities
 	{
+		/// <value>
+		/// Returns true if the system has 64bit 
+		/// </value>
 		public static bool Is64Bit
 		{
 			get
 			{
 				// Long's are 32bit if we're on windows, so we support that
-				if (System.IO.Path.DirectorySeparatorChar == '\\')
-					return false;
+				//if (System.IO.Path.DirectorySeparatorChar == '\\')
+				//	return false;
 				
 				// Otherwise we're on linux and longs are the same size as a pointer
 				// so if it's size is 8, we have 64bit longs

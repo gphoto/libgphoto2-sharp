@@ -32,6 +32,9 @@ using LibGPhoto2;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents all the functions the camera supports
+	/// </summary>
 	public class Abilities
 	{
 		private CameraAbilities abilities;
@@ -45,6 +48,9 @@ namespace Gphoto2
 			get { return HasField(CameraFileOperation.Delete); }
 		}
 		
+		/// <value>
+		/// True if the device supports prefiewing the view finder
+		/// </value>
 		public bool CanPreviewViewfinder
 		{
 			get { return HasField(CameraFileOperation.Preview);}
@@ -112,26 +118,41 @@ namespace Gphoto2
 		
 
 		/* Camera Operations */
+		/// <value>
+		/// True if the device can capture images
+		/// </value>
 		public bool CanCaptureImages
 		{
 			get { return HasField(CameraOperation.CaptureImage); }
 		}
 		
+		/// <value>
+		/// True if the device can capture video
+		/// </value>
 		public bool CanCaptureVideo
 		{
 			get { return HasField(CameraOperation.CaptureVideo); }
 		}
 		
+		/// <value>
+		/// True if the device can capture audio
+		/// </value>
 		public bool CanCaptureAudio
 		{
 			get { return HasField(CameraOperation.CaptureAudio); }
 		}
 		
+		/// <value>
+		/// True if the device can preview captures
+		/// </value>
 		public bool CanCapturePreview
 		{
 			get { return HasField(CameraOperation.CapturePreview); }
 		}
 		
+		/// <value>
+		/// True if the device supports user configuration
+		/// </value>
 		public bool CanConfigureCamera
 		{
 			get { return HasField(CameraOperation.Config); }

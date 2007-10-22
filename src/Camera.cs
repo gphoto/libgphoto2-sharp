@@ -33,6 +33,9 @@ using LibGPhoto2;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// This represents an MTP device
+	/// </summary>
     public class Camera : IDisposable
     {
 		public static char DirectorySeperator = '/';
@@ -47,57 +50,90 @@ namespace Gphoto2
 		private int usbBusNumber;
 		private int usbDeviceNumber;
 		
-		
+		/// <value>
+		/// The functions which the camera supports
+		/// </value>
 		public Abilities Abilities
 		{
 			get { return this.abilities; }
 		}
+
 		
-		public int UsbBusNumber
-		{
-		    get { return usbBusNumber; }
-		}
-		
+		/// <value>
+		/// The camera that this object is wrapping
+		/// </value>
 		internal LibGPhoto2.Camera Device
 		{
 			get { return camera; }
 		}
 		
-		public int UsbDeviceNumber
-		{
-		    get { return usbDeviceNumber; }
-		}
-		
+		/// <value>
+		/// The context which we need to pass libgphoto for every operation
+		/// </value>
 		internal LibGPhoto2.Context Context
 		{
 			get { return context; }
 		}
 		
+		/// <value>
+		/// True if the device has been connected to
+		/// </value>
 		public bool Connected
 		{
 			get { return connected; }
 		}
 		
+		/// <value>
+		/// True if the device has been disposed
+		/// </value>
 		public bool Disposed
 		{
 			get { return disposed; }
 		}
 		
+		/// <value>
+		/// The list of all filesystems on the device
+		/// </value>
 		public List<FileSystem> FileSystems
 		{
 			get { return fileSystems; }
 		}
 		
+		/// <value>
+		/// The name of the device
+		/// </value>
 		public string Name
 		{
 			get { return baseAbilities.model; }
 		}
 		
+		/// <value>
+		/// The product id of the device
+		/// </value>
 		public int Product
 		{
 			get { return baseAbilities.usb_product; }
 		}
 		
+		/// <value>
+		/// The number of the UsbBus that the device is connected to
+		/// </value>
+		public int UsbBusNumber
+		{
+			get { return usbBusNumber; }
+		}
+		
+		/// <value>
+		/// The number of the UsbPort that the device is connected to
+		/// </value>
+		public int UsbDeviceNumber
+		{
+			get { return usbDeviceNumber; }
+		}
+		
+		/// <value>
+		/// The vendor ID for the device
+		/// </value>
 		public int Vendor
 		{
 			get { return baseAbilities.usb_vendor; }
@@ -124,6 +160,9 @@ namespace Gphoto2
 				throw new GPhotoException(ErrorCode.GeneralError, "Camera has already been connected to");
 		}
 		
+		/// <summary>
+		/// Connect to the device 
+		/// </summary>
 		public void Connect()
 		{
 			CheckConnected(false);
@@ -140,20 +179,15 @@ namespace Gphoto2
 			}
 			catch
 			{
-				try
-				{
-					using (camera)
-						camera.Exit(context);
-				}
-				finally
-				{
-					camera = null;
-				}	
+				camera.Exit(context);
 				throw;
 			}
 			connected = true;
 		}
 		
+		/// <summary>
+		/// Disconnect from the device
+		/// </summary>
 		public void Disconnect()
 		{
 			CheckConnected(true);
@@ -172,7 +206,7 @@ namespace Gphoto2
 		/// <summary>
 		/// Detects all usable cameras which are connected to the system
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A list containing all cameras which can be connected to</returns>
 		public static List<Camera> Detect()
 		{
 			if (Utilities.Is64Bit && Environment.OSVersion.Platform != PlatformID.Unix)
@@ -219,6 +253,9 @@ namespace Gphoto2
 			return cameras;
 		}
 		
+		/// <summary>
+		/// Disposes of the device
+		/// </summary>
 		public void Dispose()
 		{
 			if(Disposed)
@@ -231,6 +268,9 @@ namespace Gphoto2
 			disposed = true;
 		}
 		
+		/// <summary>
+		/// Disconnects from the device, then reconnects again
+		/// </summary>
 		public void Reconnect()
 		{
 			Disconnect();

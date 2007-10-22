@@ -30,6 +30,9 @@ using System;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents an exception that occurs while accessing a camera
+	/// </summary>
 	public class GPhotoException : Exception
     {
 		private ErrorCode error;
