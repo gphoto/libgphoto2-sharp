@@ -31,6 +31,10 @@ using System;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents a generic file on the camera. This is used to represent a file that isn't an
+	/// image, playlist or music file
+	/// </summary>
 	public class GenericFile : File
 	{
 		internal GenericFile (Camera camera, FileSystem fs, string metadata, string path, string filename, bool local)
@@ -39,6 +43,15 @@ namespace Gphoto2
 			
 		}
 		
+		/// <summary>
+		/// Creates a new generic file
+		/// </summary>
+		/// <param name="path">The path to the file
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The filename
+		/// A <see cref="System.String"/>
+		/// </param>
 		public GenericFile (string path, string filename)
 			: base (null, null, "", path, filename, true)
 		{

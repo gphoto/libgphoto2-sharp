@@ -152,6 +152,27 @@ namespace Gphoto2
 			internal set { size = value; } // FIXME: This is a hack to workaround a libgphoto2 issue for uploading new files
 		}
 		
+		/// <summary>
+		/// Creates a new File
+		/// </summary>
+		/// <param name="camera">The camera this file is on (null if the file is a local file)
+		/// A <see cref="Camera"/>
+		/// </param>
+		/// <param name="fs">The filesystem this file is on (null if the file is a local file)
+		/// A <see cref="FileSystem"/>
+		/// </param>
+		/// <param name="metadata">The metadata for this file (string.Empty if there is none)
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="path">The path to this file
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The filename
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="local">True if the file is on the local filesystem, false if the file is on the camera
+		/// A <see cref="System.Boolean"/>
+		/// </param>
 		protected File(Camera camera, FileSystem fs, string metadata, string path, string filename, bool local)
 		{
 			if(metadata == null)
@@ -213,6 +234,16 @@ namespace Gphoto2
 			return data.LongLength;
 		}
 		
+		/// <summary>
+		/// Searches the metadata for the specified key and returns the value as an integer
+		/// </summary>
+		/// <param name="key">The key to get the value for
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>The value corresponding to the key if successful. -1 is returned if the key
+		/// couldn't be parsed as an int or didn't exist.
+		/// A <see cref="System.Int32"/>
+		/// </returns>
 		protected int GetInt(string key)
 		{
 			int val;
@@ -224,6 +255,15 @@ namespace Gphoto2
 			return val;
 		}
 		
+		/// <summary>
+		/// Searches the metadata for the specified key and returns the value as a string
+		/// </summary>
+		/// <param name="key">The key to get the value for
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <returns>A non-null string
+		/// A <see cref="System.String"/>
+		/// </returns>
 		protected string GetString(string key)
 		{
 			string str;
@@ -233,7 +273,12 @@ namespace Gphoto2
 			return str ?? "";
 		}
 		
-		
+		/// <summary>
+		/// Builds an 'xml string' which libgphoto2 uses to represent the metadata
+		/// </summary>
+		/// <returns>
+		/// A <see cref="System.String"/>
+		/// </returns>
 		internal string MetadataToXml()
 		{
 			StringBuilder sb = new StringBuilder(metadata.Count * 32);
@@ -264,6 +309,12 @@ namespace Gphoto2
 		//                                  s:1                v    e
 		static Regex element = new Regex(@"<([^<>]+?)>(?<value>.*?)</\1>", RegexOptions.Compiled);
 		
+		/// <summary>
+		/// Parses a metadata string (as returned by libgphoto2) into key/value pairs
+		/// </summary>
+		/// <param name="metadata">The metadata string returned by libgphoto2
+		/// A <see cref="System.String"/>
+		/// </param>
 		protected void ParseMetadata(string metadata)
 		{
 			XmlReaderSettings s = new XmlReaderSettings();
@@ -299,11 +350,31 @@ namespace Gphoto2
 			return dictionary;
 		}
 		
+		/// <summary>
+		/// Changes the value of the metadata to the specified value and sets the 'IsDirty' property
+		/// to true if the value has changed
+		/// </summary>
+		/// <param name="key">The key to change the value of
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="value">The new value
+		/// A <see cref="System.Int32"/>
+		/// </param>
 		protected void SetValue(string key, int value)
 		{
 			SetValue(key, value.ToString());
 		}
 		
+		/// <summary>
+		/// Changes the value of the metadata to the specified value and sets the 'IsDirty' property
+		/// to true if the value has changed
+		/// </summary>
+		/// <param name="key">The key to change the value of
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="value">The new value. If the value is null, it is treated as string.Empty
+		/// A <see cref="System.String"/>
+		/// </param>
 		protected void SetValue(string key, string value)
 		{
 			value = value ?? "";

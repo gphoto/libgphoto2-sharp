@@ -31,62 +31,95 @@ using System;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents a music track
+	/// </summary>
 	public class MusicFile : File
 	{
+		/// <value>
+		/// The name of the album
+		/// </value>
 		public string Album
 		{
 			get { return GetString("AlbumName"); }
 			set { SetValue("AlbumName", value); }
 		}
 		
+		/// <value>
+		/// The name of the artist
+		/// </value>
 		public string Artist
 		{
 			get { return GetString("Artist"); }
 			set { SetValue("Artist", value); }
 		}
 		
+		/// <value>
+		/// The bitrate of the track
+		/// </value>
 		public int Bitrate
 		{
 			get { return GetInt("AudioBitDepth"); }
 			set { SetValue("AudioBitDepth", value); }
 		}
 		
+		/// <value>
+		/// The duration of the track in seconds
+		/// </value>
 		public int Duration
 		{
 			get { return GetInt("Duration"); }
 			set { SetValue("Duration", value); }
 		}
 		
+		/// <value>
+		/// The format of the track
+		/// </value>
 		public string Format
 		{
 			get { return GetString("AudioWAVECodec"); }
 			set { SetValue("AudioWAVECodec", value); }
 		}
 		
+		/// <value>
+		/// The genre of the track
+		/// </value>
 		public string Genre
 		{
 			get {return GetString("Genre"); }
 			set { SetValue("Genre", value); }
 		}
 		
+		/// <value>
+		/// The title of the track
+		/// </value>
 		public string Title
 		{
 			get { return GetString("Name"); }
 			set { SetValue("Name", value); }
 		}
 		
+		/// <value>
+		/// The tracknumber of the track
+		/// </value>
 		public int Track
 		{
 			get { return GetInt("Track"); }
 			set { SetValue("Track", value); }
 		}
 		
+		/// <value>
+		/// The number of times the track has been played
+		/// </value>
 		public int UseCount
 		{
 			get { return GetInt("UseCount"); }
 			set { SetValue("UseCount", value); }
 		}
 
+		/// <value>
+		/// The year the track was recorded
+		/// </value>
 		public int Year
 		{
 			get
@@ -114,6 +147,15 @@ namespace Gphoto2
 
 		}
 		
+		/// <summary>
+		/// Creates a new music file
+		/// </summary>
+		/// <param name="directory">The path to the track
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The filename of the track
+		/// A <see cref="System.String"/>
+		/// </param>
 		public MusicFile(string directory, string filename)
 			: this(null, null, "", directory, filename, true)
 		{

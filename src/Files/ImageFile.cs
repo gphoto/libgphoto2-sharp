@@ -31,37 +31,59 @@ using System;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents an Image
+	/// </summary>
 	public class ImageFile : File
 	{	
+		/// <value>
+		/// The bitdepth of the image
+		/// </value>
 		public int Depth
 		{
 			get { return GetInt ("ImageBitDepth"); }
 			set { SetValue ("ImageBitDepth", value); }
 		}
 		
+		/// <value>
+		/// The exposure index of the image
+		/// </value>
 		public int ExposureIndex
 		{
 			get { return GetInt ("ExposureIndex"); }
 			set { SetValue ("ExposureIndex", value); }
 		}
 		
+		/// <value>
+		/// The FNumber of the image
+		/// </value>
 		public int Fnumber
 		{
 			get { return GetInt ("Fnumber"); }
 			set { SetValue ("Fnumber", value); }
 		}
 		
+		/// <value>
+		/// The exposure time of the image
+		/// </value>
 		public int ExposureTime
 		{
 			get { return GetInt ("ExposureTime"); }
 			set { SetValue ("ExposureTime", value); }
 		}
+		
+		/// <value>
+		/// The height of the image in pixels
+		/// </value>
 		public int Height
 		{
 			get { return GetInt ("Height"); }
 			set { SetValue ("Height", value); }
 		}
 		
+		/// <value>
+		/// The width of the image in pixels
+		/// </value>
 		public int Width
 		{
 			get { return GetInt ("Width"); }
@@ -74,6 +96,15 @@ namespace Gphoto2
 			
 		}
 		
+		/// <summary>
+		/// Creates a new image file
+		/// </summary>
+		/// <param name="path">The path to the directory containing the image
+		/// A <see cref="System.String"/>
+		/// </param>
+		/// <param name="filename">The filename of the image
+		/// A <see cref="System.String"/>
+		/// </param>
 		public ImageFile (string path, string filename)
 			: base (null, null, "", path, filename, true)
 		{

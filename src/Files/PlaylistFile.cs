@@ -33,15 +33,24 @@ using System.Collections.Generic;
 
 namespace Gphoto2
 {
+	/// <summary>
+	/// Represents a music/video playlist
+	/// </summary>
 	public class PlaylistFile : File
 	{
 		private List<Gphoto2.File> files;
 		
+		/// <value>
+		/// The list of files in the playlist
+		/// </value>
 		public List<Gphoto2.File> Files
 		{
 			get { return files; }
 		}
 		
+		/// <value>
+		/// The name of the playlist
+		/// </value>
 		public string Name
 		{
 			get { return GetString("Name"); }

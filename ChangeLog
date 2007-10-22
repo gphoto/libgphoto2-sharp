@@ -1,5 +1,10 @@
 2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs, src/Files/GenericFile.cs, src/Files/MusicFile.cs,
+	  src/Files/PlaylistFile.cs, src/Files/ImageFile.cs: More XML comments
+
+2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Utilities.cs, src/GphotoException.cs, src/File.cs, src/FileSystem.cs,
 	  src/ErrorCode.cs, src/Camera.cs, src/Abilities.cs: Added XML
 	  documentation for all public methods/classes
