@@ -17,22 +17,9 @@ namespace Sample
 {
 	class MainClass
 	{
-	
+
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("Starting");
-			string xmlstring = "<b>ContentB</b><c>ContentC</c>";
-			
-			Regex regex = new Regex("<\\s(\\S+?)[^>]*?>(.*?)</\\s*\\0\\s*>");
-			foreach (Match m  in regex.Matches(xmlstring))
-			{
-				Console.WriteLine(m.Value);
-				foreach(Capture c in m.Captures)
-					Console.Write("Capture: " + c.Value);
-			}
-			Console.WriteLine("Done");
-			return;
-			
 			Console.WriteLine("Searching...");
 			List<Camera> cameras = Camera.Detect();
 			
@@ -67,7 +54,6 @@ namespace Sample
 						
 						start = System.Environment.TickCount - start;
 						Console.WriteLine("Time taken for {1} files: {0:0.00}", start / 1000.0, count);
-//						Console.WriteLine("Took: {0:0.00}ms per track", (double)Gphoto2.Base.Camera.TIMETAKEN / count);
 						Console.WriteLine("Took: {0:0.00}ms per total", ((double)TotalTime / count));						
 					}
 				}

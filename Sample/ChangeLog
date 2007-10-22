@@ -1,3 +1,7 @@
+2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* Main.cs: Misc cleanups
+
 2007-09-25  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* Main.cs: Added a recursive method to print out the file details. Removed
