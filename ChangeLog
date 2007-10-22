@@ -1,5 +1,11 @@
 2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/File.cs: Killed the Download() overload that returned a byte[].
+	  Replaced it by an overload which returns a Stream, this way large files
+	  can be handled without having to store it entirely in memory
+
+2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs, src/Files/GenericFile.cs, src/Files/MusicFile.cs,
 	  src/Files/PlaylistFile.cs, src/Files/ImageFile.cs: More XML comments
 

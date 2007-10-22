@@ -207,7 +207,8 @@ namespace Gphoto2
 		/// <returns>
 		/// A <see cref="System.Byte"/>
 		/// </returns>
-		public byte[] Download()
+		[Obsolete()]
+		private byte[] DownloadBytes()
 		{
 			if(LocalFile)
 				throw new InvalidOperationException("This file is already on the local filesystem");
@@ -229,9 +230,20 @@ namespace Gphoto2
 		/// </returns>
 		public long Download(Stream stream)
 		{
-			byte[] data = Download();
+			byte[] data = DownloadBytes();
 			stream.Write(data, 0, data.Length);
 			return data.LongLength;
+		}
+		
+		/// <summary>
+		/// Returns a stream which can be used to access the file
+		/// </summary>
+		/// <param name="stream">
+		/// A <see cref="Stream"/>
+		/// </param>
+		public Stream Download()
+		{
+			return new MemoryStream(DownloadBytes());
 		}
 		
 		/// <summary>
