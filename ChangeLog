@@ -1,3 +1,10 @@
+2007-10-26  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs, src/Files/GenericFile.cs, src/Files/MusicFile.cs,
+	  src/Files/ImageFile.cs: Added support code to allow the loading of Files
+	  from streams. This needs to be thought out better though. Disabled for
+	  the moment.
+
 2007-10-22  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/File.cs: Killed the Download() overload that returned a byte[].

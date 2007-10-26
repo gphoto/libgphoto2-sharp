@@ -57,5 +57,17 @@ namespace Gphoto2
 		{
 			
 		}
+		
+		/// <summary>
+		/// Creates a new file from the supplied stream
+		/// </summary>
+		/// <param name="stream">The stream containing the file data
+		/// A <see cref="Stream"/>
+		/// </param>
+//		public GenericFile(System.IO.Stream stream)
+//			: base(stream)
+//		{
+//			
+//		}
 	}
 }

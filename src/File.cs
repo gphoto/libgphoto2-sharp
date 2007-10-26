@@ -50,6 +50,7 @@ namespace Gphoto2
 		private string mimetype;
 		private string path;
 		private long size;
+		//private Stream stream;
 		
 		/// <value>
 		/// The date when the file was added to the device
@@ -187,7 +188,7 @@ namespace Gphoto2
 			this.mimetype = GuessMimetype(filename);
 			ParseMetadata(metadata);
 			
-			if(local)
+			if(local && !string.IsNullOrEmpty(filename))
 				size = new FileInfo(System.IO.Path.Combine(path, filename)).Length;
 			else
 				size = (long)camera.Device.GetFileInfo(FileSystem.CombinePath(fs.BaseDirectory, path), filename, camera.Context).file.size;
@@ -201,13 +202,29 @@ namespace Gphoto2
 			
 		}
 		
+		
+		/// <summary>
+		/// Creates a new file from the supplied stream
+		/// </summary>
+		/// <param name="stream">The stream containing the file data
+		/// A <see cref="Stream"/>
+		/// </param>
+//		public File (Stream stream)
+//			: this(null, null, "", null, null, true)
+//		{
+//			if (stream == null)
+//				throw new ArgumentNullException("stream");
+//			
+//			this.stream = stream;
+//			this.size = stream.Length;
+//		}
+
 		/// <summary>
 		/// Reads the entire file and returns it as a byte array
 		/// </summary>
 		/// <returns>
 		/// A <see cref="System.Byte"/>
 		/// </returns>
-		[Obsolete()]
 		private byte[] DownloadBytes()
 		{
 			if(LocalFile)
@@ -342,20 +359,23 @@ namespace Gphoto2
 					while (r.Read())
 						this.metadata.Add(r.Name, r.ReadString());
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				// If the standard XmlReader fails, the XML is 'invalid', so
 				// try using the last-ditch parser. It's a regex to attempt to
 				// match start/end tags and extract the value.
 				this.metadata = ParseToDictionary(metadata);
-			}
+			
+				if (this.metadata.Count == 0)
+					throw;
+			}		
 		}
 		
 		internal static Dictionary<string, string> ParseToDictionary(string xml)
 		{
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
 			MatchCollection matches = element.Matches(xml);
-			
+				
 			foreach (Match match in matches)
 				dictionary.Add(match.Groups[1].Value, match.Groups["value"].Value);
 			
