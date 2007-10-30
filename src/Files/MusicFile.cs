@@ -131,12 +131,14 @@ namespace Gphoto2
 					releaseDate = releaseDate.Substring(0, 4);
 				
 				if(!int.TryParse(releaseDate, out year))
-					return -1;
+					return 0;
 				
 				return year;
 			}
 			set
 			{
+				if (value < 0)
+					throw new ArgumentOutOfRangeException("Year");
 				SetValue("OriginalReleaseDate", string.Format("{0:0000}0101T0000.0", value));
 			}
 		}
