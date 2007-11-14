@@ -37,7 +37,7 @@ namespace LibGPhoto2
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public long size;
+        public ulong size;
         [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
     }
     
@@ -46,7 +46,7 @@ namespace LibGPhoto2
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public long size;
+        public ulong size;
         [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
         public uint width;
 		public uint height;
@@ -57,7 +57,7 @@ namespace LibGPhoto2
     {
         public CameraFileInfoFields fields;
         public CameraFileStatus status;
-        public long size;
+        public ulong size;
         [MarshalAs (UnmanagedType.ByValTStr, SizeConst=64)] public string type;
         
         public uint width;
@@ -166,9 +166,9 @@ namespace LibGPhoto2
         public CameraStorageType type;
         public CameraStorageFilesystemType fstype;
         public CameraStorageAccessType access;
-        public long capacitykbytes;
-        public long freekbytes;
-        public long freeimages;
+        public ulong capacitykbytes;
+        public ulong freekbytes;
+        public ulong freeimages;
     }
 	
     internal class CameraFilesystem : Object

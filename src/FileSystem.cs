@@ -104,7 +104,7 @@ namespace Gphoto2
 		public long Capacity
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.MaxCapacity)
-				? storage.capacitykbytes * 1024 : -1; }
+				? (long)storage.capacitykbytes * 1024 : -1; }
 		}
 		
 		/// <value>
@@ -131,7 +131,7 @@ namespace Gphoto2
 		public long FreeSpace
 		{
 			get { return HasField(LibGPhoto2.CameraStorageInfoFields.FreeSpaceKbytes)
-				? storage.freekbytes * 1024 : -1; }
+				? (long)storage.freekbytes * 1024 : -1; }
 		}
 		
 		/// <value>
