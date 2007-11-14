@@ -1,5 +1,10 @@
 2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/libgphoto2-sharp.dll.config: make the -sharp binding require
+	  libgphoto2.so.6
+
+2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/File.cs, src/FileSystem.cs, src/Base/CameraFilesystem.cs: Conforming
 	  with the new libgphoto2 API
 
