@@ -8,7 +8,7 @@ namespace LibGPhoto2
     {
         internal PortType type;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] internal string name;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] internal string path;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst=4096)] internal string path;
 
         /* Private */
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] internal string library_filename;
@@ -27,6 +27,10 @@ namespace LibGPhoto2
         
         public string Path {
             get { return Handle.path; }
+        }
+		
+        public string LibraryFilename {
+            get{return Handle.library_filename;}
         }
     }
 }

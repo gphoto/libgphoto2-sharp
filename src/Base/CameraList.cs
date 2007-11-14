@@ -9,6 +9,7 @@ namespace LibGPhoto2
         public CameraList ()
         {
             IntPtr native;
+			
             Error.CheckError (gp_list_new (out native));
                       
             this.handle = new HandleRef (this, native);

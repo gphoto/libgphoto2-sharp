@@ -1,5 +1,12 @@
 2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/libgphoto2-sharp.dll.config: Adjusted to use the newer version of
+	  libgphoto2_port
+	* src/Base/PortInfo.cs: Adjusted to the new API
+	* src/Base/CameraList.cs: Cosmetic
+
+2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/FileSystem.cs, src/Base/CameraFilesystem.cs: That should be ulong, not
 	  'long'
 
