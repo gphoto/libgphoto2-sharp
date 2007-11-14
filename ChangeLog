@@ -1,3 +1,8 @@
+2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/File.cs, src/FileSystem.cs, src/Base/CameraFilesystem.cs: Conforming
+	  with the new libgphoto2 API
+
 2007-10-30  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	

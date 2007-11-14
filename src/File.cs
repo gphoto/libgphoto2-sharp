@@ -448,30 +448,31 @@ namespace Gphoto2
 
 		internal static File Create(Camera camera, FileSystem fs, string directory, string filename)
 		{
-			 LibGPhoto2.CameraFile metadataFile;
+			LibGPhoto2.CameraFile metadataFile;
 			string metadata = null;
 			string mime = GuessMimetype(filename);
-			 LibGPhoto2.CameraFileType type =   LibGPhoto2.CameraFileType.MetaData;
+			LibGPhoto2.CameraFileType type = LibGPhoto2.CameraFileType.MetaData;
 			string fullDirectory = FileSystem.CombinePath(fs.BaseDirectory, directory);
 			
+
 			using (metadataFile = camera.Device.GetFile(fullDirectory, filename, type, camera.Context))
 				metadata = Encoding.UTF8.GetString(metadataFile.GetDataAndSize());
 			
 			/* First check to see if it's a music file */
 			if (mime ==  LibGPhoto2.MimeTypes.MP3 ||
 			    mime ==  LibGPhoto2.MimeTypes.WMA ||
-			    mime ==   LibGPhoto2.MimeTypes.WAV ||
-			    mime ==   LibGPhoto2.MimeTypes.OGG)
+			    mime ==  LibGPhoto2.MimeTypes.WAV ||
+			    mime ==  LibGPhoto2.MimeTypes.OGG)
 			{
 				return new MusicFile(camera, fs, metadata, directory, filename, false);
 			}
 			
 			/* Second check to see if it's an image */
 			if(mime ==  LibGPhoto2.MimeTypes.BMP ||
-			   mime ==   LibGPhoto2.MimeTypes.JPEG ||
-			   mime ==   LibGPhoto2.MimeTypes.PNG ||
-			   mime ==   LibGPhoto2.MimeTypes.RAW ||
-			   mime ==   LibGPhoto2.MimeTypes.TIFF)
+			   mime ==  LibGPhoto2.MimeTypes.JPEG ||
+			   mime ==  LibGPhoto2.MimeTypes.PNG ||
+			   mime ==  LibGPhoto2.MimeTypes.RAW ||
+			   mime ==  LibGPhoto2.MimeTypes.TIFF)
 			{
 				return new ImageFile(camera, fs, metadata, directory, filename, false);
 			}
