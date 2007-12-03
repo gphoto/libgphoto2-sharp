@@ -1,5 +1,11 @@
 2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/FileSystem.cs: Put in check to make sure directories aren't created if
+	  the device doesn't support directory creating. Updated the logic to
+	  detect folders.
+
+2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Camera.cs: Added logic for detecting the correct music, photo and
 	  playlist folders. Exposed these as properties
 

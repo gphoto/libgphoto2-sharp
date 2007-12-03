@@ -199,8 +199,15 @@ namespace Gphoto2
 		{
 			try
 			{
-				camera.Device.ListFiles(CombinePath(BaseDirectory, directory), camera.Context);
-				return true;
+				string filesystem;
+				string path;
+				string foldername;
+				
+				SplitPath(directory, out filesystem, out path, out foldername);
+				
+				foreach(string s in GetFolders(path))
+					if(s.Equals(foldername))
+						return true;
 			}
 			catch(GPhotoException ex)
 			{
@@ -343,6 +350,9 @@ namespace Gphoto2
 			
 			if(string.IsNullOrEmpty(foldername))
 				throw new ArgumentException("directory cannot be null or empty");
+			
+			if (!camera.Abilities.CanCreateDirectory)
+				throw new InvalidOperationException("Device doesn't support directory creation");
 			
 			path = CombinePath(BaseDirectory, path);
 			
