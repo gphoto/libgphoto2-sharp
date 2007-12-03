@@ -1,5 +1,10 @@
 2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
 
+	* src/Camera.cs: Added logic for detecting the correct music, photo and
+	  playlist folders. Exposed these as properties
+
+2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
+
 	* src/Files/PlaylistFile.cs: Made public constructor
 
 2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 

@@ -46,6 +46,9 @@ namespace Gphoto2
 		private bool disposed;
 		private LibGPhoto2.Context context;
 		private List<Gphoto2.FileSystem> fileSystems;
+		private string musicPath;
+		private string playlistPath;
+		private string photosPath;
 		private PortInfo port;
 		private int usbBusNumber;
 		private int usbDeviceNumber;
@@ -99,6 +102,22 @@ namespace Gphoto2
 			get { return fileSystems; }
 		}
 		
+		public string MusicFolder
+		{
+			get { return musicPath; }
+		}
+		
+		
+		public string PlaylistFolder
+		{
+			get { return playlistPath; }
+		}
+		
+		public string PhotoFolder
+		{
+			get { return photosPath; }
+		}
+		
 		/// <value>
 		/// The name of the device
 		/// </value>
@@ -145,6 +164,9 @@ namespace Gphoto2
 			this.abilities = new Abilities(abilities);
 			this.baseAbilities = abilities;
 			this.context = context;
+			this.musicPath = "";
+			this.photosPath = "";
+			this.playlistPath = "";
 			this.port = port;
 			this.usbBusNumber = int.Parse(parts[0]);
 			this.usbDeviceNumber = int.Parse(parts[1]);
@@ -176,6 +198,8 @@ namespace Gphoto2
 				fileSystems = new List<FileSystem>(storages.Length);
 				for (int i = 0; i < storages.Length; i++)
 					fileSystems.Add(new FileSystem(this, storages[i]));
+				
+				DetectPaths();
 			}
 			catch
 			{
@@ -183,6 +207,37 @@ namespace Gphoto2
 				throw;
 			}
 			connected = true;
+		}
+		
+		private void DetectPaths()
+		{
+			// Get all the folders in the root directory (i.e. /store_00010001) and
+			// case insensitive compare them to find the correct place to upload music,
+			// playlists and pictures.
+			StringComparison c = StringComparison.OrdinalIgnoreCase;
+			foreach (FileSystem fs in FileSystems)
+			{
+				foreach (string s in fs.GetFolders())
+				{
+					if (musicPath == "")
+					{
+						if(s.Equals("Music", c) || s.Equals("My Music", c))
+							musicPath = s;
+					}
+					
+					if (playlistPath == "")
+					{
+						if(s.Equals("Playlist", c) || s.Equals("Playlists", c))
+							playlistPath = s;
+					}
+					
+					if (photosPath == "")
+					{
+						if (s.Equals("Photo", c) || s.Equals("Photos", c))
+							photosPath = s;
+					}
+				}
+			}
 		}
 		
 		/// <summary>
