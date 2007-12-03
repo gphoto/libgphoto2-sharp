@@ -56,6 +56,15 @@ namespace Gphoto2
 			get { return GetString("Name"); }
 			set { SetValue("Name", value); }
 		}
+
+		public PlaylistFile(string name)
+			: this(null, null, "", null, null, true)
+		{
+			if (name == null)
+				throw new ArgumentNullException("name");
+			
+			Name = name;
+		}
 		
 		internal PlaylistFile(Camera camera, FileSystem fsystem, string metadata, string directory, string filename, bool local)
 			: base (camera, fsystem, metadata, directory, filename, local)

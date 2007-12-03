@@ -1,3 +1,7 @@
+2007-12-03  Alan McGovern <alan.mcgovern@gmail.com> 
+
+	* src/Files/PlaylistFile.cs: Made public constructor
+
 2007-11-14  Alan McGovern <alan.mcgovern@gmail.com> 
 
 	* src/libgphoto2-sharp.dll.config: Adjusted to use the newer version of
