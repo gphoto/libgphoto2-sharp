@@ -107,7 +107,7 @@ else
 fi
 AC_SUBST([htmldir])
 apidocdir="${htmldir}/api"
-AC_SUBST([apidocdir}])
+AC_SUBST([apidocdir])
 
 ])dnl
 
