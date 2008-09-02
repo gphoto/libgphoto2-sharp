@@ -13,7 +13,7 @@ AC_ARG_VAR([LIBLTDL],[LIBS to add for linking against libltdl])
 if test "x${LTDLINCL}${LIBLTDL}" = "x"; then
 AC_CHECK_HEADER([ltdl.h],
 [dnl
-AC_CHECK_LIB([ltdl], [lt_dlcaller_register],[dnl
+AC_CHECK_LIB([ltdl], [lt_dlinit],[dnl
 LTDLINCL=""
 LIBLTDL="-lltdl"
 AC_DEFINE([HAVE_LTDL],[1],[Whether libltdl (of libtool fame) is present])
