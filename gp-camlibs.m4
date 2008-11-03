@@ -137,6 +137,16 @@ else
 			AC_MSG_ERROR([Unknown camlib $camlib!])		
 		fi
 	done
+        if test "x$BUILD_THESE_CAMLIBS_BASE" = "xcanon" ; then
+		# Gentoo mode... if user just said "canon", add "ptp2" ... should save support requests.
+		BUILD_THESE_CAMLIBS_BASE="$BUILD_THESE_CAMLIBS_BASE ptp2"
+		camlibs="$camlibs ptp2"
+		AC_MSG_WARN([
+		"You have just selected the old canon driver. However most current Canons\n"
+		"are supported by the PTP2 driver.\n"
+		"Autoselecting ptp2 driver too to avoid support requests.\n"
+		])
+        fi
 	IFS="$IFS_save"
 	AC_MSG_RESULT([$camlibs])
 	GP_CAMLIBS_WARNING
