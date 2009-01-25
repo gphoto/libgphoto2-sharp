@@ -114,7 +114,6 @@ dnl
 AC_MSG_CHECKING([for ][$2][ to use])
 m4_ifval([$3],[REQUIREMENTS_FOR_][$1][="][$2][ $3]["],
               [REQUIREMENTS_FOR_][$1][="][$2]["])
-AC_SUBST([REQUIREMENTS_FOR_][$1])
 userdef_[$1]=no
 have_[$1]=no
 if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
@@ -127,6 +126,9 @@ if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
 			try_[$1]=auto
 		])dnl
 	AC_ARG_WITH([$2],[AS_HELP_STRING([gp_lib_arg][=PREFIX],[where to find ][$2][, "no" or "auto"])],[try_][$1][="$withval"])
+	if test "x${[try_][$1]}" = "xno"; then
+              [REQUIREMENTS_FOR_][$1][=]
+	fi
 	if test "x${[try_][$1]}" = "xauto"; then [try_][$1]=autodetect; fi
 	AC_MSG_RESULT([${try_][$1][}])
 	m4_popdef([gp_lib_arg])dnl
@@ -286,6 +288,7 @@ else
 * or neither.
 ])
 fi
+AC_SUBST([REQUIREMENTS_FOR_][$1])
 dnl
 dnl ACTION-IF-FOUND
 dnl
