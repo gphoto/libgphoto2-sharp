@@ -1,7 +1,7 @@
 dnl AC_NEED_STDINT_H ( HEADER-TO-GENERATE )
-dnl Copyright 2001-2002 by Dan Fandrich <dan@coneharvesters.com>
-dnl This file may be copied and used freely without restrictions.  No warranty
-dnl is expressed or implied.
+dnl Originally written 2001 by Dan Fandrich <dan@coneharvesters.com>
+dnl My contribution is hereby placed into the public domain.
+dnl No warranty is expressed or implied.
 dnl
 dnl Look for a header file that defines size-specific integer types like the
 dnl ones recommended to be in stdint.h in the C99 standard (e.g. uint32_t).

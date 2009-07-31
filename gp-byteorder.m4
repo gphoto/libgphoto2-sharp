@@ -1,7 +1,7 @@
 dnl AC_NEED_BYTEORDER_H ( HEADER-TO-GENERATE )
-dnl Copyright 2001-2002 by Dan Fandrich <dan@coneharvesters.com>
-dnl This file may be copied and used freely without restrictions.  No warranty
-dnl is expressed or implied.
+dnl Originally written by Dan Fandrich <dan@coneharvesters.com>
+dnl My contribution is hereby placed into the public domain.
+dnl No warranty is expressed or implied.
 dnl
 dnl Create a header file that guarantees that byte swapping macros of the
 dnl ntohl variety as well as the extended types included in OpenBSD and
