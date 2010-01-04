@@ -351,11 +351,10 @@ PKG_CONFIG_PATH=${PKG_CONFIG_PATH}
 *   - set PKG_CONFIG_PATH to adequate value
 *   - call configure with [$1][_LIBS]=.. and [$1][_CFLAGS]=..
 *   - call configure with one of the --with-$2 parameters
-]m4_ifval([$9],[dnl
-*   - get $2 and install it
-],[dnl
+][m4_ifval([$9],[dnl
 *   - get $2 and install it:
-      $9]))
+*     $9],[dnl
+*   - get $2 and install it])])
 fi
 ])dnl
 dnl
@@ -376,11 +375,11 @@ PKG_CONFIG_PATH=${PKG_CONFIG_PATH}
 *   - set PKG_CONFIG_PATH to adequate value
 *   - call configure with [$1][_LIBS]=.. and [$1][_CFLAGS]=..
 *   - call configure with one of the --with-$2 parameters
-]m4_ifval([$9],[dnl
-*   - get $2 and install it
-],[dnl
+][m4_ifval([$9],[dnl
 *   - get $2 and install it:
-      $9]))
+*     $9],[dnl
+*   - get $2 and install it
+])])
 fi
 ])dnl
 AM_CONDITIONAL([HAVE_][$1], [test "x$have_[$1]" = "xyes"])
