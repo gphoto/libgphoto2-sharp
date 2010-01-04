@@ -379,6 +379,9 @@ PKG_CONFIG_PATH=${PKG_CONFIG_PATH}
 *   - get $2 and install it:
 *     $9],[dnl
 *   - get $2 and install it
+])][m4_if([$2],[libusb],[dnl
+*   - if you have libusb >= 1.0 installed, you must also install
+*     either the libusb0 compat library or a libusb 0.x version
 ])])
 fi
 ])dnl
