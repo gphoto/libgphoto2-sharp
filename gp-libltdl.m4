@@ -23,7 +23,7 @@ $PACKAGE requires the ltdl library, included with libtool
 
 Please make sure that the proper development package is installed
 (libltdl-dev, libtool-ltdl-devel, etc.)
-])dnl
+])[]dnl
 ])dnl
 ])
 else
