@@ -81,6 +81,9 @@ case "$host" in
 	*darwin*)	soext=".dylib" ;;
 	*w32*)		soext=".dll" ;;
 esac
+case "$host_os" in
+	gnu*)		soext=".so" ;;
+esac
 if test "x$soext" = "x"; then
 	soext=".so"
 	AC_MSG_RESULT([${soext}])
