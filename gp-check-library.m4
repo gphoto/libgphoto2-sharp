@@ -152,6 +152,8 @@ if test "x${[$1][_LIBS]}" = "x" && test "x${[$1][_CFLAGS]}" = "x"; then
 			m4_pushdef([gp_lib_config],[m4_if([$2],[libusb],[libusb-config],
 				[$2],[libgphoto2],[gphoto2-config],
 				[$2],[libgphoto2_port],[gphoto2-port-config],
+				[$2],[libgd],[gdlib-config],
+				[$2],[libxml-2.0],[xml2-config],
 				[none])])dnl
 			AC_MSG_RESULT([gp_lib_config])
 			AC_PATH_PROG([$1][_CONFIG_PROG],[gp_lib_config])
