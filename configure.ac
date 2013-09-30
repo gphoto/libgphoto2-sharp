@@ -4,7 +4,7 @@ dnl Bump the .1.trunk to 2.trunk etc....
 AC_INIT([libgphoto2 Mono/.NET bindings], [2.3.99.0.trunk], [gphoto-devel@lists.sourceforge.net], [libgphoto2-sharp])
 AC_CONFIG_SRCDIR([src/Base/CameraList.cs])
 dnl AC_CONFIG_HEADERS([config.h])
-dnl AC_CONFIG_MACRO_DIR([unused-auto-m4])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([auto-aux])
 AM_INIT_AUTOMAKE([-Wall -Werror gnu 1.9 dist-bzip2 check-news])
 
@@ -75,7 +75,7 @@ Makefile
 doc/Makefile
 doc/Doxyfile
 doc/Doxyfile-internals
-m4m/Makefile
+gphoto-m4/Makefile
 Sample/Makefile
 src/Makefile
 src/AssemblyInfo.cs
