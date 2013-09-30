@@ -25,7 +25,7 @@ TODO:
 
 BUILDING:
 
-  * If you are using SVN source code, run "autoreconf -is".
+  * If you are using source code from git, run "autoreconf -is".
   * configure
   * make
   * make install
